@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Filesystem\Exception;
+namespace Net\Bazzline\Component\Filesystem\Exception;
 
 /**
  * Exception interface for all exceptions thrown by the component.
  *
- * @author Romain Neutron <imprec@gmail.com>
+ * @author Romain Neutron <imprec@gmail.com> - original author before fork
+ * @author stev leibelt <artodeto@arcor.de>
  *
  * @api
  */

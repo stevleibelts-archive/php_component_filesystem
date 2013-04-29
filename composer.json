@@ -1,9 +1,9 @@
 {
-    "name": "symfony/filesystem",
+    "name": "net_bazzline/filesystem",
     "type": "library",
-    "description": "Symfony Filesystem Component",
+    "description": "Net_Bazzline Filesystem Component",
     "keywords": [],
-    "homepage": "http://symfony.com",
+    "homepage": "http://www.bazzline.net",
     "license": "MIT",
     "authors": [
         {
@@ -13,15 +13,19 @@
         {
             "name": "Symfony Community",
             "homepage": "http://symfony.com/contributors"
+        },
+	{
+            "name": "Stev Leibelt",
+            "homepage": "http://artodeto.bazzline.net"
         }
     ],
     "require": {
         "php": ">=5.3.3"
     },
     "autoload": {
-        "psr-0": { "Symfony\\Component\\Filesystem\\": "" }
+        "psr-0": { "Net\\Bazzline\\Component\\Filesystem\\": "" }
     },
-    "target-dir": "Symfony/Component/Filesystem",
+    "target-dir": "net_bazzline/Component/Filesystem",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {

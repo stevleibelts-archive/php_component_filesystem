@@ -9,14 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Filesystem;
+namespace Net\Bazzline\Component\Filesystem;
 
-use Symfony\Component\Filesystem\Exception\IOException;
+use InvalidArgumentException;
+use Net\Bazzline\Component\Filesystem\Exception\IOException;
 
 /**
  * Provides basic utility to manipulate the file system.
  *
- * @author Fabien Potencier <fabien@symfony.com>
+ * @author Fabien Potencier <fabien@symfony.com> - original author before fork
+ * @author stev leibelt <artodeto@arcor.de>
  */
 class Filesystem
 {
@@ -285,46 +287,6 @@ class Filesystem
     }
 
     /**
-     * Given an existing path, convert it to a path relative to a given starting path
-     *
-     * @param string $endPath   Absolute path of target
-     * @param string $startPath Absolute path where traversal begins
-     *
-     * @return string Path of target relative to starting path
-     */
-    public function makePathRelative($endPath, $startPath)
-    {
-        // Normalize separators on windows
-        if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
-            $endPath = strtr($endPath, '\\', '/');
-            $startPath = strtr($startPath, '\\', '/');
-        }
-
-        // Split the paths into arrays
-        $startPathArr = explode('/', trim($startPath, '/'));
-        $endPathArr = explode('/', trim($endPath, '/'));
-
-        // Find for which directory the common path stops
-        $index = 0;
-        while (isset($startPathArr[$index]) && isset($endPathArr[$index]) && $startPathArr[$index] === $endPathArr[$index]) {
-            $index++;
-        }
-
-        // Determine how deep the start path is relative to the common path (ie, "web/bundles" = 2 levels)
-        $depth = count($startPathArr) - $index;
-
-        // Repeated "../" for each level need to reach the common path
-        $traverser = str_repeat('../', $depth);
-
-        $endPathRemainder = implode('/', array_slice($endPathArr, $index));
-
-        // Construct $endPath from traversing to the common path, then to the remaining $endPath
-        $relativePath = $traverser.(strlen($endPathRemainder) > 0 ? $endPathRemainder.'/' : '');
-
-        return (strlen($relativePath) === 0) ? './' : $relativePath;
-    }
-
-    /**
      * Mirrors a directory to another.
      *
      * @param string       $originDir The origin directory
@@ -415,19 +377,6 @@ class Filesystem
         return false;
     }
 
-    /**
-     * @param mixed $files
-     *
-     * @return \Traversable
-     */
-    private function toIterator($files)
-    {
-        if (!$files instanceof \Traversable) {
-            $files = new \ArrayObject(is_array($files) ? $files : array($files));
-        }
-
-        return $files;
-    }
 
     /**
      * Atomically dumps content into a file.
@@ -455,5 +404,106 @@ class Filesystem
 
         $this->rename($tmpFile, $filename, true);
         $this->chmod($filename, $mode);
+    }
+
+    /**
+     * Returns relative $path path to current working directory
+     *
+     * @param string $path - the path that has to be converted into a relative
+     *  path from the current working directory
+     *
+     * @return string
+     * @throws \InvalidArgumentException;
+     * @author stev leibelt
+     * @since 2013-04-25
+     */
+    public function makeRelativePathToCurrentWorkingDirectory($path)
+    {
+        return $this->makePathRelative(getcwd(), $path);
+    }
+
+    /**
+     * Returns relative current working directory path to path
+     *
+     * @param string $path - the path where the current working directory has
+     *  to be made relative
+     *
+     * @return string
+     * @throws \InvalidArgumentException;
+     * @author stev leibelt
+     * @since 2013-04-25
+     */
+    public function makeCurrentWorkingDirectoryRelativeToPath($path)
+    {
+        return $this->makePathRelative($path, getcwd());
+    }
+
+    /**
+     * Converts given $endPath to a relative path to $startPath
+     *
+     * @param string $startPath - the path where $endPath should be relative to
+     * @param string $endPath - the path that should be relative to $startPath
+     *
+     * @return string
+     * @throws \InvalidArgumentException;
+     * @author stev leibelt
+     * @since 2013-04-25
+     */
+    public function makePathRelative($startPath, $endPath)
+    {
+        // Normalize separators on windows
+        if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
+            $osIndependentEndPath = strtr($endPath, '\\', '/');
+            $osIndependentStartPath = strtr($startPath, '\\', '/');
+        }
+
+        $startRealPath = realpath($osIndependentStartPath);
+        $endRealPath = realpath($osIndependentEndPath);
+
+        if (!is_dir($startRealPath)) {
+            throw new InvalidArgumentException(
+                'Provided start path is not a valid directory.'
+            );
+        }
+        if (!is_dir($endRealPath)) {
+            throw new InvalidArgumentException(
+                'Provided end path is not a valid directory.'
+            );
+        }
+
+        $startRealPathAsArray = explode(DIRECTORY_SEPARATOR, $startRealPath);
+        $endRealPathAsArray = explode(DIRECTORY_SEPARATOR, $endRealPath);
+
+        $relativeStartRealPathAsArray = array_diff(
+            $startRealPathAsArray,
+            $endRealPathAsArray
+        );
+        $relativeEndRealPathAsArray = array_diff(
+            $endRealPathAsArray,
+            $startRealPathAsArray
+        );
+
+        $numberOfSubDirectoriesFromRelativeStartPath = count($relativeStartRealPathAsArray);
+
+        $relativePath = str_repeat(
+            '..' . DIRECTORY_SEPARATOR,
+            $numberOfSubDirectoriesFromRelativeStartPath
+        ) . implode(DIRECTORY_SEPARATOR, $relativeEndRealPathAsArray);
+
+        return $relativePath;
+    }
+
+    /**
+     * @param mixed $files
+     *
+     * @return \Traversable
+     */
+    private function toIterator($files)
+    {
+        if (!$files instanceof \Traversable) {
+            $files = new \ArrayObject(is_array($files) ? $files : array($files));
+        }
+
+        return $files;
     }
 }

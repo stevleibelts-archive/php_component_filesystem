@@ -9,16 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Filesystem\Exception;
+namespace Net\Bazzline\Component\Filesystem\Exception;
+
+use RuntimeException;
 
 /**
  * Exception class thrown when a filesystem operation failure happens
  *
- * @author Romain Neutron <imprec@gmail.com>
+ * @author Romain Neutron <imprec@gmail.com> - original author before fork
+ * @author stev eibelt <artodeto@arcor.de>
  *
  * @api
  */
-class IOException extends \RuntimeException implements ExceptionInterface
+class IOException extends RuntimeException implements ExceptionInterface
 {
 
 }
