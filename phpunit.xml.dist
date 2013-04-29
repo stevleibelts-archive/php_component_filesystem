@@ -12,7 +12,7 @@
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="Symfony Filesystem Component Test Suite">
+        <testsuite name="Net Bazzline Filesystem Component Test Suite">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

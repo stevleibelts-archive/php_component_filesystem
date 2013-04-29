@@ -1,7 +1,7 @@
 {
     "name": "net_bazzline/filesystem",
     "type": "library",
-    "description": "Net_Bazzline Filesystem Component",
+    "description": "Net Bazzline Filesystem Component",
     "keywords": [],
     "homepage": "http://www.bazzline.net",
     "license": "MIT",

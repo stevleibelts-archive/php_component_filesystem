@@ -9,14 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Filesystem\Tests;
+namespace Net\Bazzline\Component\Filesystem\Tests;
 
-use Symfony\Component\Filesystem\Filesystem;
+use Net\Bazzline\Component\Filesystem\Filesystem;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Test class for Filesystem.
  */
-class FilesystemTest extends \PHPUnit_Framework_TestCase
+class FilesystemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string $workspace
@@ -89,7 +90,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testCopyFails()
     {
@@ -207,7 +208,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testMkdirCreatesDirectoriesFails()
     {
@@ -229,7 +230,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testTouchFails()
     {
@@ -518,7 +519,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testChownSymlinkFails()
     {
@@ -535,7 +536,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testChownFail()
     {
@@ -584,7 +585,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testChgrpSymlinkFails()
     {
@@ -601,7 +602,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testChgrpFail()
     {
@@ -626,7 +627,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testRenameThrowsExceptionIfTargetAlreadyExists()
     {
@@ -654,7 +655,7 @@ class FilesystemTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \Symfony\Component\Filesystem\Exception\IOException
+     * @expectedException \Net\Bazzline\Component\Filesystem\Exception\IOException
      */
     public function testRenameThrowsExceptionOnError()
     {
