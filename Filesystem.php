@@ -455,6 +455,9 @@ class Filesystem
         if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
             $osIndependentEndPath = strtr($endPath, '\\', '/');
             $osIndependentStartPath = strtr($startPath, '\\', '/');
+        } else {
+            $osIndependentEndPath = $endPath;
+            $osIndependentStartPath = $startPath;
         }
 
         $startRealPath = realpath($osIndependentStartPath);

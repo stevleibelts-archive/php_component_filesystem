@@ -12,6 +12,7 @@
 namespace Net\Bazzline\Component\Filesystem;
 
 use PHPUnit_Framework_TestCase;
+use ReflectionClass;
 
 /**
  * Test class for Filesystem.
@@ -759,34 +760,25 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
      */
     public function providePathsForMakePathRelative()
     {
+        $filesystemReflection = new ReflectionClass(__NAMESPACE__ . '\\Filesystem');
+
+        $realPathOfTestFile = dirname(__FILE__);
+        $realPathOfTestedFile = dirname($filesystemReflection->getFileName());
+
         $paths = array(
-            array('/var/lib/symfony/src/Symfony/', '/var/lib/symfony/src/Symfony/Component', '../'),
-            array('/var/lib/symfony/src/Symfony/', '/var/lib/symfony/src/Symfony/Component/', '../'),
-            array('/var/lib/symfony/src/Symfony', '/var/lib/symfony/src/Symfony/Component', '../'),
-            array('/var/lib/symfony/src/Symfony', '/var/lib/symfony/src/Symfony/Component/', '../'),
-            array('var/lib/symfony/', 'var/lib/symfony/src/Symfony/Component', '../../../'),
-            array('/usr/lib/symfony/', '/var/lib/symfony/src/Symfony/Component', '../../../../../../usr/lib/symfony/'),
-            array('/var/lib/symfony/src/Symfony/', '/var/lib/symfony/', 'src/Symfony/'),
-            array('/aa/bb', '/aa/bb', './'),
-            array('/aa/bb', '/aa/bb/', './'),
-            array('/aa/bb/', '/aa/bb', './'),
-            array('/aa/bb/', '/aa/bb/', './'),
-            array('/aa/bb/cc', '/aa/bb/cc/dd', '../'),
-            array('/aa/bb/cc', '/aa/bb/cc/dd/', '../'),
-            array('/aa/bb/cc/', '/aa/bb/cc/dd', '../'),
-            array('/aa/bb/cc/', '/aa/bb/cc/dd/', '../'),
-            array('/aa/bb/cc', '/aa', 'bb/cc/'),
-            array('/aa/bb/cc', '/aa/', 'bb/cc/'),
-            array('/aa/bb/cc/', '/aa', 'bb/cc/'),
-            array('/aa/bb/cc/', '/aa/', 'bb/cc/'),
-            array('/a/aab/bb', '/a/aa', '../aab/bb/'),
-            array('/a/aab/bb', '/a/aa/', '../aab/bb/'),
-            array('/a/aab/bb/', '/a/aa', '../aab/bb/'),
-            array('/a/aab/bb/', '/a/aa/', '../aab/bb/'),
+            array($realPathOfTestFile, $realPathOfTestFile, ''),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestFile, ''),
+            array($realPathOfTestFile, $realPathOfTestFile . DIRECTORY_SEPARATOR, ''),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestFile . DIRECTORY_SEPARATOR, ''),
+            array($realPathOfTestFile, $realPathOfTestedFile, '..' . DIRECTORY_SEPARATOR),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile, '..' . DIRECTORY_SEPARATOR),
+            array($realPathOfTestFile, $realPathOfTestedFile . DIRECTORY_SEPARATOR, '..' . DIRECTORY_SEPARATOR),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile . DIRECTORY_SEPARATOR, '..' . DIRECTORY_SEPARATOR),
+            array($realPathOfTestedFile, $realPathOfTestFile, 'Tests')
         );
 
         if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
-            $paths[] = array('c:\var\lib/symfony/src/Symfony/', 'c:/var/lib/symfony/', 'src/Symfony/');
+//not testable here since no windows available
         }
 
         return $paths;
