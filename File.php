@@ -84,6 +84,7 @@ class File
     public function getData()
     {
         if ((is_null($this->data))
+            && (!is_null($this->getRealPath()))
             && (!$this->isNew())
             && ($this->read())) {
             return $this->data;
@@ -294,12 +295,17 @@ class File
     /**
      * Returns real path for given path and name.
      *
-     * @return string
+     * @return null|string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     private function getRealPath()
     {
-        return realpath($this->path . DIRECTORY_SEPARATOR . $this->name);
+        if ((is_null($this->name))
+            && (is_null($this->path))) {
+            return null;
+        } else {
+            return realpath($this->path . DIRECTORY_SEPARATOR . $this->name);
+        }
     }
 }
