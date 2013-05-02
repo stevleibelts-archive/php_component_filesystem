@@ -9,9 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Net\Bazzline\Component\Filesystem\Tests;
+namespace Net\Bazzline\Component\Filesystem;
 
-use Net\Bazzline\Component\Filesystem\Filesystem;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -25,7 +24,7 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
     private $workspace = null;
 
     /**
-     * @var \Symfony\Component\Filesystem\Filesystem $filesystem
+     * @var \Net\Bazzline\Component\Filesystem\Filesystem $filesystem
      */
     private $filesystem = null;
 
@@ -168,7 +167,7 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('SOURCE FILE', file_get_contents($targetFilePath));
     }
 
-    public function testMkdirCreatesDirectoriesRecursively()
+    public function testMakdirCreatesDirectoriesRecursively()
     {
         $directory = $this->workspace
             .DIRECTORY_SEPARATOR.'directory'

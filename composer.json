@@ -23,9 +23,11 @@
         "php": ">=5.3.3"
     },
     "autoload": {
-        "psr-0": { "Net\\Bazzline\\Component\\Filesystem\\": "" }
+        "psr-0": {
+            "Net\\Bazzline\\Component\\Filesystem\\": ""
+        }
     },
-    "target-dir": "net_bazzline/Component/Filesystem",
+    "target-dir": "Net/Bazzline/Component/Filesystem",
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
