@@ -1,5 +1,5 @@
 {
-    "name": "net_bazzline/component/filesystem",
+    "name": "net_bazzline_component/filesystem",
     "type": "library",
     "description": "Net Bazzline Filesystem Component",
     "keywords": [],
