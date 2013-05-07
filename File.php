@@ -45,7 +45,9 @@ class File
     {
         if ((!is_null($path))
             && (!is_null($name))) {
-            $this->setPath($path);
+            $pathWithoutTrailingSlash = ($this->stringEndsWith($path, DIRECTORY_SEPARATOR)) ?
+                (substr($path, 0, -(strlen(DIRECTORY_SEPARATOR)))) : $path;
+            $this->setPath($pathWithoutTrailingSlash);
             $this->setName($name);
         }
     }
@@ -77,19 +79,20 @@ class File
     /**
      * Returns the data.
      *
-     * @return null
+     * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function getData()
     {
-        if ((is_null($this->data))
-            && (!is_null($this->getRealPath()))
+        if (!is_null($this->data)) {
+            return $this->data;
+        } else if ((!is_null($this->getRealPath()))
             && (!$this->isNew())
             && ($this->read())) {
             return $this->data;
         } else {
-            return null;
+            return '';
         }
     }
 
@@ -165,7 +168,7 @@ class File
     public function write()
     {
         if ($this->isNew()) {
-            return file_put_contents($this->getRealPath(), $this->getData());
+            return $this->overwrite();
         } else {
             return false;
         }
@@ -180,7 +183,7 @@ class File
      */
     public function overwrite()
     {
-        return (file_put_contents($this->getRealPath(), $this->getData()) > 0);
+        return file_put_contents($this->getRealPath(), $this->getData());
     }
 
     /**
@@ -192,6 +195,9 @@ class File
      */
     public function read()
     {
+        if ($this->isNew()) {
+            return false;
+        }
         $data = file_get_contents($this->getRealPath());
 
         if ($data !== false) {
@@ -206,13 +212,13 @@ class File
     /**
      * Returns current modification time.
      *
-     * @return int
+     * @return null|int
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function getModificationTime()
     {
-        return filemtime($this->getRealPath());
+        return ($this->isNew()) ? null : filemtime($this->getRealPath());
     }
 
     /**
@@ -220,25 +226,25 @@ class File
      *
      * @param string $format - format available by php date.
      *
-     * @return string
+     * @return null|string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function getModificationDate($format = 'Y-m-d H:i:s')
     {
-        return date($format, $this->getModificationTime());
+        return ($this->isNew()) ? null : date($format, $this->getModificationTime());
     }
 
     /**
      * Returns current last access time.
      *
-     * @return int
+     * @return null|int
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function getLastAccessTime()
     {
-        return fileatime($this->getRealPath());
+        return ($this->isNew()) ? null : fileatime($this->getRealPath());
     }
 
     /**
@@ -246,13 +252,13 @@ class File
      *
      * @param string $format - format available by php date.
      *
-     * @return string
+     * @return null|string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function getLastAccessDate($format = 'Y-m-d H:i:s')
     {
-        return date($format, $this->getLastAccessTime());
+        return ($this->isNew()) ? null : date($format, $this->getLastAccessTime());
     }
 
     /**
@@ -305,7 +311,24 @@ class File
             && (is_null($this->path))) {
             return null;
         } else {
-            return realpath($this->path . DIRECTORY_SEPARATOR . $this->name);
+            $filePath = $this->path . DIRECTORY_SEPARATOR . $this->name;
+            return realpath($filePath);
         }
+    }
+
+    /**
+     * @param string $string - string
+     * @param string $endsWith - ends with
+     *
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    private function stringEndsWith($string, $endsWith)
+    {
+        $lengthOfEndsWith = strlen($endsWith);
+        $stringEnding = substr($string, -$lengthOfEndsWith);
+
+        return ($stringEnding == $endsWith);
     }
 }
