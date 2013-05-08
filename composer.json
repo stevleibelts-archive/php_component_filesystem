@@ -1,26 +1,19 @@
 {
-    "name": "net_bazzline_component/filesystem",
+    "name": "net_bazzline/component_filesystem",
     "type": "library",
     "description": "Net Bazzline Filesystem Component",
     "keywords": [],
     "homepage": "http://www.bazzline.net",
-    "license": "MIT",
+    "license": "GPLv3",
     "authors": [
-        {
-            "name": "Fabien Potencier",
-            "email": "fabien@symfony.com"
-        },
-        {
-            "name": "Symfony Community",
-            "homepage": "http://symfony.com/contributors"
-        },
-	{
+	    {
             "name": "Stev Leibelt",
             "homepage": "http://artodeto.bazzline.net"
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.3.3",
+        "symfony/filesystem": "2.3.*@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
