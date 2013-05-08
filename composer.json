@@ -18,12 +18,13 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "mikey179/vfsStream": "dev-master",
-	    "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master"
     },
     "autoload": {
         "psr-0": {
             "Net\\Bazzline\\Component\\Filesystem\\": ""
         }
     },
+    "target-dir": "Net/Bazzline/Component/Filesystem",
     "minimum-stability": "dev"
 }
