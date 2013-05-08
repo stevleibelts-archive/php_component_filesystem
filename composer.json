@@ -25,6 +25,5 @@
             "Net\\Bazzline\\Component\\Filesystem\\": ""
         }
     },
-    "target-dir": "Net/Bazzline/Component/Filesystem",
     "minimum-stability": "dev"
 }
