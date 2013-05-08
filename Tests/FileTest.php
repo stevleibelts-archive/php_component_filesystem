@@ -360,10 +360,11 @@ class FileTest extends PHPUnit_Framework_TestCase
     {
         $this->setupFilesystem();
         $this->setupFile();
-        $date = date('Y-m-d H:i:s', time());
+        $dateFormat = 'Y-m-d H:i:s';
+        $date = date($dateFormat, time());
         $existingFile = new File($this->filePath, $this->filename);
 
-        $this->assertGreaterThanOrEqual($date, $existingFile->getModificationDate());
+        $this->assertGreaterThanOrEqual($date, $existingFile->getModificationDate($dateFormat));
         $this->removeFile();
 
         $this->setupFilesystem();
@@ -404,10 +405,11 @@ class FileTest extends PHPUnit_Framework_TestCase
     {
         $this->setupFilesystem();
         $this->setupFile();
-        $date = date('Y-m-d H:i:s', time());
+        $dateFormat = 'Y-m-d H:i:s';
+        $date = date($dateFormat, time());
         $existingFile = new File($this->filePath, $this->filename);
 
-        $this->assertGreaterThanOrEqual($date, $existingFile->getLastAccessTime());
+        $this->assertGreaterThanOrEqual($date, $existingFile->getLastAccessDate($dateFormat));
         $this->removeFile();
 
         $this->setupFilesystem();
@@ -415,7 +417,52 @@ class FileTest extends PHPUnit_Framework_TestCase
         $filePath = vfsStream::url('root');
         $newFile = new File($filePath, $filename);
 
-        $this->assertNull($newFile->getLastAccessTime());
+        $this->assertNull($newFile->getLastAccessDate());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function testGetCreateTime()
+    {
+        $this->setupFilesystem();
+        $this->setupFile();
+        $timestamp = time();
+        $existingFile = new File($this->filePath, $this->filename);
+
+        $this->assertGreaterThanOrEqual($timestamp, $existingFile->getCreateTime());
+        $this->removeFile();
+
+        $this->setupFilesystem();
+        $filename = 'touchedFile';
+        $filePath = vfsStream::url('root');
+        $newFile = new File($filePath, $filename);
+
+        $this->assertNull($newFile->getCreateTime());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function testGetCreateDate()
+    {
+        $this->setupFilesystem();
+        $this->setupFile();
+        $dateFormat = 'Y-m-d H:i:s';
+        $date = date($dateFormat, time());
+        $existingFile = new File($this->filePath, $this->filename);
+
+        $this->assertGreaterThanOrEqual($date, $existingFile->getCreateDate($dateFormat));
+        $this->removeFile();
+
+        $this->setupFilesystem();
+        $filename = 'touchedFile';
+        $filePath = vfsStream::url('root');
+        $newFile = new File($filePath, $filename);
+
+        $this->assertNull($newFile->getCreateDate());
     }
 
     /**

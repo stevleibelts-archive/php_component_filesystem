@@ -299,6 +299,32 @@ class File
     }
 
     /**
+     * Returns current last access time.
+     *
+     * @return null|int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function getCreateTime()
+    {
+        return ($this->isNew()) ? null : filectime($this->getRealPath());
+    }
+
+    /**
+     * Returns formatted last access time.
+     *
+     * @param string $format - format available by php date.
+     *
+     * @return null|string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function getCreateDate($format = 'Y-m-d H:i:s')
+    {
+        return ($this->isNew()) ? null : date($format, $this->getCreateTime());
+    }
+
+    /**
      * Is file writeable.
      *
      * @return bool
