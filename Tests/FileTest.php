@@ -65,11 +65,7 @@ class FileTest extends PHPUnit_Framework_TestCase
         $file = new File();
 
         $this->assertNull($file->getName());
-        $this->assertEquals('', $file->getContent());
-        $this->assertFalse($file->isExecutable());
-        $this->assertTrue($file->isNew());
-        $this->assertFalse($file->isReadable());
-        $this->assertFalse($file->isWriteable());
+        $this->assertNull($file->getPath());
     }
 
     /**
@@ -163,26 +159,34 @@ class FileTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage File exists, use overwrite to force writing
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-07
      */
-    public function testWrite()
+    public function testWriteWithExistingFile()
     {
         $this->setupFilesystem();
         $this->setupFile('existing data');
-        $existingFile = new File($this->filePath, $this->filename);
+        $file = new File($this->filePath, $this->filename);
 
-        $this->assertFalse($existingFile->write());
-        $this->removeFile();
+        $file->write();
+    }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testWriteWithNewFile()
+    {
         $this->setupFilesystem();
         $filename = 'touchedFile';
         $filePath = vfsStream::url('root');
-        $newFile = new File($filePath, $filename);
+        $file = new File($filePath, $filename);
         $data = 'testdata';
-        $newFile->setContent($data);
+        $file->setContent($data);
 
-        $this->assertEquals((strlen($data)), $newFile->write());
+        $this->assertEquals((strlen($data)), $file->write());
     }
 
     /**

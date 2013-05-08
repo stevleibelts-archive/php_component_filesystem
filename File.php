@@ -3,6 +3,7 @@
 namespace Net\Bazzline\Component\Filesystem;
 
 use RuntimeException;
+use InvalidArgumentException;
 
 /**
  * Class File
@@ -163,7 +164,8 @@ class File
     /**
      * Writes the available data to the file.
      *
-     * @return bool|int
+     * @return int
+     * @throws \RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
@@ -172,7 +174,9 @@ class File
         if ($this->isNew()) {
             return $this->overwrite();
         } else {
-            return false;
+            throw new RuntimeException(
+                'File exists, use overwrite to force writing'
+            );
         }
     }
 
@@ -314,19 +318,26 @@ class File
     /**
      * Returns real path for given path and name.
      *
-     * @return null|string
+     * @return string
+     * @throws \InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     private function getRealPath()
     {
-        if ((is_null($this->name))
-            && (is_null($this->path))) {
-            return null;
-        } else {
-            $filePath = $this->path . DIRECTORY_SEPARATOR . $this->name;
-            return realpath($filePath);
+        if (is_null($this->name)) {
+            throw new InvalidArgumentException(
+                'Name is not set'
+            );
         }
+        if (is_null($this->path)) {
+            throw new InvalidArgumentException(
+                'Path is not set'
+            );
+        }
+        $filePath = $this->path . DIRECTORY_SEPARATOR . $this->name;
+
+        return realpath($filePath);
     }
 
     /**

@@ -1,2 +1,3 @@
 errors should be thrown with execption.
 default return value is '':
+implement "append" and "prepend"
