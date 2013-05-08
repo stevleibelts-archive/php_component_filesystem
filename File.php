@@ -270,7 +270,7 @@ class File
      */
     public function isWriteable()
     {
-        return is_writeable($this->getData());
+        return is_writeable($this->getRealPath());
     }
 
     /**

@@ -325,11 +325,16 @@ class FileTest extends PHPUnit_Framework_TestCase
     public function testIsWriteable()
     {
         $this->setupFilesystem();
-        $this->setupFile();
-        $file = new File($this->filePath, $this->filename);
+        $this->setupFile(null, 0200);
+        $writeableFile = new File($this->filePath, $this->filename);
 
-        $this->assertFalse($file->isWriteable());
-        $this->markTestIncomplete();
+        $this->assertTrue($writeableFile->isWriteable());
+
+        $this->removeFile();
+        $this->setupFile(null, 0000);
+        $notWriteableFile = new File($this->filePath, $this->filename);
+
+        $this->assertFalse($notWriteableFile->isWriteable());
     }
 
     /**
@@ -339,11 +344,16 @@ class FileTest extends PHPUnit_Framework_TestCase
     public function testIsReadable()
     {
         $this->setupFilesystem();
-        $this->setupFile();
-        $file = new File($this->filePath, $this->filename);
+        $this->setupFile(null, 0400);
+        $readableFile = new File($this->filePath, $this->filename);
 
-        $this->assertTrue($file->isReadable());
-        $this->markTestIncomplete();
+        $this->assertTrue($readableFile->isReadable());
+
+        $this->removeFile();
+        $this->setupFile(null, 0000);
+        $notReadableFile = new File($this->filePath, $this->filename);
+
+        $this->assertFalse($notReadableFile->isReadable());
     }
 
     /**
@@ -353,11 +363,16 @@ class FileTest extends PHPUnit_Framework_TestCase
     public function testIsExecutable()
     {
         $this->setupFilesystem();
-        $this->setupFile();
-        $file = new File($this->filePath, $this->filename);
+        $this->setupFile(null, 0100);
+        $executableFile = new File($this->filePath, $this->filename);
 
-        $this->assertFalse($file->isExecutable());
-        $this->markTestIncomplete();
+        $this->assertTrue($executableFile->isExecutable());
+
+        $this->removeFile();
+        $this->setupFile(null, 0000);
+        $notExecutableFile = new File($this->filePath, $this->filename);
+
+        $this->assertFalse($notExecutableFile->isExecutable());
     }
 
     /**
@@ -370,16 +385,18 @@ class FileTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param mixed $content - content of the file
+     * @param null|string $content - content of the file
+     * @param integer $chmod - chmod
      *
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-07
      */
-    private function setupFile($content = null)
+    private function setupFile($content = null, $chmod = 0700)
     {
         $filename = 'foo.bar';
         $this->filename = $filename;
         $this->file = vfsStream::newFile($this->filename);
+        $this->file->chmod($chmod);
         $this->file->withContent($content)
             ->at($this->filesystem);
         $this->filesystem->addChild($this->file);
