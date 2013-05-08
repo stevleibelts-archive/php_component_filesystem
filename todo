@@ -1,7 +1,3 @@
-Remove code duplication.
-Use symfony\filesystem and extend it.
-
 read should return the data.
-rename data into content.
 errors should be thrown with execption.
 default return value is '':

@@ -65,7 +65,7 @@ class FileTest extends PHPUnit_Framework_TestCase
         $file = new File();
 
         $this->assertNull($file->getName());
-        $this->assertEquals('', $file->getData());
+        $this->assertEquals('', $file->getContent());
         $this->assertFalse($file->isExecutable());
         $this->assertTrue($file->isNew());
         $this->assertFalse($file->isReadable());
@@ -99,21 +99,21 @@ class FileTest extends PHPUnit_Framework_TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-07
      */
-    public function testData()
+    public function testContent()
     {
         $this->setupFilesystem();
         $this->setupFile();
         $emptyFile = new File($this->filePath, $this->filename);
         $data = 'testdata' . PHP_EOL . 'two lines';
 
-        $this->assertEquals('', $emptyFile->getData());
-        $emptyFile->setData($data);
-        $this->assertEquals($data, $emptyFile->getData());
+        $this->assertEquals('', $emptyFile->getContent());
+        $emptyFile->setContent($data);
+        $this->assertEquals($data, $emptyFile->getContent());
 
         $this->removeFile();
         $this->setupFile($data);
         $notEmptyFile = new File($this->filePath, $this->filename);
-        $this->assertEquals($data, $notEmptyFile->getData());
+        $this->assertEquals($data, $notEmptyFile->getContent());
     }
 
     /**
@@ -180,7 +180,7 @@ class FileTest extends PHPUnit_Framework_TestCase
         $filePath = vfsStream::url('root');
         $newFile = new File($filePath, $filename);
         $data = 'testdata';
-        $newFile->setData($data);
+        $newFile->setContent($data);
 
         $this->assertEquals((strlen($data)), $newFile->write());
     }
@@ -203,7 +203,7 @@ class FileTest extends PHPUnit_Framework_TestCase
         $filename = 'touchedFile';
         $filePath = vfsStream::url('root');
         $newFile = new File($filePath, $filename);
-        $newFile->setData($data);
+        $newFile->setContent($data);
 
         $this->assertEquals((strlen($data)), $newFile->overwrite());
     }

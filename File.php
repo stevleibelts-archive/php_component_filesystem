@@ -16,7 +16,7 @@ class File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    private $data;
+    private $content;
 
     /**
      * @var null|string
@@ -71,9 +71,9 @@ class File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    public function setData($data)
+    public function setContent($data)
     {
-        $this->data = $data;
+        $this->content = $data;
     }
 
     /**
@@ -83,14 +83,14 @@ class File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    public function getData()
+    public function getContent()
     {
-        if (!is_null($this->data)) {
-            return $this->data;
+        if (!is_null($this->content)) {
+            return $this->content;
         } else if ((!is_null($this->getRealPath()))
             && (!$this->isNew())
             && ($this->read())) {
-            return $this->data;
+            return $this->content;
         } else {
             return '';
         }
@@ -183,7 +183,7 @@ class File
      */
     public function overwrite()
     {
-        return file_put_contents($this->getRealPath(), $this->getData());
+        return file_put_contents($this->getRealPath(), $this->getContent());
     }
 
     /**
@@ -201,7 +201,7 @@ class File
         $data = file_get_contents($this->getRealPath());
 
         if ($data !== false) {
-            $this->setData($data);
+            $this->setContent($data);
 
             return true;
         } else {
