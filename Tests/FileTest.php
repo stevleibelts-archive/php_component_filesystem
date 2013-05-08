@@ -95,21 +95,93 @@ class FileTest extends PHPUnit_Framework_TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-07
      */
-    public function testContent()
+    public function testSetAndGetContentWithEmptyFile()
     {
         $this->setupFilesystem();
         $this->setupFile();
-        $emptyFile = new File($this->filePath, $this->filename);
+        $file = new File($this->filePath, $this->filename);
         $data = 'testdata' . PHP_EOL . 'two lines';
 
-        $this->assertEquals('', $emptyFile->getContent());
-        $emptyFile->setContent($data);
-        $this->assertEquals($data, $emptyFile->getContent());
+        $this->assertEquals('', $file->getContent());
+        $file->setContent($data);
+        $this->assertEquals($data, $file->getContent());
+    }
 
-        $this->removeFile();
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testSetAndGetContentWithNotEmpty()
+    {
+        $this->setupFilesystem();
+        $this->setupFile();
+        $data = 'testdata' . PHP_EOL . 'two lines';
+
         $this->setupFile($data);
-        $notEmptyFile = new File($this->filePath, $this->filename);
-        $this->assertEquals($data, $notEmptyFile->getContent());
+        $file = new File($this->filePath, $this->filename);
+        $this->assertEquals($data, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testAppendContentWithEmptyFile()
+    {
+        $this->setupFilesystem();
+        $this->setupFile();
+        $file = new File($this->filePath, $this->filename);
+        $data = 'testdata' . PHP_EOL . 'two lines';
+
+        $file->appendContent($data);
+        $this->assertEquals($data, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testAppendContentWithNotEmptyFile()
+    {
+        $data = 'testdata' . PHP_EOL . 'two lines';
+        $this->setupFilesystem();
+        $this->setupFile($data);
+        $file = new File($this->filePath, $this->filename);
+        $newData = PHP_EOL . 'new data';
+
+        $file->appendContent($newData);
+        $this->assertEquals($newData . $data, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testPrependContentWithEmptyFile()
+    {
+        $this->setupFilesystem();
+        $this->setupFile();
+        $file = new File($this->filePath, $this->filename);
+        $data = 'testdata' . PHP_EOL . 'two lines';
+
+        $file->prependContent($data);
+        $this->assertEquals($data, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testPrependContentWithNotEmptyFile()
+    {
+        $data = 'testdata' . PHP_EOL . 'two lines';
+        $this->setupFilesystem();
+        $this->setupFile($data);
+        $file = new File($this->filePath, $this->filename);
+        $newData = PHP_EOL . 'new data';
+
+        $file->prependContent($newData);
+        $this->assertEquals($data . $newData, $file->getContent());
     }
 
     /**

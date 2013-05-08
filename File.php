@@ -70,13 +70,13 @@ class File
     /**
      * Sets the data (overwrites existing data).
      *
-     * @param null|string|int|array $data - data for the file
+     * @param null|string|int|array $content - data for the file
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    public function setContent($data)
+    public function setContent($content)
     {
-        $this->content = $data;
+        $this->content = $content;
     }
 
     /**
@@ -97,6 +97,26 @@ class File
         } else {
             return '';
         }
+    }
+
+    /**
+     * @param string $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function appendContent($content)
+    {
+        $this->setContent($content . $this->getContent());
+    }
+
+    /**
+     * @param string $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function prependContent($content)
+    {
+        $this->setContent($this->getContent() . $content);
     }
 
     /**
