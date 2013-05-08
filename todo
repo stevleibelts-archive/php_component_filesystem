@@ -1,3 +1,2 @@
-read should return the data.
 errors should be thrown with execption.
 default return value is '':

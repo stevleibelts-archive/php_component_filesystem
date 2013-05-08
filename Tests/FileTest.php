@@ -212,22 +212,46 @@ class FileTest extends PHPUnit_Framework_TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-07
      */
-    public function testRead()
+    public function testReadWithExistingFile()
     {
         $data = 'testdata';
         $this->setupFilesystem();
         $this->setupFile($data);
-        $existingFile = new File($this->filePath, $this->filename);
+        $file = new File($this->filePath, $this->filename);
 
-        $this->assertTrue($existingFile->read());
-        $this->removeFile();
+        $this->assertEquals($data, $file->read());
+    }
 
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage File is not readable
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testReadWithNotReadableFile()
+    {
+        $data = 'testdata';
+        $this->setupFilesystem();
+        $this->setupFile($data, 0300);
+        $file = new File($this->filePath, $this->filename);
+
+        $file->read();
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage You can not read from a file that does not exist.
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
+    public function testReadWithNewFile()
+    {
         $this->setupFilesystem();
         $filename = 'touchedFile';
         $filePath = vfsStream::url('root');
-        $newFile = new File($filePath, $filename);
+        $file = new File($filePath, $filename);
 
-        $this->assertFalse($newFile->read());
+        $file->read();
     }
 
     /**

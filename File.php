@@ -2,6 +2,8 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use RuntimeException;
+
 /**
  * Class File
  *
@@ -189,23 +191,34 @@ class File
     /**
      * Reads content by using the given path and name.
      *
-     * @return bool
+     * @return string
+     * @throws \RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function read()
     {
         if ($this->isNew()) {
-            return false;
+            throw new RuntimeException(
+                'You can not read from a file that does not exist.'
+            );
         }
-        $data = file_get_contents($this->getRealPath());
+        if (!$this->isReadable()) {
+            throw new RuntimeException(
+                'File is not readable'
+            );
+        }
 
-        if ($data !== false) {
-            $this->setContent($data);
+        $content = file_get_contents($this->getRealPath());
 
-            return true;
+        if ($content !== false) {
+            $this->setContent($content);
+
+            return $this->getContent();
         } else {
-            return false;
+            throw new RuntimeException(
+                'Error while reading content from file'
+            );
         }
     }
 
