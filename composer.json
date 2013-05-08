@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\Component\\Filesystem\\": ""
+            "Net\\Bazzline\\Component\\Filesystem\\": "src/"
         }
     },
     "minimum-stability": "dev"
