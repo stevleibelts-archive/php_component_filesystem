@@ -12,7 +12,7 @@
 namespace Net\Bazzline\Component\Filesystem;
 
 use InvalidArgumentException;
-use Net\Bazzline\Component\Filesystem\Exception\IOException;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 /**
