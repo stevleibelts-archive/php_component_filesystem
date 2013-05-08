@@ -318,19 +318,46 @@ class FileTest extends PHPUnit_Framework_TestCase
         $this->assertNull($newFile->getLastAccessTime());
     }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
     public function testIsWriteable()
     {
-        $this->markTestSkipped();
+        $this->setupFilesystem();
+        $this->setupFile();
+        $file = new File($this->filePath, $this->filename);
+
+        $this->assertFalse($file->isWriteable());
+        $this->markTestIncomplete();
     }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
     public function testIsReadable()
     {
-        $this->markTestSkipped();
+        $this->setupFilesystem();
+        $this->setupFile();
+        $file = new File($this->filePath, $this->filename);
+
+        $this->assertTrue($file->isReadable());
+        $this->markTestIncomplete();
     }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-07
+     */
     public function testIsExecutable()
     {
-        $this->markTestSkipped();
+        $this->setupFilesystem();
+        $this->setupFile();
+        $file = new File($this->filePath, $this->filename);
+
+        $this->assertFalse($file->isExecutable());
+        $this->markTestIncomplete();
     }
 
     /**
