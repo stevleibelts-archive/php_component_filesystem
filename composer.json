@@ -32,11 +32,5 @@
             "Net\\Bazzline\\Component\\Filesystem\\": ""
         }
     },
-    "target-dir": "Net/Bazzline/Component/Filesystem",
-    "minimum-stability": "dev",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "2.3-dev"
-        }
-    }
+    "minimum-stability": "dev"
 }
