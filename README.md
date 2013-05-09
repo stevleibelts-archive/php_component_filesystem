@@ -1,12 +1,14 @@
-Filesystem Component
-====================
+Net Bazzline Component Filesystem
+=================================
+
+Based on Symfony\Component\Filesystem\Filesystem
 
 Filesystem provides basic utility to manipulate the file system:
 
 ```php
 <?php
 
-use Symfony\Component\Filesystem\Filesystem;
+use Net\Bazzline\Component\Filesystem\Filesystem;
 
 $filesystem = new Filesystem();
 

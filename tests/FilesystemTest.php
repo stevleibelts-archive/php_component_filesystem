@@ -1,9 +1,10 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
+/**
+ * This test is based on Symfony FilesystemTest and only tests new 
+ *  implementation of this extending filesystem component.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * Stev Leibelt <artodeto@arcor.de>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -49,7 +50,7 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->filesystem = new Filesystem();
-        $this->workspace = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.time().rand(0, 1000);
+        $this->workspace = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . time() . rand(0, 1000);
         mkdir($this->workspace, 0777, true);
         $this->workspace = realpath($this->workspace);
     }
@@ -86,17 +87,20 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
 
         $realPathOfTestFile = dirname(__FILE__);
         $realPathOfTestedFile = dirname($filesystemReflection->getFileName());
+        $relativePathToTestedFile = '..' . DIRECTORY_SEPARATOR . 'src';
+        $relativePathToTestFile = '..' . DIRECTORY_SEPARATOR . 'tests';
 
         $paths = array(
+            //$endPath, $startPath, $expectedPath
             array($realPathOfTestFile, $realPathOfTestFile, ''),
             array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestFile, ''),
             array($realPathOfTestFile, $realPathOfTestFile . DIRECTORY_SEPARATOR, ''),
             array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestFile . DIRECTORY_SEPARATOR, ''),
-            array($realPathOfTestFile, $realPathOfTestedFile, '..' . DIRECTORY_SEPARATOR),
-            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile, '..' . DIRECTORY_SEPARATOR),
-            array($realPathOfTestFile, $realPathOfTestedFile . DIRECTORY_SEPARATOR, '..' . DIRECTORY_SEPARATOR),
-            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile . DIRECTORY_SEPARATOR, '..' . DIRECTORY_SEPARATOR),
-            array($realPathOfTestedFile, $realPathOfTestFile, 'Tests')
+            array($realPathOfTestFile, $realPathOfTestedFile, $relativePathToTestedFile),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile, $relativePathToTestedFile),
+            array($realPathOfTestFile, $realPathOfTestedFile . DIRECTORY_SEPARATOR, $relativePathToTestedFile),
+            array($realPathOfTestFile . DIRECTORY_SEPARATOR, $realPathOfTestedFile . DIRECTORY_SEPARATOR, $relativePathToTestedFile),
+            array($realPathOfTestedFile, $realPathOfTestFile, $relativePathToTestFile)
         );
 
         if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
