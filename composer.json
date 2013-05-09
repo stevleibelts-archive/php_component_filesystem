@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\Component\\Filesystem\\": "src/"
+            "Net\\Bazzline\\Component\\Filesystem\\": ""
         }
     },
     "target-dir": "Net/Bazzline/Component/Filesystem",

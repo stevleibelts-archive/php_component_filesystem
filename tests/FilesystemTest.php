@@ -87,8 +87,8 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
 
         $realPathOfTestFile = dirname(__FILE__);
         $realPathOfTestedFile = dirname($filesystemReflection->getFileName());
-        $relativePathToTestedFile = '..' . DIRECTORY_SEPARATOR . 'src';
-        $relativePathToTestFile = '..' . DIRECTORY_SEPARATOR . 'tests';
+        $relativePathToTestedFile = '..' . DIRECTORY_SEPARATOR;
+        $relativePathToTestFile = 'tests';
 
         $paths = array(
             //$endPath, $startPath, $expectedPath
