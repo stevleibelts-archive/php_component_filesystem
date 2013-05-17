@@ -11,7 +11,7 @@ use InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-abstract class FilesystemAbstract implements FilessystemInterface
+abstract class FilesystemAbstract implements FilesystemInterface
 {
     /**
      * @var null|string|int|array|FilesystemCollection
@@ -35,12 +35,7 @@ abstract class FilesystemAbstract implements FilessystemInterface
     protected  $path;
 
     /**
-     * Sets the name of the file.
-     *
-     * @param string $name - name of the file.
-     *
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
     public function setName($name)
     {
@@ -48,11 +43,7 @@ abstract class FilesystemAbstract implements FilessystemInterface
     }
 
     /**
-     * Gets the name of the file.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
     public function getName()
     {
@@ -60,28 +51,44 @@ abstract class FilesystemAbstract implements FilessystemInterface
     }
 
     /**
-     * Sets the path of the file.
-     *
-     * @param string $path - path of the file.
-     *
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
     public function setPath($path)
     {
         $this->path = (string) $path;
     }
 
+
     /**
-     * Gets the path of the file.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
     public function getPath()
     {
         return $this->path;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getModificationDate($format = 'Y-m-d H:i:s')
+    {
+        return ($this->isNew()) ? null : date($format, $this->getModificationTime());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getAccessDate($format = 'Y-m-d H:i:s')
+    {
+        return ($this->isNew()) ? null : date($format, $this->getAccessTime());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getCreateDate($format = 'Y-m-d H:i:s')
+    {
+        return ($this->isNew()) ? null : date($format, $this->getCreateTime());
     }
 
     /**
