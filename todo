@@ -1,1 +1,11 @@
 implement directory class
+add to filesystem interface
+ setReadable();
+ unsetReadable();
+ setWriteable();
+ unsetWriteable();
+ setExecutable();
+ unsetExecutable();
+ setMod();
+ setOwner();
+ setGroup();

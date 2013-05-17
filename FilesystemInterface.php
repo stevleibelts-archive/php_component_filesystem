@@ -78,6 +78,15 @@ interface FilesystemInterface
     public function isExecutable();
 
     /**
+     * Validates if filesystem object has content.
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-17
+     */
+    public function hasContent();
+
+    /**
      * Returns the content of the filesystem object.
      *
      * @return string|FilesystemCollection
