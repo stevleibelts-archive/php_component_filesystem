@@ -214,6 +214,7 @@ class File
 
     /**
      * Reads content by using the given path and name.
+     * Overwrite content if already set.
      *
      * @return string
      * @throws \RuntimeException
