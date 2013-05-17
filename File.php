@@ -361,7 +361,6 @@ class File
         return is_executable($this->getRealPath());
     }
 
-
     /**
      * Returns real path for given path and name.
      *
