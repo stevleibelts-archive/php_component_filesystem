@@ -15,11 +15,29 @@ use InvalidArgumentException;
 class Directory extends ObjectAbstract
 {
     /**
-     * {$inheritDoc}
+     * @var ObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    private $directoryCollection;
+
+    /**
+     * @var ObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    private $fileCollection;
+
+    /**
+     * Validates of directory has content
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function hasContent()
     {
-
+        return (!is_null($this->content));
     }
 
     /**
@@ -27,7 +45,8 @@ class Directory extends ObjectAbstract
      */
     public function hasFiles()
     {
-
+        return (($this->hasContent())
+                && ($this->fileCollection->hasObjects()));
     }
 
     /**
@@ -35,7 +54,8 @@ class Directory extends ObjectAbstract
      */
     public function hasDirectories()
     {
-
+        return (($this->hasContent())
+            && ($this->directoryCollection->hasObjects()));
     }
 
     /**
@@ -43,7 +63,7 @@ class Directory extends ObjectAbstract
      */
     public function getFiles()
     {
-
+        return ($this->hasFiles()) ? $this->fileCollection->getObjects() : null;
     }
 
     /**
@@ -51,7 +71,7 @@ class Directory extends ObjectAbstract
      */
     public function getDirectories()
     {
-
+        return ($this->hasDirectories()) ? $this->directoryCollection->getObjects() : null;
     }
 
     /**
@@ -59,7 +79,11 @@ class Directory extends ObjectAbstract
      */
     public function addFile(File $file)
     {
-
+        if (!$this->hasContent()) {
+            $this->setContent($file);
+        } else {
+            $this->fileCollection->attach($file);
+        }
     }
 
     /**
@@ -67,7 +91,11 @@ class Directory extends ObjectAbstract
      */
     public function addDirectory(Directory $directory)
     {
-
+        if (!$this->hasContent()) {
+            $this->setContent($directory);
+        } else {
+            $this->directoryCollection->attach($directory);
+        }
     }
 
     /**
