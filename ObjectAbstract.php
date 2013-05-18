@@ -37,6 +37,14 @@ abstract class ObjectAbstract implements ObjectInterface
     /**
      * {$inheritDoc}
      */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
     public function setName($name)
     {
         $this->name = (string) $name;

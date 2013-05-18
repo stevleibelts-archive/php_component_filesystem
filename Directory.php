@@ -41,14 +41,6 @@ class Directory extends ObjectAbstract
     /**
      * {$inheritDoc}
      */
-    public function getContent()
-    {
-
-    }
-
-    /**
-     * {$inheritDoc}
-     */
     public function getFiles()
     {
 
