@@ -78,15 +78,4 @@ class ObjectCollection extends SplObjectStorage
     {
         return parent::removeAllExcept($collection);
     }
-
-    /**
-     * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function offsetExists(ObjectInterface $object)
-    {
-        return parent::offsetExists($object);
-    }
 }
