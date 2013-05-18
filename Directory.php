@@ -41,7 +41,11 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * Validates if files are available.
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function hasFiles()
     {
@@ -50,7 +54,11 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * Validates if directories are available.
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function hasDirectories()
     {
@@ -59,25 +67,38 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * Returns available files.
+     *
+     * @return null|ObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function getFiles()
     {
-        return ($this->hasFiles()) ? $this->fileCollection->getObjects() : null;
+        return ($this->hasFiles()) ? $this->fileCollection : null;
     }
 
     /**
-     * {$inheritDoc}
+     * Returns available directories.
+     *
+     * @return null|ObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function getDirectories()
     {
-        return ($this->hasDirectories()) ? $this->directoryCollection->getObjects() : null;
+        return ($this->hasDirectories()) ? $this->directoryCollection : null;
     }
 
     /**
-     * {$inheritDoc}
+     * Attach a file.
+     *
+     * @param File $file - the file to attach.
+     *
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
-    public function addFile(File $file)
+    public function attachFile(File $file)
     {
         if (!$this->hasContent()) {
             $this->setContent($file);
@@ -87,9 +108,14 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * Attach a directory.
+     *
+     * @param Directory $directory - the directory to attach.
+     *
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
-    public function addDirectory(Directory $directory)
+    public function attachDirectory(Directory $directory)
     {
         if (!$this->hasContent()) {
             $this->setContent($directory);
@@ -99,7 +125,8 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function removeFile(File $file)
     {
