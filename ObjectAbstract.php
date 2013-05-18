@@ -11,10 +11,10 @@ use InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-abstract class FilesystemObjectAbstract implements FilesystemObjectInterface
+abstract class ObjectAbstract implements ObjectInterface
 {
     /**
-     * @var null|string|int|array|FilesystemObjectCollection
+     * @var null|string|int|array|ObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */

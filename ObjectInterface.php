@@ -10,14 +10,14 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-interface FilesystemObjectInterface
+interface ObjectInterface
 {
     /**
      * Sets the name of the filesystem object.
      *
      * @param string $name - name of the object
      *
-     * @return FilesystemObjectInterface
+     * @return ObjectInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -37,7 +37,7 @@ interface FilesystemObjectInterface
      *
      * @param string $path - path of the object (relative or absolute)
      *
-     * @return FilesystemObjectInterface
+     * @return ObjectInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -91,7 +91,7 @@ interface FilesystemObjectInterface
     /**
      * Returns the content of the filesystem object.
      *
-     * @return string|FilesystemObjectCollection
+     * @return string|ObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -100,10 +100,10 @@ interface FilesystemObjectInterface
     /**
      * Sets toe content fo the filesystem object.
      *
-     * @param string|FilesystemObjectCollection $content - A string or the
+     * @param string|ObjectCollection $content - A string or the
      *  FilesystemCollection
      *
-     * @return FilesystemObjectInterface
+     * @return ObjectInterface
      * @throws \InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
@@ -233,7 +233,7 @@ interface FilesystemObjectInterface
      * Overwrite content if already set.
      * Throws exception if object is not readable.
      *
-     * @return string|FilesystemObjectCollection
+     * @return string|ObjectCollection
      * @throws \RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17

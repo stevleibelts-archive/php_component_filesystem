@@ -11,114 +11,114 @@ use SplObjectStorage;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class FilesystemObjectCollection extends SplObjectStorage
+class ObjectCollection extends SplObjectStorage
 {
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function attach(FilesystemObjectInterface $object)
+    public function attach(ObjectInterface $object)
     {
         return parent::attach($object, $object->getContent());
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function detach(FilesystemObjectInterface $object)
+    public function detach(ObjectInterface $object)
     {
         return parent::detach($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function contains(FilesystemObjectInterface $object)
+    public function contains(ObjectInterface $object)
     {
         return parent::contains($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectCollection $object
+     * @param ObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function addAll(FilesystemObjectCollection $collection)
+    public function addAll(ObjectCollection $collection)
     {
         return parent::addAll($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectCollection $object
+     * @param ObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function removeAll(FilesystemObjectCollection $collection)
+    public function removeAll(ObjectCollection $collection)
     {
         return parent::removeAll($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectCollection $object
+     * @param ObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function removeAllExcept(FilesystemObjectCollection $collection)
+    public function removeAllExcept(ObjectCollection $collection)
     {
         return parent::removeAllExcept($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetExists(FilesystemObjectInterface $object)
+    public function offsetExists(ObjectInterface $object)
     {
         return parent::offsetExists($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetSet(FilesystemObjectInterface $object)
+    public function offsetSet(ObjectInterface $object)
     {
         return parent::offsetSet($object, $object->getContent());
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetUnset(FilesystemObjectInterface $object)
+    public function offsetUnset(ObjectInterface $object)
     {
         return parent::offsetUnset($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemObjectInterface $object
+     * @param ObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetGet(FilesystemObjectInterface $object)
+    public function offsetGet(ObjectInterface $object)
     {
         return parent::offsetGet($object);
     }
