@@ -2,7 +2,9 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
-use SplObjectStorage;
+use Countable;
+use Iterator;
+use Traversable;
 
 /**
  * Class FilesystemCollection
@@ -11,71 +13,91 @@ use SplObjectStorage;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class ObjectCollection extends SplObjectStorage
+class ObjectCollection implements Countable, Iterator, Traversable
 {
     /**
-     * {@inheritDoc}
-     * @param ObjectInterface $object
+     * @var array
      * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
+     * @since 2013-05-18
      */
-    public function attach(ObjectInterface $object)
+    private $objects;
+
+    /**
+     * @var int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    private $iteratorIndex;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function count()
     {
-        return parent::attach($object, $object->getContent());
+        return (is_null($this->objects)) ? 0 : count($this->objects);
     }
 
     /**
      * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
      */
-    public function detach(ObjectInterface $object)
+    public function current()
     {
-        return parent::detach($object);
+        return $this->objects[$this->iteratorIndex];
     }
 
     /**
      * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
      */
-    public function contains(ObjectInterface $object)
+    public function next()
     {
-        return parent::contains($object);
+        $this->iteratorIndex++;
     }
 
     /**
      * {@inheritDoc}
-     * @param ObjectCollection $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
      */
-    public function addAll(ObjectCollection $collection)
+    public function key()
     {
-        return parent::addAll($collection);
+        return $this->iteratorIndex;
     }
 
     /**
      * {@inheritDoc}
-     * @param ObjectCollection $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
      */
-    public function removeAll(ObjectCollection $collection)
+    public function valid()
     {
-        return parent::removeAll($collection);
+        return array_key_exists($this->iteratorIndex, $this->objects);
     }
 
     /**
      * {@inheritDoc}
-     * @param ObjectCollection $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
      */
-    public function removeAllExcept(ObjectCollection $collection)
+    public function rewind()
     {
-        return parent::removeAllExcept($collection);
+        $this->iteratorIndex = 0;
+    }
+
+    /**
+     * Returns all attached objects.
+     *
+     * @return array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    public function getObjects()
+    {
+        return $this->objects;
+    }
+
+    /**
+     * Validates if collection has objects.
+     *
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    public function hasObjects()
+    {
+        return ($this->count() > 0);
     }
 }
