@@ -12,145 +12,233 @@ use InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class Directory
+class Directory extends ObjectAbstract
 {
+    /**
+     * {$inheritDoc}
+     */
     public function isReadable()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function isWriteable()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function isExecutable()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function hasContent()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function hasFiles()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function hasDirectories()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function getContent()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function getFiles()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function getDirectories()
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function addFile(File $file)
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function addDirectory(Directory $directory)
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function removeFile(File $file)
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function removeDirectory(Directory $directory)
     {
 
     }
 
+    /**
+     * {$inheritDoc}
+     */
     public function getModificationTime()
     {
 
     }
 
-    public function getModificationDate($format = 'Y-m-d H:i:s')
+    /**
+     * {$inheritDoc}
+     */
+    public function getAccessTime()
     {
 
     }
 
-    public function getLastAccessTime()
-    {
-
-    }
-
-    public function getLastAccessDate($format = 'Y-m-d H:i:s')
-    {
-
-    }
-
+    /**
+     * {$inheritDoc}
+     */
     public function getCreateTime()
     {
 
     }
 
-    public function getCreateDate($format = 'Y-m-d H:i:s')
+    /**
+     * {$inheritDoc}
+     */
+    public function mkdir()
     {
 
     }
 
-    public function setName($name)
+    /**
+     * {$inheritDoc}
+     */
+    public function rm()
     {
 
     }
 
-    public function getName()
+    /**
+     * {$inheritDoc}
+     */
+    public function save()
     {
 
     }
 
-    public function setPath($path)
+    /**
+     * {$inheritDoc}
+     */
+    public function update()
     {
 
     }
 
-    public function getPath()
+    /**
+     * {$inheritDoc}
+     */
+    public function load()
     {
 
     }
 
-    public function touch()
-    {
-
-    }
-
-    public function write()
-    {
-
-    }
-
-    public function overwrite()
-    {
-
-    }
-
-    public function read()
-    {
-
-    }
-
+    /**
+     * {$inheritDoc}
+     */
     public function isNew()
     {
 
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isModified()
+    {
+
+    }
+
+    /**
+     * Sets content of the directory.
+     *
+     * @param ObjectInterface|ObjectCollection $content - content of directory
+     *
+     * @return ObjectInterface
+     * @throws \InvalidArgumentException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    public function setContent($content)
+    {
+        if ($content instanceof ObjectCollection) {
+            $this->content = $content;
+        } else if ($content instanceof ObjectInterface) {
+            $collection = new ObjectCollection();
+            $collection->attach($content);
+
+            $this->content = $collection;
+        } else {
+            throw new InvalidArgumentException(
+                'Content is not an instance of a valid class (ObjectCollection or ObjectInterface)'
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isDirectory()
+    {
+        return true;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isFile()
+    {
+        return false;
     }
 }
