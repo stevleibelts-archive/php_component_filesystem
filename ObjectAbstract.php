@@ -127,4 +127,28 @@ abstract class ObjectAbstract implements ObjectInterface
     {
         return (!file_exists(realpath($this->getRealPath())));
     }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isReadable()
+    {
+        return is_readable($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isWritable()
+    {
+        return is_writable($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isExecutable()
+    {
+        return is_executable($this->getRealPath());
+    }
 }

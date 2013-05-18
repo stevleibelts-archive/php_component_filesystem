@@ -17,30 +17,6 @@ class Directory extends ObjectAbstract
     /**
      * {$inheritDoc}
      */
-    public function isReadable()
-    {
-
-    }
-
-    /**
-     * {$inheritDoc}
-     */
-    public function isWriteable()
-    {
-
-    }
-
-    /**
-     * {$inheritDoc}
-     */
-    public function isExecutable()
-    {
-
-    }
-
-    /**
-     * {$inheritDoc}
-     */
     public function hasContent()
     {
 
@@ -143,19 +119,35 @@ class Directory extends ObjectAbstract
     }
 
     /**
-     * {$inheritDoc}
+     * Creates a directory.
+     *
+     * @return boolean
+     * @throws \RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     * @todo add mod when implemented/available
      */
     public function mkdir()
     {
+        if (!$this->isNew()) {
+            throw new RuntimeException(
+                'Directory already exists.'
+            );
+        }
 
+        return mkdir($this->getRealPath(), 0755, true);
     }
 
     /**
-     * {$inheritDoc}
+     * Removes directory and its content.
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
      */
     public function rm()
     {
-
+        return ($this->isNew()) ? true : rmdir($this->getRealPath());
     }
 
     /**
@@ -178,14 +170,6 @@ class Directory extends ObjectAbstract
      * {$inheritDoc}
      */
     public function load()
-    {
-
-    }
-
-    /**
-     * {$inheritDoc}
-     */
-    public function isNew()
     {
 
     }
