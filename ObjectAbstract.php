@@ -119,4 +119,12 @@ abstract class ObjectAbstract implements ObjectInterface
 
         return realpath($filePath);
     }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isNew()
+    {
+        return (!file_exists(realpath($this->getRealPath())));
+    }
 }

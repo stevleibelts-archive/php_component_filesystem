@@ -59,7 +59,7 @@ interface ObjectInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function isWriteable();
+    public function isWritable();
 
     /**
      * Validates if the read flag is set for this filesystem object.
