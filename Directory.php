@@ -103,6 +103,7 @@ class Directory extends ObjectAbstract
         if (!$this->hasContent()) {
             $this->setContent($file);
         } else {
+            $this->content->attach($file);
             $this->fileCollection->attach($file);
         }
     }
@@ -120,6 +121,7 @@ class Directory extends ObjectAbstract
         if (!$this->hasContent()) {
             $this->setContent($directory);
         } else {
+            $this->content->attach($directory);
             $this->directoryCollection->attach($directory);
         }
     }
@@ -174,7 +176,7 @@ class Directory extends ObjectAbstract
      * @since 2013-05-18
      * @todo add mod when implemented/available
      */
-    public function mkdir()
+    public function create()
     {
         if (!$this->isNew()) {
             throw new RuntimeException(
@@ -192,7 +194,7 @@ class Directory extends ObjectAbstract
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
-    public function rm()
+    public function remove()
     {
         return ($this->isNew()) ? true : rmdir($this->getRealPath());
     }
@@ -254,6 +256,8 @@ class Directory extends ObjectAbstract
             );
         }
 
+        $this->setupDirectoryAndFileCollection($this->content);
+
         return $this;
     }
 
@@ -271,5 +275,28 @@ class Directory extends ObjectAbstract
     public function isFile()
     {
         return false;
+    }
+
+    /**
+     * Updates internal file and directory collection.
+     *
+     * @param ObjectCollection $collection
+     *
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    private function setupDirectoryAndFileCollection(ObjectCollection $collection)
+    {
+        $this->fileCollection = new ObjectCollection();
+        $this->directoryCollection = new ObjectCollection();
+
+        foreach ($collection as $object)
+        {
+            if ($object instanceof File) {
+                $this->fileCollection->attach($object);
+            } else if ($object instanceof Directory) {
+                $this->directoryCollection->attach($object);
+            }
+        }
     }
 }
