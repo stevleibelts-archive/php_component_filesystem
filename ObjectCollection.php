@@ -89,37 +89,4 @@ class ObjectCollection extends SplObjectStorage
     {
         return parent::offsetExists($object);
     }
-
-    /**
-     * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function offsetSet(ObjectInterface $object)
-    {
-        return parent::offsetSet($object, $object->getContent());
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function offsetUnset(ObjectInterface $object)
-    {
-        return parent::offsetUnset($object);
-    }
-
-    /**
-     * {@inheritDoc}
-     * @param ObjectInterface $object
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function offsetGet(ObjectInterface $object)
-    {
-        return parent::offsetGet($object);
-    }
 }
