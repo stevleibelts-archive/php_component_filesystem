@@ -17,6 +17,7 @@ interface FilesystemObjectInterface
      *
      * @param string $name - name of the object
      *
+     * @return FilesystemObjectInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -36,6 +37,7 @@ interface FilesystemObjectInterface
      *
      * @param string $path - path of the object (relative or absolute)
      *
+     * @return FilesystemObjectInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -101,6 +103,7 @@ interface FilesystemObjectInterface
      * @param string|FilesystemObjectCollection $content - A string or the
      *  FilesystemCollection
      *
+     * @return FilesystemObjectInterface
      * @throws \InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17

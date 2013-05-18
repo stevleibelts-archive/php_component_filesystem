@@ -40,6 +40,8 @@ abstract class FilesystemObjectAbstract implements FilesystemObjectInterface
     public function setName($name)
     {
         $this->name = (string) $name;
+
+        return $this;
     }
 
     /**
@@ -56,6 +58,8 @@ abstract class FilesystemObjectAbstract implements FilesystemObjectInterface
     public function setPath($path)
     {
         $this->path = (string) $path;
+
+        return $this;
     }
 
 
