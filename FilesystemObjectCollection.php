@@ -11,114 +11,114 @@ use SplObjectStorage;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class FilesystemCollection extends SplObjectStorage
+class FilesystemObjectCollection extends SplObjectStorage
 {
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function attach(FilesystemInterface $object)
+    public function attach(FilesystemObjectInterface $object)
     {
         return parent::attach($object, $object->getContent());
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function detach(FilesystemInterface $object)
+    public function detach(FilesystemObjectInterface $object)
     {
         return parent::detach($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function contains(FilesystemInterface $object)
+    public function contains(FilesystemObjectInterface $object)
     {
         return parent::contains($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemCollection $object
+     * @param FilesystemObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function addAll(FilesystemCollection $collection)
+    public function addAll(FilesystemObjectCollection $collection)
     {
         return parent::addAll($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemCollection $object
+     * @param FilesystemObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function removeAll(FilesystemCollection $collection)
+    public function removeAll(FilesystemObjectCollection $collection)
     {
         return parent::removeAll($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemCollection $object
+     * @param FilesystemObjectCollection $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function removeAllExcept(FilesystemCollection $collection)
+    public function removeAllExcept(FilesystemObjectCollection $collection)
     {
         return parent::removeAllExcept($collection);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetExists(FilesystemInterface $object)
+    public function offsetExists(FilesystemObjectInterface $object)
     {
         return parent::offsetExists($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetSet(FilesystemInterface $object)
+    public function offsetSet(FilesystemObjectInterface $object)
     {
         return parent::offsetSet($object, $object->getContent());
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetUnset(FilesystemInterface $object)
+    public function offsetUnset(FilesystemObjectInterface $object)
     {
         return parent::offsetUnset($object);
     }
 
     /**
      * {@inheritDoc}
-     * @param FilesystemInterface $object
+     * @param FilesystemObjectInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function offsetGet(FilesystemInterface $object)
+    public function offsetGet(FilesystemObjectInterface $object)
     {
         return parent::offsetGet($object);
     }

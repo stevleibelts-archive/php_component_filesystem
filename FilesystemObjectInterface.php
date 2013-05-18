@@ -10,7 +10,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-interface FilesystemInterface
+interface FilesystemObjectInterface
 {
     /**
      * Sets the name of the filesystem object.
@@ -89,7 +89,7 @@ interface FilesystemInterface
     /**
      * Returns the content of the filesystem object.
      *
-     * @return string|FilesystemCollection
+     * @return string|FilesystemObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -98,7 +98,7 @@ interface FilesystemInterface
     /**
      * Sets toe content fo the filesystem object.
      *
-     * @param string|FilesystemCollection $content - A string or the
+     * @param string|FilesystemObjectCollection $content - A string or the
      *  FilesystemCollection
      *
      * @throws \InvalidArgumentException
@@ -230,7 +230,7 @@ interface FilesystemInterface
      * Overwrite content if already set.
      * Throws exception if object is not readable.
      *
-     * @return string|FilesystemCollection
+     * @return string|FilesystemObjectCollection
      * @throws \RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
