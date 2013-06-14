@@ -1,12 +1,15 @@
 <?php
-
-namespace Net\Bazzline\Component\Filesystem;
+/**
+ * @author stev leibelt <artodeto@arocr.de>
+ * @since 2013-04-25
+ */
+namespace Net\Bazzline\Component\Filesystem\Object;
 
 /**
  * Class FilesystemInterface
  * Generic interface for filesystem object
  *
- * @package Net\Bazzline\Component\Filesystem
+ * @package Net\Bazzline\Component\Filesystem\Object
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */

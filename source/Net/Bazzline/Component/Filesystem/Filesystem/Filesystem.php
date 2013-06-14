@@ -1,15 +1,9 @@
 <?php
-
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * @author stev leibelt <artodeto@arocr.de>
+ * @since 2013-04-25
  */
-
-namespace Net\Bazzline\Component\Filesystem;
+namespace Net\Bazzline\Component\Filesystem\Filesystem;
 
 use InvalidArgumentException;
 use Symfony\Component\Filesystem\Exception\IOException;
@@ -19,6 +13,7 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
  * Provides basic utility to manipulate the file system.
  *
  * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-04-25
  */
 class Filesystem extends SymfonyFilesystem
 {

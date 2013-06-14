@@ -7,7 +7,7 @@
  */
 function netBazzlineComponentFilesystemDevelopmentAutoloader($className)
 {
-    $namespace = 'Net\\Bazzline\\Component\\FileSystem\\';
+    $namespace = 'Net\\Bazzline\\Component\\Filesystem\\';
     $lengthOfNamespace = strlen($namespace);
     $expectedNamespace = substr($className, 0, $lengthOfNamespace);
 
