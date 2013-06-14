@@ -1,16 +1,19 @@
 {
     "name": "net_bazzline/component_filesystem",
     "type": "library",
-    "description": "Net Bazzline Filesystem Component",
-    "keywords": [],
-    "homepage": "http://www.bazzline.net",
+    "description": "php component filesystem objects",
+    "keywords": ["php", "net_bazzline", "component", "filesystem"],
+    "homepage": "https://github.com/stevleibelt/php_component_filesystem",
     "license": "GPLv3",
     "authors": [
 	    {
             "name": "Stev Leibelt",
-            "homepage": "http://artodeto.bazzline.net"
+            "email": "artodeto@arcor.de",
+            "homepage": "http://artodeto.bazzline.net",
+            "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
         "symfony/filesystem": "2.3.*@dev"
@@ -22,9 +25,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Net\\Bazzline\\Component\\Filesystem\\": ""
+            "Net\\Bazzline\\Component\\Filesystem\\": "source/",
+            "Test\\Net\\Bazzline\\Component\\Filesystem\\": "test/"
         }
-    },
-    "target-dir": "Net/Bazzline/Component/Filesystem",
-    "minimum-stability": "dev"
+    }
 }
