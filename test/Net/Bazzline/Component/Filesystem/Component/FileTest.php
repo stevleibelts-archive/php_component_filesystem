@@ -3,9 +3,9 @@
  * @author stev leibelt <artodeto@arocr.de>
  * @since 2013-05-03
  */
-namespace Test\Net\Bazzline\Component\Filesystem\Object;
+namespace Test\Net\Bazzline\Component\Filesystem\Component;
 
-use Net\Bazzline\Component\Filesystem\Object\File;
+use Net\Bazzline\Component\Filesystem\Component\File;
 use org\bovigo\vfs\vfsStream;
 use Test\Net\Bazzline\Component\Filesystem\UnitTestCase;
 
