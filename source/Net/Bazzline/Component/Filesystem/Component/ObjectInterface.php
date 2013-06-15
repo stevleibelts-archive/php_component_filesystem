@@ -3,6 +3,7 @@
  * @author stev leibelt <artodeto@arocr.de>
  * @since 2013-04-25
  */
+
 namespace Net\Bazzline\Component\Filesystem\Component;
 
 /**
@@ -214,7 +215,7 @@ interface ObjectInterface
      * Throws exception if object is not writeable.
      *
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -225,7 +226,7 @@ interface ObjectInterface
      * Throws exception if object is not writeable.
      *
      * @return int
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -237,7 +238,7 @@ interface ObjectInterface
      * Throws exception if object is not readable.
      *
      * @return string|ObjectCollection
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -257,7 +258,7 @@ interface ObjectInterface
      *
      * @param string $owner - name of the owner
      * @return boolean
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
@@ -287,7 +288,7 @@ interface ObjectInterface
      *
      * @param string $group - name of the group
      * @return boolean
-     * @throws \RuntimeException
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */

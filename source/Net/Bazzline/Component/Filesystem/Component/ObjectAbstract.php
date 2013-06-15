@@ -3,9 +3,8 @@
  * @author stev leibelt <artodeto@arocr.de>
  * @since 2013-04-25
  */
-namespace Net\Bazzline\Component\Filesystem\Component;
 
-use InvalidArgumentException;
+namespace Net\Bazzline\Component\Filesystem\Component;
 
 /**
  * Class FilesystemAbstract
@@ -110,7 +109,7 @@ abstract class ObjectAbstract implements ObjectInterface
      * Returns real path for given path and name.
      *
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */

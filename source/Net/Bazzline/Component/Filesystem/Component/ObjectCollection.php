@@ -3,6 +3,7 @@
  * @author stev leibelt <artodeto@arocr.de>
  * @since 2013-04-25
  */
+
 namespace Net\Bazzline\Component\Filesystem\Component;
 
 use Countable;
