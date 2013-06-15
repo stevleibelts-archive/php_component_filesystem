@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Filesystem\Filesystem;
 
+use Traversable;
+
 /**
  * Class FilesystemInterface
  *
@@ -58,8 +60,6 @@ interface FilesystemInterface
     public function symlink($sourceDirectory, $targetDirectory, $copyOnWindows = false);
 
     public function mirror($sourceDirectory, $targetDirectory, Traversable $iterator = null, $options = array());
-
-    public function makePathRelative($endPath, $startPath);
 
     public function isAbsolutePath($object);
 
