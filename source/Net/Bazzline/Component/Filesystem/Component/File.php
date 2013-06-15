@@ -6,9 +6,6 @@
 
 namespace Net\Bazzline\Component\Filesystem\Component;
 
-use RuntimeException;
-use InvalidArgumentException;
-
 /**
  * Class File
  *

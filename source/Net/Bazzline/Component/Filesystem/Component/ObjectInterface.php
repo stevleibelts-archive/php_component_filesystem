@@ -133,7 +133,7 @@ interface ObjectInterface
     public function isModified();
 
     /**
-     * Validates if filesystem object represents a file.
+     * Validates if filesystem object represents a object.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -222,7 +222,7 @@ interface ObjectInterface
     public function save();
 
     /**
-     * Saved content, even if file exists.
+     * Saved content, even if object exists.
      * Throws exception if object is not writeable.
      *
      * @return int
@@ -245,7 +245,7 @@ interface ObjectInterface
     public function load();
 
     /**
-     * Returns current owner of the file
+     * Returns current owner of the object
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -254,7 +254,7 @@ interface ObjectInterface
     public function getOwner();
 
     /**
-     * Sets owner to current file
+     * Sets owner to current object
      *
      * @param string $owner - name of the owner
      * @return boolean
@@ -265,7 +265,7 @@ interface ObjectInterface
     public function setOwner($owner);
 
     /**
-     * Validates if provided name is owner of the file
+     * Validates if provided name is owner of the object
      *
      * @param string $owner - name of the owner
      * @return boolean
@@ -275,7 +275,7 @@ interface ObjectInterface
     public function isOwner($owner);
 
     /**
-     * Returns group of current file
+     * Returns group of current object
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -284,7 +284,7 @@ interface ObjectInterface
     public function getGroup();
 
     /**
-     * Sets group for current file
+     * Sets group for current object
      *
      * @param string $group - name of the group
      * @return boolean
@@ -295,7 +295,7 @@ interface ObjectInterface
     public function setGroup($group);
 
     /**
-     * Validates if provided name is group of the file
+     * Validates if provided name is group of the object
      *
      * @param string $group - name of the group
      * @return boolean
@@ -305,7 +305,7 @@ interface ObjectInterface
     public function isGroup($group);
 
     /**
-     * Returns permissions of current file
+     * Returns permissions of current object
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -314,10 +314,11 @@ interface ObjectInterface
     public function getPermission();
 
     /**
-     * Sets permission to current file
+     * Sets permission to current object
      *
      * @param int $permission - permission to set
      * @return ObjectInterface
+     * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
@@ -332,32 +333,4 @@ interface ObjectInterface
      * @since 2013-06-15
      */
     public function hasPermission($permission);
-
-    /**
-     * Changes mode of current file
-     *
-     * @param int $mode - mode, you don't have to provide first 0
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-15
-     */
-    public function chmod($mode);
-
-    /**
-     * @param string $owner - name of the group
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-15
-     */
-    public function chown($owner);
-
-    /**
-     * Changes group of current file
-     *
-     * @param string $group - name of the group
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-15
-     */
-    public function chgrp($group);
 }

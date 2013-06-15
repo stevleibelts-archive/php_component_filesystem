@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Filesystem\Component;
 
+use Symfony\Component\Yaml\Exception\RuntimeException;
+
 /**
  * Class FilesystemAbstract
  *
@@ -160,5 +162,142 @@ abstract class ObjectAbstract implements ObjectInterface
     public function isExecutable()
     {
         return is_executable($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getOwner()
+    {
+        return fileowner($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function setOwner($owner)
+    {
+        if (!$this->chown($owner)) {
+            throw new RuntimeException(
+                'Can not change owner.'
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isOwner($owner)
+    {
+        return ($this->getOwner() == $owner);
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getGroup()
+    {
+        return fileowner($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function setGroup($group)
+    {
+        if (!$this->chgrp($group)) {
+            throw new RuntimeException(
+                'Can not change group.'
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isGroup($group)
+    {
+        return ($this->getGroup() == $group);
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getPermission()
+    {
+        return fileperms($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function setPermission($permission)
+    {
+        if (strlen($permission == 3)) {
+            $permission = '0' . $permission;
+        }
+
+        if (!$this->chmod($permission)) {
+            throw new RuntimeException(
+                'Can not change permission.'
+            );
+        }
+
+        return $this;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function hasPermission($permission)
+    {
+        if (strlen($permission == 3)) {
+            $permission = '0' . $permission;
+        }
+
+        return ($this->getPermission() == $permission);
+    }
+
+    /**
+     * Changes mode of current object
+     *
+     * @param int $mode - the mode you want to set
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    protected  function chmod($mode)
+    {
+        return chmod($this->getRealPath(), $mode);
+    }
+
+    /**
+     * Changes owner of current object
+     *
+     * @param string $owner - name of the owner
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    protected  function chown($owner)
+    {
+        return chown($this->getRealPath(), $owner);
+    }
+
+    /**
+     * Changes group of current object
+     *
+     * @param string $group - name of the group
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    protected function chgrp($group)
+    {
+        return chgrp($this->getRealPath(), $group);
     }
 }
