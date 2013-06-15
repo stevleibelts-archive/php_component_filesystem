@@ -16,6 +16,54 @@ namespace Net\Bazzline\Component\Filesystem\Filesystem;
 interface FilesystemInterface
 {
     /**
+     * Copies a file.
+     *
+     * This method only copies the file if the origin file is newer than the target file.
+     *
+     * By default, if the target already exists, it is not overridden.
+     *
+     * @param string  $sourceFile The original filename
+     * @param string  $targetFile The target filename
+     * @param boolean $override   Whether to override an existing file or not
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function copy($sourceFile, $targetFile, $override = false);
+
+    /**
+     * Creates a directory recursively
+     *
+     * @param string|array|\Traversable $directories
+     * @param int $mode
+     * @throws \Symfony\Component\Filesystem\Exception\IOException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     * @todo add recursive directory creation
+     */
+    public function mkdir($directories, $mode = 0777);
+
+    public function touch($files, $time = null, $atime = null);
+
+    public function remove($files);
+
+    public function chmod($files, $mod, $umask = 000, $recursive = false);
+
+    public function chwon($files, $user, $recursive = false);
+
+    public function chgro($files, $group, $recursive = false);
+
+    public function rename($source, $target);
+
+    public function symlink($sourceDirectory, $targetDirectory, $copyOnWindows = false);
+
+    public function mirror($sourceDirectory, $targetDirectory, Traversable $iterator = null, $options = array());
+
+    public function makePathRelative($endPath, $startPath);
+
+    public function isAbsolutePath($object);
+
+    /**
      * Returns relative $path path to current working directory
      *
      * @param string $path - the path that has to be converted into a relative
