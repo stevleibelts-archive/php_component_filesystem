@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Filesystem\Component;
 
+use Net\Bazzline\Component\Filesystem\Filesystem\FilesystemAwareInterface;
+use Net\Bazzline\Component\Filesystem\Filesystem\FilesystemInterface;
 use Symfony\Component\Yaml\Exception\RuntimeException;
 
 /**
@@ -15,7 +17,7 @@ use Symfony\Component\Yaml\Exception\RuntimeException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-abstract class ObjectAbstract implements ObjectInterface
+abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterface
 {
     /**
      * @var null|string|int|array|ObjectCollection
@@ -23,6 +25,13 @@ abstract class ObjectAbstract implements ObjectInterface
      * @since 2013-05-03
      */
     protected $content;
+
+    /**
+     * @var null|\Net\Bazzline\Component\Filesystem\Filesystem\FilesystemInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    protected $filesystem;
 
     /**
      * @var null|string
@@ -260,6 +269,22 @@ abstract class ObjectAbstract implements ObjectInterface
         }
 
         return ($this->getPermission() == $permission);
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getFilesystem()
+    {
+        return $this->filesystem;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function setFilesystem(FilesystemInterface $filesystem)
+    {
+        $this->filesystem = $filesystem;
     }
 
     /**
