@@ -242,4 +242,121 @@ interface ObjectInterface
      * @since 2013-05-17
      */
     public function load();
+
+    /**
+     * Returns current owner of the file
+     *
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function getOwner();
+
+    /**
+     * Sets owner to current file
+     *
+     * @param string $owner - name of the owner
+     * @return boolean
+     * @throws \RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function setOwner($owner);
+
+    /**
+     * Validates if provided name is owner of the file
+     *
+     * @param string $owner - name of the owner
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function isOwner($owner);
+
+    /**
+     * Returns group of current file
+     *
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function getGroup();
+
+    /**
+     * Sets group for current file
+     *
+     * @param string $group - name of the group
+     * @return boolean
+     * @throws \RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function setGroup($group);
+
+    /**
+     * Validates if provided name is group of the file
+     *
+     * @param string $group - name of the group
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function isGroup($group);
+
+    /**
+     * Returns permissions of current file
+     *
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function getPermission();
+
+    /**
+     * Sets permission to current file
+     *
+     * @param int $permission - permission to set
+     * @return ObjectInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function setPermission($permission);
+
+    /**
+     * Validates if provided permission is set
+     *
+     * @param int $permission - permission you want to check
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function hasPermission($permission);
+
+    /**
+     * Changes mode of current file
+     *
+     * @param int $mode - mode, you don't have to provide first 0
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function chmod($mode);
+
+    /**
+     * @param string $owner - name of the group
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function chown($owner);
+
+    /**
+     * Changes group of current file
+     *
+     * @param string $group - name of the group
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-15
+     */
+    public function chgrp($group);
 }
