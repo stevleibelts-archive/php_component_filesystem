@@ -17,6 +17,14 @@ namespace Net\Bazzline\Component\Filesystem;
 interface ItemInterface
 {
     /**
+     * @param string $path
+     * @return ItemInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-16
+     */
+    public static function create($path = '');
+
+    /**
      * Sets the name of the filesystem item
      *
      * @param string $name - name of the item
