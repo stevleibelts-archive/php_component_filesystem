@@ -20,7 +20,7 @@ use Symfony\Component\Yaml\Exception\RuntimeException;
 abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
 {
     /**
-     * @var null|string|int|array|ObjectCollection
+     * @var null|string|int|array|ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */

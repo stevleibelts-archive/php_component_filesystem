@@ -19,14 +19,14 @@ use InvalidArgumentException;
 class Directory extends ItemAbstract
 {
     /**
-     * @var ObjectCollection
+     * @var ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
     private $directoryCollection;
 
     /**
-     * @var ObjectCollection
+     * @var ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
@@ -73,7 +73,7 @@ class Directory extends ItemAbstract
     /**
      * Returns available files.
      *
-     * @return null|ObjectCollection
+     * @return null|ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
@@ -85,7 +85,7 @@ class Directory extends ItemAbstract
     /**
      * Returns available directories.
      *
-     * @return null|ObjectCollection
+     * @return null|ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
@@ -238,7 +238,7 @@ class Directory extends ItemAbstract
     /**
      * Sets content of the directory.
      *
-     * @param ItemInterface|ObjectCollection $content - content of directory
+     * @param ItemInterface|ItemCollection $content - content of directory
      *
      * @return ItemInterface
      * @throws \InvalidArgumentException
@@ -247,16 +247,16 @@ class Directory extends ItemAbstract
      */
     public function setContent($content)
     {
-        if ($content instanceof ObjectCollection) {
+        if ($content instanceof ItemCollection) {
             $this->content = $content;
         } else if ($content instanceof ItemInterface) {
-            $collection = new ObjectCollection();
+            $collection = new ItemCollection();
             $collection->attach($content);
 
             $this->content = $collection;
         } else {
             throw new InvalidArgumentException(
-                'Content is not an instance of a valid class (ObjectCollection or ItemInterface)'
+                'Content is not an instance of a valid class (ItemCollection or ItemInterface)'
             );
         }
 
@@ -284,15 +284,15 @@ class Directory extends ItemAbstract
     /**
      * Updates internal file and directory collection.
      *
-     * @param ObjectCollection $collection
+     * @param ItemCollection $collection
      *
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
-    private function setupDirectoryAndFileCollection(ObjectCollection $collection)
+    private function setupDirectoryAndFileCollection(ItemCollection $collection)
     {
-        $this->fileCollection = new ObjectCollection();
-        $this->directoryCollection = new ObjectCollection();
+        $this->fileCollection = new ItemCollection();
+        $this->directoryCollection = new ItemCollection();
 
         foreach ($collection as $object)
         {

@@ -95,7 +95,7 @@ interface ItemInterface
     /**
      * Returns the content of the filesystem item.
      *
-     * @return string|ObjectCollection
+     * @return string|ItemCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -104,7 +104,7 @@ interface ItemInterface
     /**
      * Sets toe content fo the filesystem item.
      *
-     * @param string|ObjectCollection $content - A string or the
+     * @param string|ItemCollection $content - A string or the
      *  FilesystemCollection
      *
      * @return ItemInterface
@@ -237,7 +237,7 @@ interface ItemInterface
      * Overwrite content if already set.
      * Throws exception if item is not readable.
      *
-     * @return string|ObjectCollection
+     * @return string|ItemCollection
      * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
