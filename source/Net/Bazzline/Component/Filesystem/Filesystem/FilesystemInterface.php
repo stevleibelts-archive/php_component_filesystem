@@ -70,7 +70,7 @@ interface FilesystemInterface
      *  path from the current working directory
      *
      * @return string
-     * @throws InvalidArgumentException;
+     * @throws InputOutputException;
      * @author stev leibelt
      * @since 2013-04-25
      */
@@ -83,7 +83,7 @@ interface FilesystemInterface
      *  to be made relative
      *
      * @return string
-     * @throws InvalidArgumentException;
+     * @throws InputOutputException;
      * @author stev leibelt
      * @since 2013-04-25
      */
@@ -96,7 +96,7 @@ interface FilesystemInterface
      * @param string $endPath - the path that should be relative to $startPath
      *
      * @return string
-     * @throws InvalidArgumentException;
+     * @throws InputOutputException;
      * @author stev leibelt
      * @since 2013-04-25
      */

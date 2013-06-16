@@ -6,13 +6,13 @@
 
 namespace Net\Bazzline\Component\Filesystem\Filesystem;
 
-use InvalidArgumentException as ParentException;
+use Exception;
 
 /**
- * Class InvalidArgumentException
+ * Class InputOutputException
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-06-15
  */
-class InvalidArgumentException extends ParentException {}
+class InputOutputException extends Exception {}

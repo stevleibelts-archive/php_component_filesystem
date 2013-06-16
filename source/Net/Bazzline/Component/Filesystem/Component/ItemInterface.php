@@ -14,14 +14,14 @@ namespace Net\Bazzline\Component\Filesystem\Component;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-interface ObjectInterface
+interface ItemInterface
 {
     /**
      * Sets the name of the filesystem object.
      *
      * @param string $name - name of the object
      *
-     * @return ObjectInterface
+     * @return ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -41,7 +41,7 @@ interface ObjectInterface
      *
      * @param string $path - path of the object (relative or absolute)
      *
-     * @return ObjectInterface
+     * @return ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -107,8 +107,8 @@ interface ObjectInterface
      * @param string|ObjectCollection $content - A string or the
      *  FilesystemCollection
      *
-     * @return ObjectInterface
-     * @throws InvalidArgumentException
+     * @return ItemInterface
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -317,7 +317,7 @@ interface ObjectInterface
      * Sets permission to current object
      *
      * @param int $permission - permission to set
-     * @return ObjectInterface
+     * @return ItemInterface
      * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15

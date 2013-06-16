@@ -120,19 +120,19 @@ abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterfa
      * Returns real path for given path and name.
      *
      * @return string
-     * @throws InvalidArgumentException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     protected function getRealPath()
     {
         if (is_null($this->name)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Name is not set'
             );
         }
         if (is_null($this->path)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Path is not set'
             );
         }
