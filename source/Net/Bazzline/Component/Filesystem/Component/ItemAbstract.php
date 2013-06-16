@@ -17,7 +17,7 @@ use Symfony\Component\Yaml\Exception\RuntimeException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterface
+abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
 {
     /**
      * @var null|string|int|array|ObjectCollection
@@ -288,7 +288,7 @@ abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterfa
     }
 
     /**
-     * Changes mode of current object
+     * Changes mode of current item
      *
      * @param int $mode - the mode you want to set
      * @return bool
@@ -301,7 +301,7 @@ abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterfa
     }
 
     /**
-     * Changes owner of current object
+     * Changes owner of current item
      *
      * @param string $owner - name of the owner
      * @return bool
@@ -314,7 +314,7 @@ abstract class ObjectAbstract implements ObjectInterface, FilesystemAwareInterfa
     }
 
     /**
-     * Changes group of current object
+     * Changes group of current item
      *
      * @param string $group - name of the group
      * @return bool

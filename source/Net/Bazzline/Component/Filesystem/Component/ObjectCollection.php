@@ -108,11 +108,11 @@ class ObjectCollection implements Countable, Iterator, Traversable
     /**
      * Adds object to collection.
      *
-     * @param ObjectInterface $object
+     * @param ItemInterface $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
-    public function attach(ObjectInterface $object)
+    public function attach(ItemInterface $object)
     {
         $this->objects[] = $object;
         $this->rewind();

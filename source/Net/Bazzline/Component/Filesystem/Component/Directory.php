@@ -16,7 +16,7 @@ use InvalidArgumentException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class Directory extends ObjectAbstract
+class Directory extends ItemAbstract
 {
     /**
      * @var ObjectCollection
@@ -238,9 +238,9 @@ class Directory extends ObjectAbstract
     /**
      * Sets content of the directory.
      *
-     * @param ObjectInterface|ObjectCollection $content - content of directory
+     * @param ItemInterface|ObjectCollection $content - content of directory
      *
-     * @return ObjectInterface
+     * @return ItemInterface
      * @throws \InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
@@ -249,14 +249,14 @@ class Directory extends ObjectAbstract
     {
         if ($content instanceof ObjectCollection) {
             $this->content = $content;
-        } else if ($content instanceof ObjectInterface) {
+        } else if ($content instanceof ItemInterface) {
             $collection = new ObjectCollection();
             $collection->attach($content);
 
             $this->content = $collection;
         } else {
             throw new InvalidArgumentException(
-                'Content is not an instance of a valid class (ObjectCollection or ObjectInterface)'
+                'Content is not an instance of a valid class (ObjectCollection or ItemInterface)'
             );
         }
 

@@ -373,12 +373,12 @@ class File
     private function getRealPath()
     {
         if (is_null($this->name)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Name is not set'
             );
         }
         if (is_null($this->path)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Path is not set'
             );
         }
