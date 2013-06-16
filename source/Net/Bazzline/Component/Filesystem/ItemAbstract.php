@@ -74,6 +74,9 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      */
     public function setPath($path)
     {
+        if ($this->isRelativPath($path)) {
+            $path = realpath(getcwd . $path);
+        }
         $this->path = (string) $path;
 
         return $this;
@@ -320,5 +323,22 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     protected function chgrp($group)
     {
         return chgrp($this->getRealPath(), $group);
+    }
+
+    /**
+     * Validates if given path is relative or not
+     *
+     * @param string $path - path to validate
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-17
+     */
+    protected function isRelativPath($path)
+    {
+        $startsWith = DIRECTORY_SEPARATOR;
+        $lengthOfStartsWith = strlen($startsWith);
+        $startOfString = substr($path, 0, $lengthOfStartsWith);
+
+        return ($startOfString == $startsWith);
     }
 }
