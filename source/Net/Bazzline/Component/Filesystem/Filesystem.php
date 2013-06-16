@@ -3,9 +3,8 @@
  * @author stev leibelt <artodeto@arocr.de>
  * @since 2013-04-25
  */
-namespace Net\Bazzline\Component\Filesystem\Filesystem;
+namespace Net\Bazzline\Component\Filesystem;
 
-use InvalidArgumentException;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 /**
@@ -50,12 +49,12 @@ class Filesystem extends SymfonyFilesystem
         $endRealPath = realpath($osIndependentEndPath);
 
         if (!is_dir($startRealPath)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Provided start path is not a valid directory.'
             );
         }
         if (!is_dir($endRealPath)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Provided end path is not a valid directory.'
             );
         }

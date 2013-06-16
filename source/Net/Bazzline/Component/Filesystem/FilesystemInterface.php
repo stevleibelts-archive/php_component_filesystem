@@ -4,14 +4,14 @@
  * @since 2013-06-15 
  */
 
-namespace Net\Bazzline\Component\Filesystem\Filesystem;
+namespace Net\Bazzline\Component\Filesystem;
 
 use Traversable;
 
 /**
  * Class FilesystemInterface
  *
- * @package Net\Bazzline\Component\Filesystem\Filesystem
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-06-15
  */

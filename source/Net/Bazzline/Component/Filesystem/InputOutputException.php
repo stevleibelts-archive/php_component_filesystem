@@ -4,7 +4,7 @@
  * @since 2013-06-15 
  */
 
-namespace Net\Bazzline\Component\Filesystem\Filesystem;
+namespace Net\Bazzline\Component\Filesystem;
 
 use Exception;
 
