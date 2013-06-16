@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\Filesystem\Component;
 
 /**
  * Class FilesystemInterface
- * Generic interface for filesystem object
+ * Generic interface for filesystem item
  *
  * @package Net\Bazzline\Component\Filesystem\Component
  * @author stev leibelt <artodeto@arcor.de>
@@ -17,9 +17,9 @@ namespace Net\Bazzline\Component\Filesystem\Component;
 interface ItemInterface
 {
     /**
-     * Sets the name of the filesystem object.
+     * Sets the name of the filesystem item
      *
-     * @param string $name - name of the object
+     * @param string $name - name of the item
      *
      * @return ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
@@ -28,7 +28,7 @@ interface ItemInterface
     public function setName($name);
 
     /**
-     * Returns the name of the filesystem object or null if no name is set.
+     * Returns the name of the filesystem item or null if no name is set.
      *
      * @return null|string
      * @author stev leibelt <artodeto@arcor.de>
@@ -37,9 +37,9 @@ interface ItemInterface
     public function getName();
 
     /**
-     * Sets the path of the filesystem object.
+     * Sets the path of the filesystem item.
      *
-     * @param string $path - path of the object (relative or absolute)
+     * @param string $path - path of the item (relative or absolute)
      *
      * @return ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
@@ -48,7 +48,7 @@ interface ItemInterface
     public function setPath($path);
 
     /**
-     * Returns the path of the filesystem object or null if no path is set.
+     * Returns the path of the filesystem item or null if no path is set.
      *
      * @return null|string
      * @author stev leibelt <artodeto@arcor.de>
@@ -57,7 +57,7 @@ interface ItemInterface
     public function getPath();
 
     /**
-     * Validates if the write flag is set for this filesystem object.
+     * Validates if the write flag is set for this filesystem item.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -66,7 +66,7 @@ interface ItemInterface
     public function isWritable();
 
     /**
-     * Validates if the read flag is set for this filesystem object.
+     * Validates if the read flag is set for this filesystem item.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -75,7 +75,7 @@ interface ItemInterface
     public function isReadable();
 
     /**
-     * Validates if the execute flag is set for this filesystem object.
+     * Validates if the execute flag is set for this filesystem item.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -84,7 +84,7 @@ interface ItemInterface
     public function isExecutable();
 
     /**
-     * Validates if filesystem object has content.
+     * Validates if filesystem item has content.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -93,7 +93,7 @@ interface ItemInterface
     public function hasContent();
 
     /**
-     * Returns the content of the filesystem object.
+     * Returns the content of the filesystem item.
      *
      * @return string|ObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
@@ -102,7 +102,7 @@ interface ItemInterface
     public function getContent();
 
     /**
-     * Sets toe content fo the filesystem object.
+     * Sets toe content fo the filesystem item.
      *
      * @param string|ObjectCollection $content - A string or the
      *  FilesystemCollection
@@ -115,7 +115,7 @@ interface ItemInterface
     public function setContent($content);
 
     /**
-     * Validates if filesystem object exists on filesystem or not.
+     * Validates if filesystem item exists on filesystem or not.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -124,7 +124,7 @@ interface ItemInterface
     public function isNew();
 
     /**
-     * Validates if filesystem object is modified and not saved.
+     * Validates if filesystem item is modified and not saved.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -133,7 +133,7 @@ interface ItemInterface
     public function isModified();
 
     /**
-     * Validates if filesystem object represents a object.
+     * Validates if filesystem item represents a file.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -142,7 +142,7 @@ interface ItemInterface
     public function isFile();
 
     /**
-     * Validates if filesystem object represents a directory.
+     * Validates if filesystem item represents a directory.
      *
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
@@ -151,7 +151,7 @@ interface ItemInterface
     public function isDirectory();
 
     /**
-     * Returns last modification time or null if object is new.
+     * Returns last modification time or null if item is new.
      *
      * @return null|int
      * @author stev leibelt <artodeto@arcor.de>
@@ -160,7 +160,7 @@ interface ItemInterface
     public function getModificationTime();
 
     /**
-     * Returns last access time or null if object is new.
+     * Returns last access time or null if item is new.
      *
      * @return null|int
      * @author stev leibelt <artodeto@arcor.de>
@@ -169,7 +169,7 @@ interface ItemInterface
     public function getAccessTime();
 
     /**
-     * Returns create time or null if object is new.
+     * Returns create time or null if item is new.
      *
      * @return null|int
      * @author stev leibelt <artodeto@arcor.de>
@@ -178,7 +178,7 @@ interface ItemInterface
     public function getCreateTime();
 
     /**
-     * Returns last modification date or null if object is null.
+     * Returns last modification date or null if item is null.
      *
      * @param string $format - date format by php date()
      *
@@ -189,7 +189,7 @@ interface ItemInterface
     public function getModificationDate($format = 'Y-m-d H:i:s');
 
     /**
-     * Returns last access date or null if object is null.
+     * Returns last access date or null if item is null.
      *
      * @param string $format - date format by php date()
      *
@@ -200,7 +200,7 @@ interface ItemInterface
     public function getAccessDate($format = 'Y-m-d H:i:s');
 
     /**
-     * Returns create date or null if object is null.
+     * Returns create date or null if item is null.
      *
      * @param string $format - date format by php date()
      *
@@ -211,8 +211,8 @@ interface ItemInterface
     public function getCreateDate($format = 'Y-m-d H:i:s');
 
     /**
-     * Saved content and throws exception if object is not new.
-     * Throws exception if object is not writeable.
+     * Saved content and throws exception if item is not new.
+     * Throws exception if item is not writable.
      *
      * @return int
      * @throws RuntimeException
@@ -222,8 +222,8 @@ interface ItemInterface
     public function save();
 
     /**
-     * Saved content, even if object exists.
-     * Throws exception if object is not writeable.
+     * Saved content, even if item exists.
+     * Throws exception if item is not writable.
      *
      * @return int
      * @throws RuntimeException
@@ -235,7 +235,7 @@ interface ItemInterface
     /**
      * Loads content from filesystem by using the given path and name.
      * Overwrite content if already set.
-     * Throws exception if object is not readable.
+     * Throws exception if item is not readable.
      *
      * @return string|ObjectCollection
      * @throws RuntimeException
@@ -245,7 +245,7 @@ interface ItemInterface
     public function load();
 
     /**
-     * Returns current owner of the object
+     * Returns current owner of the item
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -254,7 +254,7 @@ interface ItemInterface
     public function getOwner();
 
     /**
-     * Sets owner to current object
+     * Sets owner to current item
      *
      * @param string $owner - name of the owner
      * @return boolean
@@ -265,7 +265,7 @@ interface ItemInterface
     public function setOwner($owner);
 
     /**
-     * Validates if provided name is owner of the object
+     * Validates if provided name is owner of the item
      *
      * @param string $owner - name of the owner
      * @return boolean
@@ -275,7 +275,7 @@ interface ItemInterface
     public function isOwner($owner);
 
     /**
-     * Returns group of current object
+     * Returns group of current item
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -284,7 +284,7 @@ interface ItemInterface
     public function getGroup();
 
     /**
-     * Sets group for current object
+     * Sets group for current item
      *
      * @param string $group - name of the group
      * @return boolean
@@ -295,7 +295,7 @@ interface ItemInterface
     public function setGroup($group);
 
     /**
-     * Validates if provided name is group of the object
+     * Validates if provided name is group of the item
      *
      * @param string $group - name of the group
      * @return boolean
@@ -305,7 +305,7 @@ interface ItemInterface
     public function isGroup($group);
 
     /**
-     * Returns permissions of current object
+     * Returns permissions of current item
      *
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
@@ -314,7 +314,7 @@ interface ItemInterface
     public function getPermission();
 
     /**
-     * Sets permission to current object
+     * Sets permission to current item
      *
      * @param int $permission - permission to set
      * @return ItemInterface
