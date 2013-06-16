@@ -4,16 +4,12 @@
  * @since 2013-04-25
  */
 
-namespace Net\Bazzline\Component\Filesystem\Component;
-
-use Net\Bazzline\Component\Filesystem\Filesystem\FilesystemAwareInterface;
-use Net\Bazzline\Component\Filesystem\Filesystem\FilesystemInterface;
-use Symfony\Component\Yaml\Exception\RuntimeException;
+namespace Net\Bazzline\Component\Filesystem;
 
 /**
  * Class FilesystemAbstract
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
@@ -27,7 +23,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     protected $content;
 
     /**
-     * @var null|\Net\Bazzline\Component\Filesystem\Filesystem\FilesystemInterface
+     * @var null|\Net\Bazzline\Component\Filesystem\FilesystemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
@@ -187,7 +183,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     public function setOwner($owner)
     {
         if (!$this->chown($owner)) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'Can not change owner.'
             );
         }
@@ -217,7 +213,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     public function setGroup($group)
     {
         if (!$this->chgrp($group)) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'Can not change group.'
             );
         }
@@ -251,7 +247,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
         }
 
         if (!$this->chmod($permission)) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'Can not change permission.'
             );
         }

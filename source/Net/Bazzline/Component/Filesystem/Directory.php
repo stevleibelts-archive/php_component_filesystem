@@ -4,15 +4,12 @@
  * @since 2013-04-25
  */
 
-namespace Net\Bazzline\Component\Filesystem\Component;
-
-use RuntimeException;
-use InvalidArgumentException;
+namespace Net\Bazzline\Component\Filesystem;
 
 /**
  * Class Directory
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
@@ -175,7 +172,7 @@ class Directory extends ItemAbstract
      * Creates a directory.
      *
      * @return boolean
-     * @throws \RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      * @todo add mod when implemented/available
@@ -183,7 +180,7 @@ class Directory extends ItemAbstract
     public function create()
     {
         if (!$this->isNew()) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'Directory already exists.'
             );
         }
@@ -241,7 +238,7 @@ class Directory extends ItemAbstract
      * @param ItemInterface|ItemCollection $content - content of directory
      *
      * @return ItemInterface
-     * @throws \InvalidArgumentException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-18
      */
@@ -255,7 +252,7 @@ class Directory extends ItemAbstract
 
             $this->content = $collection;
         } else {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Content is not an instance of a valid class (ItemCollection or ItemInterface)'
             );
         }

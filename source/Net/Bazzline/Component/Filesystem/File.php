@@ -4,12 +4,12 @@
  * @since 2013-04-25
  */
 
-namespace Net\Bazzline\Component\Filesystem\Component;
+namespace Net\Bazzline\Component\Filesystem;
 
 /**
  * Class File
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
@@ -186,7 +186,7 @@ class File
      * Writes the available data to the file.
      *
      * @return int
-     * @throws \RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
@@ -195,7 +195,7 @@ class File
         if ($this->isNew()) {
             return $this->overwrite();
         } else {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'File exists, use overwrite to force writing'
             );
         }
@@ -218,19 +218,19 @@ class File
      * Overwrite content if already set.
      *
      * @return string
-     * @throws \RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
     public function read()
     {
         if ($this->isNew()) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'You can not read from a file that does not exist.'
             );
         }
         if (!$this->isReadable()) {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'File is not readable'
             );
         }
@@ -242,7 +242,7 @@ class File
 
             return $this->getContent();
         } else {
-            throw new RuntimeException(
+            throw new InputOutputException(
                 'Error while reading content from file'
             );
         }
@@ -366,7 +366,7 @@ class File
      * Returns real path for given path and name.
      *
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */

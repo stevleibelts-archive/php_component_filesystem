@@ -4,7 +4,7 @@
  * @since 2013-04-25
  */
 
-namespace Net\Bazzline\Component\Filesystem\Component;
+namespace Net\Bazzline\Component\Filesystem;
 
 use Countable;
 use Iterator;
@@ -13,7 +13,7 @@ use Traversable;
 /**
  * Class FilesystemCollection
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */

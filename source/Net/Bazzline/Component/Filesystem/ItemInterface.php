@@ -4,13 +4,13 @@
  * @since 2013-04-25
  */
 
-namespace Net\Bazzline\Component\Filesystem\Component;
+namespace Net\Bazzline\Component\Filesystem;
 
 /**
  * Class FilesystemInterface
  * Generic interface for filesystem item
  *
- * @package Net\Bazzline\Component\Filesystem\Component
+ * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
@@ -215,7 +215,7 @@ interface ItemInterface
      * Throws exception if item is not writable.
      *
      * @return int
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -226,7 +226,7 @@ interface ItemInterface
      * Throws exception if item is not writable.
      *
      * @return int
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -238,7 +238,7 @@ interface ItemInterface
      * Throws exception if item is not readable.
      *
      * @return string|ItemCollection
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
@@ -258,7 +258,7 @@ interface ItemInterface
      *
      * @param string $owner - name of the owner
      * @return boolean
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
@@ -288,7 +288,7 @@ interface ItemInterface
      *
      * @param string $group - name of the group
      * @return boolean
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
@@ -318,7 +318,7 @@ interface ItemInterface
      *
      * @param int $permission - permission to set
      * @return ItemInterface
-     * @throws RuntimeException
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
