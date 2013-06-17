@@ -74,7 +74,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      */
     public function setPath($path)
     {
-        if ($this->isRelativPath($path)) {
+        if ($this->isRelativePath($path)) {
             $path = realpath(getcwd . $path);
         }
         $this->path = (string) $path;
@@ -333,7 +333,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-17
      */
-    protected function isRelativPath($path)
+    protected function isRelativePath($path)
     {
         $startsWith = DIRECTORY_SEPARATOR;
         $lengthOfStartsWith = strlen($startsWith);
