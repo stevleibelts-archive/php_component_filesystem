@@ -13,71 +13,57 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-class File
+class File extends ItemAbstract
 {
     /**
-     * @var null|string|int|array
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
-    private $content;
+    public static function create($path, $name)
+    {
+        $file = new self($path, $name);
 
-    /**
-     * @var null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    private $name;
-
-    /**
-     * @var null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    private $path;
+        return $file;
+    }
 
     /**
      * Setup for the object.
      *
-     * @param null|string $path - path to the file
-     * @param null|string $name - name of the file
-     *
+     * @param string $path - path to the file
+     * @param string $name - name of the file
+     * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    public function __construct($path = null, $name = null)
+    public function __construct($path, $name)
     {
-        if ((!is_null($path))
-            && (!is_null($name))) {
-            $pathWithoutTrailingSlash = ($this->stringEndsWith($path, DIRECTORY_SEPARATOR)) ?
-                (substr($path, 0, -(strlen(DIRECTORY_SEPARATOR)))) : $path;
-            $this->setPath($pathWithoutTrailingSlash);
-            $this->setName($name);
+        if (is_null($path)) {
+            throw new InputOutputException(
+                'No path provided.'
+            );
+        }
+        if (is_null($name)) {
+            throw new InputOutputException(
+                'No name provided.'
+            );
+        }
+
+        $pathWithoutTrailingSlash = ($this->pathEndsWithDirectorySeparator($path)) ?
+            (substr($path, 0, -(strlen(DIRECTORY_SEPARATOR)))) : $path;
+        $this->setPath($pathWithoutTrailingSlash);
+        $this->setName($name);
+        if (!$this->isNew()) {
+            $this->load();
         }
     }
 
     /**
-     * Validates if file is new.
-     *
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function isNew()
-    {
-        return (!file_exists(realpath($this->getRealPath())));
-    }
-
-    /**
-     * Sets the data (overwrites existing data).
-     *
-     * @param null|string|int|array $content - data for the file
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
     public function setContent($content)
     {
         $this->content = $content;
+
+        return $this;
     }
 
     /**
@@ -118,56 +104,6 @@ class File
     public function prependContent($content)
     {
         $this->setContent($this->getContent() . $content);
-    }
-
-    /**
-     * Sets the name of the file.
-     *
-     * @param string $name - name of the file.
-     *
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function setName($name)
-    {
-        $this->name = (string) $name;
-    }
-
-    /**
-     * Gets the name of the file.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Sets the path of the file.
-     *
-     * @param string $path - path of the file.
-     *
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function setPath($path)
-    {
-        $this->path = (string) $path;
-    }
-
-    /**
-     * Gets the path of the file.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function getPath()
-    {
-        return $this->path;
     }
 
     /**
@@ -249,157 +185,73 @@ class File
     }
 
     /**
-     * Returns current modification time.
-     *
-     * @return null|int
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
-    public function getModificationTime()
+    public function isFile()
     {
-        return ($this->isNew()) ? null : filemtime($this->getRealPath());
+        return true;
     }
 
     /**
-     * Returns formatted modification time.
-     *
-     * @param string $format - format available by php date.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
-    public function getModificationDate($format = 'Y-m-d H:i:s')
+    public function isDirectory()
     {
-        return ($this->isNew()) ? null : date($format, $this->getModificationTime());
+        return false;
     }
 
     /**
-     * Returns current last access time.
-     *
-     * @return null|int
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
+     * {$inheritDoc}
      */
-    public function getLastAccessTime()
+    public function save()
     {
-        return ($this->isNew()) ? null : fileatime($this->getRealPath());
-    }
-
-    /**
-     * Returns formatted last access time.
-     *
-     * @param string $format - format available by php date.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function getLastAccessDate($format = 'Y-m-d H:i:s')
-    {
-        return ($this->isNew()) ? null : date($format, $this->getLastAccessTime());
-    }
-
-    /**
-     * Returns current last access time.
-     *
-     * @return null|int
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-09
-     */
-    public function getCreateTime()
-    {
-        return ($this->isNew()) ? null : filectime($this->getRealPath());
-    }
-
-    /**
-     * Returns formatted last access time.
-     *
-     * @param string $format - format available by php date.
-     *
-     * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-09
-     */
-    public function getCreateDate($format = 'Y-m-d H:i:s')
-    {
-        return ($this->isNew()) ? null : date($format, $this->getCreateTime());
-    }
-
-    /**
-     * Is file writeable.
-     *
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function isWriteable()
-    {
-        return is_writeable($this->getRealPath());
-    }
-
-    /**
-     * Is file readable.
-     *
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function isReadable()
-    {
-        return is_readable($this->getRealPath());
-    }
-
-    /**
-     * Is file executable.
-     *
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    public function isExecutable()
-    {
-        return is_executable($this->getRealPath());
-    }
-
-    /**
-     * Returns real path for given path and name.
-     *
-     * @return string
-     * @throws InputOutputException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-03
-     */
-    private function getRealPath()
-    {
-        if (is_null($this->name)) {
+        if (!$this->isWritable()) {
             throw new InputOutputException(
-                'Name is not set'
+                'File is not writable.'
             );
         }
-        if (is_null($this->path)) {
+        if (!$this->isNew()) {
             throw new InputOutputException(
-                'Path is not set'
+                'Use update to not save to overwrite existing file content.'
             );
         }
-        $filePath = $this->path . DIRECTORY_SEPARATOR . $this->name;
 
-        return realpath($filePath);
+        return file_put_contents($this->getRealPath(), $this->getContent());
     }
 
     /**
-     * @param string $string - string
-     * @param string $endsWith - ends with
-     *
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-07
+     * {$inheritDoc}
      */
-    private function stringEndsWith($string, $endsWith)
+    public function update()
     {
-        $lengthOfEndsWith = strlen($endsWith);
-        $stringEnding = substr($string, -$lengthOfEndsWith);
+        if (!$this->isWritable()) {
+            throw new InputOutputException(
+                'File is not writable.'
+            );
+        }
 
-        return ($stringEnding == $endsWith);
+        return file_put_contents($this->getRealPath(), $this->getContent());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function load()
+    {
+        if (!$this->isReadable()) {
+            throw new InputOutputException(
+                'File is not readable.'
+            );
+        }
+
+        $content = file_get_contents($this->getRealPath());
+
+        if ($content === false) {
+            throw new InputOutputException(
+                'Could not read file.'
+            );
+        }
+
+        $this->setContent($content);
     }
 }

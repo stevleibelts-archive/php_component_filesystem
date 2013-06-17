@@ -263,6 +263,24 @@ class Directory extends ItemAbstract
     }
 
     /**
+     * @return null|array|ItemCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-18
+     */
+    public function getContent()
+    {
+        if (!is_null($this->content)) {
+            return $this->content;
+        } else if ((!is_null($this->getRealPath()))
+            && (!$this->isNew())
+            && ($this->read())) {
+            return $this->content;
+        } else {
+            return array();
+        }
+    }
+
+    /**
      * {$inheritDoc}
      */
     public function isDirectory()

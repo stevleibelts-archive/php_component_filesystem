@@ -12,6 +12,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
+ * @todo implement clone method
  */
 abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
 {
@@ -42,6 +43,13 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      * @since 2013-05-03
      */
     protected  $path;
+
+    /**
+     * @var null|boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-17
+     */
+    private  $isModified;
 
     /**
      * {$inheritDoc}
@@ -75,7 +83,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     public function setPath($path)
     {
         if ($this->isRelativePath($path)) {
-            $path = realpath(getcwd . $path);
+            $path = realpath(getcwd() . $path);
         }
         $this->path = (string) $path;
 
@@ -94,6 +102,14 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
+    public function getModificationTime()
+    {
+        return ($this->isNew()) ? null : filemtime($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
     public function getModificationDate($format = 'Y-m-d H:i:s')
     {
         return ($this->isNew()) ? null : date($format, $this->getModificationTime());
@@ -102,9 +118,25 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
+    public function getAccessTime()
+    {
+        return ($this->isNew()) ? null : fileatime($this->getRealPath());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
     public function getAccessDate($format = 'Y-m-d H:i:s')
     {
         return ($this->isNew()) ? null : date($format, $this->getAccessTime());
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getCreateTime()
+    {
+        return ($this->isNew()) ? null : filectime($this->getRealPath());
     }
 
     /**
@@ -287,6 +319,22 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
+     * {$inheritDoc}
+     */
+    public function isModified()
+    {
+        return ((!is_null($this->isModified)) && ($this->isModified));
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function hasContent()
+    {
+        return (!is_null($this->content));
+    }
+
+    /**
      * Changes mode of current item
      *
      * @param int $mode - the mode you want to set
@@ -340,5 +388,40 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
         $startOfString = substr($path, 0, $lengthOfStartsWith);
 
         return ($startOfString == $startsWith);
+    }
+
+    /**
+     * Validates if given path ends with a directory separator
+     *
+     * @param string $path - the path to validate
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-17
+     */
+    protected function pathEndsWithDirectorySeparator($path)
+    {
+        $endsWith = DIRECTORY_SEPARATOR;
+        $lengthOfEndsWith = strlen($endsWith);
+        $stringEnding = substr($path, -$lengthOfEndsWith);
+
+        return ($stringEnding == $endsWith);
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-17
+     */
+    protected function setModifiedFlag()
+    {
+        $this->isModified = true;
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-17
+     */
+    protected function unsetModifiedFlag()
+    {
+        $this->isModified = false;
     }
 }
