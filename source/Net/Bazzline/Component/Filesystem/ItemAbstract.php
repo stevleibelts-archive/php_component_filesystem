@@ -52,6 +52,37 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     private  $isModified;
 
     /**
+     * Setup for the object.
+     *
+     * @param string $path - path to the file
+     * @param string $name - name of the file
+     * @throws InputOutputException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-03
+     */
+    public function __construct($path, $name)
+    {
+        if (is_null($path)) {
+            throw new InputOutputException(
+                'No path provided.'
+            );
+        }
+        if (is_null($name)) {
+            throw new InputOutputException(
+                'No name provided.'
+            );
+        }
+
+        $pathWithoutTrailingSlash = ($this->pathEndsWithDirectorySeparator($path)) ?
+            (substr($path, 0, -(strlen(DIRECTORY_SEPARATOR)))) : $path;
+        $this->setPath($pathWithoutTrailingSlash);
+        $this->setName($name);
+        if (!$this->isNew()) {
+            $this->load();
+        }
+    }
+
+    /**
      * {$inheritDoc}
      */
     public function getContent()
