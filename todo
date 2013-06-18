@@ -8,3 +8,23 @@ add to filesystem interface
  setMod();
  setOwner();
  setGroup();
+
+implement directory class
+update filessystem by adapting methods and stabelize interface
+    * copy (string|ItemInterface $source, string|ItemInterface $destination, $override = false, $recursive = false)
+    * mkdir (string|ItemCollection $directories, $mode = 777)
+    * touch (string|ItemCollection $files, $mode = 777)
+    * remove (string|ItemCollection $items)
+    * chmod (ItemCollection $items, $mode, $recursive = false);
+    * chown (ItemCollection $items, $userName, $recursive = false);
+    * chgrp (ItemCollection $items, $groupName, $recursive = false);
+    * move (string|ItemInterface $source, string|ItemInterface $destination);
+    * link (string|ItemInterface $source, string|ItemInterface $destination, $copyIfNotLinkable = false);
+    * makePathRelative ($endPath, $startPath);
+
+remove following methods:
+    * rename (is done by move)
+    * symlink (is done by link)
+    * mirror (why not copy?)
+    * isAbsolutePath (should be a ItemInterface method)
+
