@@ -375,7 +375,7 @@ interface ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function getPermission();
+    public function getPermissions();
 
     /**
      * Sets permission to current item
@@ -386,7 +386,7 @@ interface ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function setPermission($permission);
+    public function setPermissions($permission);
 
     /**
      * Validates if provided permission is set

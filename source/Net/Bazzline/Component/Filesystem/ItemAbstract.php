@@ -221,10 +221,83 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
 
     /**
      * {$inheritDoc}
+     * Tries to set the read flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsReadable()
+    {
+        if (!$this->isReadable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode + 400));
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Tries to set the read flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsReadable()
+    {
+        if ($this->isReadable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode - 400));
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * {$inheritDoc}
      */
     public function isWritable()
     {
         return is_writable($this->getRealPath());
+    }
+
+    /**
+     * Tries to set the write flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsWritable()
+    {
+        if (!$this->isWritable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode + 200));
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Tries to set the write flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsWritable()
+    {
+        if ($this->isWritable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode - 200));
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -233,6 +306,42 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     public function isExecutable()
     {
         return is_executable($this->getRealPath());
+    }
+
+    /**
+     * Tries to set the execute flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsExecutable()
+    {
+        if (!$this->isExecutable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode + 100));
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Tries to set the execute flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsExecutable()
+    {
+        if ($this->isExecutable()) {
+            $mode = $this->getCurrentMode();
+
+            return $this->chmod(($mode - 100));
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -298,7 +407,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function getPermission()
+    public function getPermissions()
     {
         return fileperms($this->getRealPath());
     }
@@ -306,7 +415,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function setPermission($permission)
+    public function setPermissions($permission)
     {
         if (strlen($permission == 3)) {
             $permission = '0' . $permission;
@@ -330,7 +439,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
             $permission = '0' . $permission;
         }
 
-        return ($this->getPermission() == $permission);
+        return ($this->getPermissions() == $permission);
     }
 
     /**
@@ -454,5 +563,19 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     protected function unsetModifiedFlag()
     {
         $this->isModified = false;
+    }
+
+    /**
+     *
+     *
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-19
+     */
+    protected function getCurrentMode()
+    {
+        $mode = substr(decoct($this->getPermissions()), 3);
+
+        return $mode;
     }
 }
