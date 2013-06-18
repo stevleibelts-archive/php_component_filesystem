@@ -1,14 +1,3 @@
-add to filesystem interface
- setReadable();
- unsetReadable();
- setWriteable();
- unsetWriteable();
- setExecutable();
- unsetExecutable();
- setMod();
- setOwner();
- setGroup();
-
 implement directory class
 update filessystem by adapting methods and stabelize interface
     * copy (string|ItemInterface $source, string|ItemInterface $destination, $override = false, $recursive = false)

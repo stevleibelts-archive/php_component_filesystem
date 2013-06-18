@@ -76,6 +76,24 @@ interface ItemInterface
     public function isWritable();
 
     /**
+     * Tries to set the write flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsWritable();
+
+    /**
+     * Tries to set the write flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsWritable();
+
+    /**
      * Validates if the read flag is set for this filesystem item.
      *
      * @return boolean
@@ -85,6 +103,24 @@ interface ItemInterface
     public function isReadable();
 
     /**
+     * Tries to set the read flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsReadable();
+
+    /**
+     * Tries to set the read flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsReadable();
+
+    /**
      * Validates if the execute flag is set for this filesystem item.
      *
      * @return boolean
@@ -92,6 +128,24 @@ interface ItemInterface
      * @since 2013-05-17
      */
     public function isExecutable();
+
+    /**
+     * Tries to set the execute flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function setIsExecutable();
+
+    /**
+     * Tries to set the execute flag
+     *
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-06-18
+     */
+    public function unsetIsExecutable();
 
     /**
      * Validates if filesystem item has content.
