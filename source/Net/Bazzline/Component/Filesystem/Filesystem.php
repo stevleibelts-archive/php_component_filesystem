@@ -13,8 +13,64 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-04-25
  */
-class Filesystem extends SymfonyFilesystem
+class Filesystem extends SymfonyFilesystem implements FilesystemInterface
 {
+    /**
+     * {$inheritDoc}
+     */
+    public function delete(ItemCollection $items)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function move(ItemInterface $source, ItemInterface $destination, $override = false)
+    {
+        // TODO: Implement move() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changeOwner(ItemCollection $items, $owner, $recursive = false)
+    {
+        // TODO: Implement changeOwner() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changeGroup(ItemCollection $items, $group, $recursive = false)
+    {
+        // TODO: Implement changeGroup() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changePermission(ItemCollection $items, $permission = 000, $recursive = false)
+    {
+        // TODO: Implement changePermission() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function createItem($path, $permission = 0777)
+    {
+        // TODO: Implement createItem() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function loadItem($path)
+    {
+        // TODO: Implement loadItem() method.
+    }
+
     /**
      * {$inheritDoc}
      */

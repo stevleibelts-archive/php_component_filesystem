@@ -67,9 +67,17 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
                 'No path provided.'
             );
         }
+
         if (is_null($name)) {
             throw new InputOutputException(
                 'No name provided.'
+            );
+        }
+
+        if ((strlen($path) < 1)
+            && (strlen($name) < 1)) {
+            throw new InputOutputException(
+                'path or name invalid'
             );
         }
 
@@ -472,6 +480,45 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     public function hasContent()
     {
         return (!is_null($this->content));
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isFile()
+    {
+        return false;
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function isDirectory()
+    {
+        return false;
+    }
+
+    /**
+     * Saved content and throws exception if item is not new.
+     * Throws exception if item is not writable.
+     *
+     * @param bool $override
+     * @return int
+     * @throws InputOutputException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-17
+     */
+    public function save($override = false)
+    {
+        // TODO: Implement save() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function delete()
+    {
+        return unlink($this->getRealPath());
     }
 
     /**
