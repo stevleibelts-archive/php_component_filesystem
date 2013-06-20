@@ -17,51 +17,21 @@ use Traversable;
  */
 interface FilesystemInterface
 {
-    /**
-     * Copies a file.
-     *
-     * This method only copies the file if the origin file is newer than the target file.
-     *
-     * By default, if the target already exists, it is not overridden.
-     *
-     * @param string  $sourceFile The original filename
-     * @param string  $targetFile The target filename
-     * @param boolean $override   Whether to override an existing file or not
-     * @throws \Symfony\Component\Filesystem\Exception\IOException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-15
-     */
-    public function copy($sourceFile, $targetFile, $override = false);
+    public function copy(ItemInterface $source, ItemInterface $target, $override = false);
 
-    /**
-     * Creates a directory recursively
-     *
-     * @param string|array|\Traversable $directories
-     * @param int $mode
-     * @throws \Symfony\Component\Filesystem\Exception\IOException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-15
-     * @todo add recursive directory creation
-     */
-    public function mkdir($directories, $mode = 0777);
+    public function delete(ItemCollection $items);
 
-    public function touch($files, $time = null, $atime = null);
+    public function move(ItemInterface $source, ItemInterface $destination, $override = false);
 
-    public function remove($files);
+    public function changeOwner(ItemCollection $items, $owner, $recursive = false);
 
-    public function chmod($files, $mod, $umask = 000, $recursive = false);
+    public function changeGroup(ItemCollection $items, $group, $recursive = false);
 
-    public function chwon($files, $user, $recursive = false);
+    public function changePermission(ItemCollection $items, $permission = 000, $recursive = false);
 
-    public function chgro($files, $group, $recursive = false);
+    public function createItem($path, $permission = 0777);
 
-    public function rename($source, $target);
-
-    public function symlink($sourceDirectory, $targetDirectory, $copyOnWindows = false);
-
-    public function mirror($sourceDirectory, $targetDirectory, Traversable $iterator = null, $options = array());
-
-    public function isAbsolutePath($object);
+    public function loadItem($path);
 
     /**
      * Returns relative $path path to current working directory

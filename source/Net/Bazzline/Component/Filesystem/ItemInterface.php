@@ -278,35 +278,21 @@ interface ItemInterface
      * Saved content and throws exception if item is not new.
      * Throws exception if item is not writable.
      *
+     * @param bool $override
      * @return int
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function save();
+    public function save($override = false);
 
     /**
-     * Saved content, even if item exists.
-     * Throws exception if item is not writable.
-     *
-     * @return int
+     * @return bool
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function update();
-
-    /**
-     * Loads content from filesystem by using the given path and name.
-     * Overwrite content if already set.
-     * Throws exception if item is not readable.
-     *
-     * @return string|ItemCollection
-     * @throws InputOutputException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function load();
+    public function delete();
 
     /**
      * Returns current owner of the item
