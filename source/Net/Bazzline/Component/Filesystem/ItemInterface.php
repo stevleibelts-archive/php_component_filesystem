@@ -18,13 +18,12 @@ interface ItemInterface
 {
     /**
      * @param string $path
-     * @param string $name
      * @return ItemInterface
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-16
      */
-    public static function create($path, $name);
+    public static function create($path);
 
     /**
      * Sets the name of the filesystem item
