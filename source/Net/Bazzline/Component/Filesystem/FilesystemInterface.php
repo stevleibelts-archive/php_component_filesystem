@@ -6,6 +6,7 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use FilterIterator;
 use Traversable;
 
 /**
@@ -32,6 +33,8 @@ interface FilesystemInterface
     public function createItem($path, $permission = 0777);
 
     public function loadItem($path);
+
+    public function loadItems($path, FilterIterator $filter);
 
     /**
      * Returns relative $path path to current working directory
