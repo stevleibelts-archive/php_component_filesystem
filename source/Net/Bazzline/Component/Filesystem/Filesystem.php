@@ -74,6 +74,14 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     /**
      * {$inheritDoc}
      */
+    public function loadItems($path, FilterIterator $filter)
+    {
+        // TODO: Implement loadItems() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
     public function makeRelativePathToCurrentWorkingDirectory($path)
     {
         return $this->makePathRelative(getcwd(), $path);
