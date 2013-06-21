@@ -23,7 +23,7 @@ interface ItemInterface
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-16
      */
-    public static function create($path);
+    public function __construct($path);
 
     /**
      * Sets the name of the filesystem item

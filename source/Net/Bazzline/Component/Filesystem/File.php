@@ -18,16 +18,6 @@ class File extends ItemAbstract implements FileItemInterface
     /**
      * {$inheritDoc}
      */
-    public static function create($path, $name)
-    {
-        $file = new self($path, $name);
-
-        return $file;
-    }
-
-    /**
-     * {$inheritDoc}
-     */
     public function setContent($content)
     {
         $this->content = $content;
