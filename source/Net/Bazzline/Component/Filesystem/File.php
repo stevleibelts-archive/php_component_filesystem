@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-class File extends ItemAbstract
+class File extends ItemAbstract implements FileItemInterface
 {
     /**
      * {$inheritDoc}
@@ -222,5 +222,15 @@ class File extends ItemAbstract
         }
 
         $this->setContent($content);
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function getExtension()
+    {
+        $pathParts = pathinfo($this->getRealPath());
+
+        return (isset($pathParts['extension'])) ? $pathParts['extension'] : null;
     }
 }

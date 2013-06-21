@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-17
  */
-class Directory extends ItemAbstract
+class Directory extends ItemAbstract implements DirectoryItemInterface
 {
     /**
      * @var ItemCollection
