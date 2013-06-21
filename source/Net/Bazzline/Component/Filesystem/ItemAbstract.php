@@ -55,12 +55,11 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      * Setup for the object.
      *
      * @param string $path - path to the file
-     * @param string $name - name of the file
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-03
      */
-    public function __construct($path, $name)
+    public function __construct($path)
     {
         if (is_null($path)) {
             throw new InputOutputException(
@@ -68,23 +67,11 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
             );
         }
 
-        if (is_null($name)) {
-            throw new InputOutputException(
-                'No name provided.'
-            );
-        }
-
-        if ((strlen($path) < 1)
-            && (strlen($name) < 1)) {
-            throw new InputOutputException(
-                'path or name invalid'
-            );
-        }
-
         $pathWithoutTrailingSlash = ($this->pathEndsWithDirectorySeparator($path)) ?
             (substr($path, 0, -(strlen(DIRECTORY_SEPARATOR)))) : $path;
-        $this->setPath($pathWithoutTrailingSlash);
-        $this->setName($name);
+        $pathAsArray = pathinfo($pathWithoutTrailingSlash);
+        $this->setPath($pathAsArray['dirname']);
+        $this->setName($pathAsArray['filename']);
         if (!$this->isNew()) {
             $this->load();
         }
@@ -487,7 +474,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      */
     public function isFile()
     {
-        return false;
+        return ($this instanceof FileItemInterface);
     }
 
     /**
@@ -495,7 +482,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
      */
     public function isDirectory()
     {
-        return false;
+        return ($this instanceof DirectoryItemInterface);
     }
 
     /**
