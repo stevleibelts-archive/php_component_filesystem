@@ -1,24 +1,18 @@
 <?php
-
 /**
- * This test is based on Symfony FilesystemTest and only tests new 
- *  implementation of this extending filesystem component.
- *
- * Stev Leibelt <artodeto@arcor.de>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * @author stev leibelt <artodeto@arocr.de>
+ * @since 2013-05-03
  */
+namespace Test\Net\Bazzline\Component\Filesystem\Filesystem;
 
-namespace Net\Bazzline\Component\Filesystem;
-
-use PHPUnit_Framework_TestCase;
+use Net\Bazzline\Component\Filesystem\Filesystem\Filesystem;
 use ReflectionClass;
+use Test\Net\Bazzline\Component\Filesystem\UnitTestCase;
 
 /**
  * Test class for Filesystem.
  */
-class FilesystemTest extends PHPUnit_Framework_TestCase
+class FilesystemTest extends UnitTestCase
 {
     /**
      * @var string $workspace
@@ -26,7 +20,7 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
     private $workspace = null;
 
     /**
-     * @var \Net\Bazzline\Component\Filesystem\Filesystem $filesystem
+     * @var \Net\Bazzline\Component\Filesystem\Filesystem\Filesystem $filesystem
      */
     private $filesystem = null;
 
@@ -83,7 +77,7 @@ class FilesystemTest extends PHPUnit_Framework_TestCase
      */
     public function providePathsForMakePathRelative()
     {
-        $filesystemReflection = new ReflectionClass(__NAMESPACE__ . '\\Filesystem');
+        $filesystemReflection = new ReflectionClass('Net\\Bazzline\\Component\\Filesystem\\Filesystem\\Filesystem');
 
         $realPathOfTestFile = dirname(__FILE__);
         $realPathOfTestedFile = dirname($filesystemReflection->getFileName());

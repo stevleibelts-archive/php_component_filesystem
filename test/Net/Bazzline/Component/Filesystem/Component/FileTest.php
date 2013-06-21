@@ -1,9 +1,13 @@
 <?php
+/**
+ * @author stev leibelt <artodeto@arocr.de>
+ * @since 2013-05-03
+ */
+namespace Test\Net\Bazzline\Component\Filesystem\Component;
 
-namespace Net\Bazzline\Component\Filesystem;
-
+use Net\Bazzline\Component\Filesystem\Component\File;
 use org\bovigo\vfs\vfsStream;
-use PHPUnit_Framework_TestCase;
+use Test\Net\Bazzline\Component\Filesystem\UnitTestCase;
 
 /**
  * We have to overwrite realpath since realpath is not working with vfsStream
@@ -25,7 +29,7 @@ function realpath($string)
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-05-03
  */
-class FileTest extends PHPUnit_Framework_TestCase
+class FileTest extends UnitTestCase
 {
     /**
      * @var \org\bovigo\vfs\vfsStreamFile

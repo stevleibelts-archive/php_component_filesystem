@@ -1,37 +1,86 @@
 <?php
-
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+/**
+ * @author stev leibelt <artodeto@arocr.de>
+ * @since 2013-04-25
  */
-
 namespace Net\Bazzline\Component\Filesystem;
 
-use InvalidArgumentException;
-use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 /**
  * Provides basic utility to manipulate the file system.
  *
  * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-04-25
  */
-class Filesystem extends SymfonyFilesystem
+class Filesystem extends SymfonyFilesystem implements FilesystemInterface
 {
     /**
-     * Returns relative $path path to current working directory
-     *
-     * @param string $path - the path that has to be converted into a relative
-     *  path from the current working directory
-     *
-     * @return string
-     * @throws \InvalidArgumentException;
-     * @author stev leibelt
-     * @since 2013-04-25
+     * {$inheritDoc}
+     */
+    public function delete(ItemCollection $items)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function move(ItemInterface $source, ItemInterface $destination, $override = false)
+    {
+        // TODO: Implement move() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changeOwner(ItemCollection $items, $owner, $recursive = false)
+    {
+        // TODO: Implement changeOwner() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changeGroup(ItemCollection $items, $group, $recursive = false)
+    {
+        // TODO: Implement changeGroup() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function changePermission(ItemCollection $items, $permission = 000, $recursive = false)
+    {
+        // TODO: Implement changePermission() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function createItem($path, $permission = 0777)
+    {
+        // TODO: Implement createItem() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function loadItem($path)
+    {
+        // TODO: Implement loadItem() method.
+    }
+
+    /**
+     * {$inheritDoc}
+     */
+    public function loadItems($path, FilterIterator $filter)
+    {
+        // TODO: Implement loadItems() method.
+    }
+
+    /**
+     * {$inheritDoc}
      */
     public function makeRelativePathToCurrentWorkingDirectory($path)
     {
@@ -39,15 +88,7 @@ class Filesystem extends SymfonyFilesystem
     }
 
     /**
-     * Returns relative current working directory path to path
-     *
-     * @param string $path - the path where the current working directory has
-     *  to be made relative
-     *
-     * @return string
-     * @throws \InvalidArgumentException;
-     * @author stev leibelt
-     * @since 2013-04-25
+     * {$inheritDoc}
      */
     public function makeCurrentWorkingDirectoryRelativeToPath($path)
     {
@@ -55,15 +96,7 @@ class Filesystem extends SymfonyFilesystem
     }
 
     /**
-     * Converts given $endPath to a relative path to $startPath
-     *
-     * @param string $startPath - the path where $endPath should be relative to
-     * @param string $endPath - the path that should be relative to $startPath
-     *
-     * @return string
-     * @throws \InvalidArgumentException;
-     * @author stev leibelt
-     * @since 2013-04-25
+     * {$inheritDoc}
      */
     public function makePathRelative($startPath, $endPath)
     {
@@ -80,12 +113,12 @@ class Filesystem extends SymfonyFilesystem
         $endRealPath = realpath($osIndependentEndPath);
 
         if (!is_dir($startRealPath)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Provided start path is not a valid directory.'
             );
         }
         if (!is_dir($endRealPath)) {
-            throw new InvalidArgumentException(
+            throw new InputOutputException(
                 'Provided end path is not a valid directory.'
             );
         }
