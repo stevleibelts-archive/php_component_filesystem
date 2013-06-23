@@ -32,9 +32,7 @@ interface FilesystemInterface
 
     public function createItem($path, $permission = 0777);
 
-    public function loadItem($path);
-
-    public function loadItems($path, FilterIterator $filter);
+    public function loadItem($path, FilterIterator $filter = null);
 
     /**
      * Returns relative $path path to current working directory
