@@ -209,20 +209,15 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function isReadable()
+    public function isReadable($userGroup = 'u')
     {
         return is_readable($this->getRealPath());
     }
 
     /**
      * {$inheritDoc}
-     * Tries to set the read flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
      */
-    public function setIsReadable()
+    public function setIsReadable($userGroup = 'u')
     {
         if (!$this->isReadable()) {
             $mode = $this->getCurrentMode();
@@ -234,13 +229,9 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * Tries to set the read flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
+     * {$inheritDoc}
      */
-    public function unsetIsReadable()
+    public function unsetIsReadable($userGroup = 'u')
     {
         if ($this->isReadable()) {
             $mode = $this->getCurrentMode();
@@ -254,19 +245,15 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function isWritable()
+    public function isWritable($userGroup = 'u')
     {
         return is_writable($this->getRealPath());
     }
 
     /**
-     * Tries to set the write flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
+     * {$inheritDoc}
      */
-    public function setIsWritable()
+    public function setIsWritable($userGroup = 'u')
     {
         if (!$this->isWritable()) {
             $mode = $this->getCurrentMode();
@@ -278,13 +265,9 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * Tries to set the write flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
+     * {$inheritDoc}
      */
-    public function unsetIsWritable()
+    public function unsetIsWritable($userGroup = 'u')
     {
         if ($this->isWritable()) {
             $mode = $this->getCurrentMode();
@@ -298,19 +281,15 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function isExecutable()
+    public function isExecutable($userGroup = 'u')
     {
         return is_executable($this->getRealPath());
     }
 
     /**
-     * Tries to set the execute flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
+     * {$inheritDoc}
      */
-    public function setIsExecutable()
+    public function setIsExecutable($userGroup = 'u')
     {
         if (!$this->isExecutable()) {
             $mode = $this->getCurrentMode();
@@ -322,13 +301,9 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * Tries to set the execute flag
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-06-18
+     * {$inheritDoc}
      */
-    public function unsetIsExecutable()
+    public function unsetIsExecutable($userGroup = 'u')
     {
         if ($this->isExecutable()) {
             $mode = $this->getCurrentMode();
@@ -402,7 +377,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function getPermissions()
+    public function getPermissions($userGroup = 'u')
     {
         return fileperms($this->getRealPath());
     }
@@ -410,7 +385,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function setPermissions($permission)
+    public function setPermissions($permission, $userGroup = 'u')
     {
         if (strlen($permission == 3)) {
             $permission = '0' . $permission;
@@ -428,7 +403,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function hasPermission($permission)
+    public function hasPermission($permission, $userGroup = 'u')
     {
         if (strlen($permission == 3)) {
             $permission = '0' . $permission;
@@ -486,14 +461,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * Saved content and throws exception if item is not new.
-     * Throws exception if item is not writable.
-     *
-     * @param bool $override
-     * @return int
-     * @throws InputOutputException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
+     * {$inheritDoc}
      */
     public function save($override = false)
     {

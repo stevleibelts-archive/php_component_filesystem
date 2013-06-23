@@ -365,7 +365,7 @@ interface ItemInterface
     /**
      * Returns permissions of current item
      *
-     * @param string $userGrou - ugoa are supported
+     * @param string $userGroup - ugoa are supported
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
