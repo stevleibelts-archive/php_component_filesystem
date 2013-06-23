@@ -77,20 +77,22 @@ interface ItemInterface
     /**
      * Tries to set the write flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function setIsWritable();
+    public function setIsWritable($userGroup = 'u');
 
     /**
      * Tries to set the write flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function unsetIsWritable();
+    public function unsetIsWritable($userGroup = 'u');
 
     /**
      * Validates if the read flag is set for this filesystem item.
@@ -104,20 +106,22 @@ interface ItemInterface
     /**
      * Tries to set the read flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function setIsReadable();
+    public function setIsReadable($userGroup = 'u');
 
     /**
      * Tries to set the read flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function unsetIsReadable();
+    public function unsetIsReadable($userGroup = 'u');
 
     /**
      * Validates if the execute flag is set for this filesystem item.
@@ -131,20 +135,22 @@ interface ItemInterface
     /**
      * Tries to set the execute flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function setIsExecutable();
+    public function setIsExecutable($userGroup = 'u');
 
     /**
      * Tries to set the execute flag
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-18
      */
-    public function unsetIsExecutable();
+    public function unsetIsExecutable($userGroup = 'u');
 
     /**
      * Validates if filesystem item has content.
@@ -366,20 +372,22 @@ interface ItemInterface
      * Sets permission to current item
      *
      * @param int $permission - permission to set
+     * @param string $userGroup - ugoa are supported
      * @return ItemInterface
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function setPermissions($permission);
+    public function setPermissions($permission, $userGroup = 'u');
 
     /**
      * Validates if provided permission is set
      *
      * @param int $permission - permission you want to check
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function hasPermission($permission);
+    public function hasPermission($permission, $userGroup = 'u');
 }
