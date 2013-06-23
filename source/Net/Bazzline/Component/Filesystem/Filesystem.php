@@ -5,6 +5,7 @@
  */
 namespace Net\Bazzline\Component\Filesystem;
 
+use File_Iterator;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 /**
@@ -66,17 +67,9 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     /**
      * {$inheritDoc}
      */
-    public function loadItem($path)
+    public function loadItem($path, FilterIterator $filter = null)
     {
         // TODO: Implement loadItem() method.
-    }
-
-    /**
-     * {$inheritDoc}
-     */
-    public function loadItems($path, FilterIterator $filter)
-    {
-        // TODO: Implement loadItems() method.
     }
 
     /**
