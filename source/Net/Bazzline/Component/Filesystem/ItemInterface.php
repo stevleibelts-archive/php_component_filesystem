@@ -68,11 +68,12 @@ interface ItemInterface
     /**
      * Validates if the write flag is set for this filesystem item.
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function isWritable();
+    public function isWritable($userGroup = 'u');
 
     /**
      * Tries to set the write flag
@@ -97,11 +98,12 @@ interface ItemInterface
     /**
      * Validates if the read flag is set for this filesystem item.
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function isReadable();
+    public function isReadable($userGroup = 'u');
 
     /**
      * Tries to set the read flag
@@ -126,11 +128,12 @@ interface ItemInterface
     /**
      * Validates if the execute flag is set for this filesystem item.
      *
+     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-05-17
      */
-    public function isExecutable();
+    public function isExecutable($userGroup = 'u');
 
     /**
      * Tries to set the execute flag
