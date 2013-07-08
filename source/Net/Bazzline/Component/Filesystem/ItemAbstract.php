@@ -377,7 +377,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function getPermissions($userGroup = 'u')
+    public function getPermissions()
     {
         return fileperms($this->getRealPath());
     }
@@ -385,7 +385,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function setPermissions($permission, $userGroup = 'u')
+    public function setPermissions($permission)
     {
         if (strlen($permission == 3)) {
             $permission = '0' . $permission;
@@ -403,7 +403,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     /**
      * {$inheritDoc}
      */
-    public function hasPermission($permission, $userGroup = 'u')
+    public function hasPermission($permission)
     {
         if (strlen($permission == 3)) {
             $permission = '0' . $permission;

@@ -365,33 +365,30 @@ interface ItemInterface
     /**
      * Returns permissions of current item
      *
-     * @param string $userGroup - ugoa are supported
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function getPermissions($userGroup = 'u');
+    public function getPermissions();
 
     /**
      * Sets permission to current item
      *
      * @param int $permission - permission to set
-     * @param string $userGroup - ugoa are supported
      * @return ItemInterface
      * @throws InputOutputException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function setPermissions($permission, $userGroup = 'u');
+    public function setPermissions($permission);
 
     /**
      * Validates if provided permission is set
      *
      * @param int $permission - permission you want to check
-     * @param string $userGroup - ugoa are supported
      * @return boolean
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-06-15
      */
-    public function hasPermission($permission, $userGroup = 'u');
+    public function hasPermission($permission);
 }
