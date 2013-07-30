@@ -17,7 +17,7 @@ use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 class Filesystem extends SymfonyFilesystem implements FilesystemInterface
 {
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function delete(ItemCollection $items)
     {
@@ -25,7 +25,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function move(ItemInterface $source, ItemInterface $destination, $override = false)
     {
@@ -33,7 +33,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function changeOwner(ItemCollection $items, $owner, $recursive = false)
     {
@@ -41,7 +41,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function changeGroup(ItemCollection $items, $group, $recursive = false)
     {
@@ -49,7 +49,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function changePermission(ItemCollection $items, $permission = 000, $recursive = false)
     {
@@ -57,7 +57,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function createItem($path, $permission = 0777)
     {
@@ -65,7 +65,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function loadItem($path, FilterIterator $filter = null)
     {
@@ -73,7 +73,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function makeRelativePathToCurrentWorkingDirectory($path)
     {
@@ -81,7 +81,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function makeCurrentWorkingDirectoryRelativeToPath($path)
     {
@@ -89,7 +89,7 @@ class Filesystem extends SymfonyFilesystem implements FilesystemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function makePathRelative($startPath, $endPath)
     {

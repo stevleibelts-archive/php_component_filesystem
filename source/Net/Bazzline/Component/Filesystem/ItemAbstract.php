@@ -78,7 +78,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getContent()
     {
@@ -86,7 +86,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setName($name)
     {
@@ -96,7 +96,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getName()
     {
@@ -104,7 +104,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setPath($path)
     {
@@ -118,7 +118,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
 
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getPath()
     {
@@ -126,7 +126,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getModificationTime()
     {
@@ -134,7 +134,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getModificationDate($format = 'Y-m-d H:i:s')
     {
@@ -142,7 +142,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getAccessTime()
     {
@@ -150,7 +150,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getAccessDate($format = 'Y-m-d H:i:s')
     {
@@ -158,7 +158,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getCreateTime()
     {
@@ -166,7 +166,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getCreateDate($format = 'Y-m-d H:i:s')
     {
@@ -199,7 +199,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isNew()
     {
@@ -207,7 +207,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isReadable($userGroup = 'u')
     {
@@ -215,7 +215,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setIsReadable($userGroup = 'u')
     {
@@ -229,7 +229,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function unsetIsReadable($userGroup = 'u')
     {
@@ -243,7 +243,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isWritable($userGroup = 'u')
     {
@@ -251,7 +251,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setIsWritable($userGroup = 'u')
     {
@@ -265,7 +265,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function unsetIsWritable($userGroup = 'u')
     {
@@ -279,7 +279,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isExecutable($userGroup = 'u')
     {
@@ -287,7 +287,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setIsExecutable($userGroup = 'u')
     {
@@ -301,7 +301,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function unsetIsExecutable($userGroup = 'u')
     {
@@ -315,7 +315,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getOwner()
     {
@@ -323,7 +323,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setOwner($owner)
     {
@@ -337,7 +337,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isOwner($owner)
     {
@@ -345,7 +345,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getGroup()
     {
@@ -353,7 +353,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setGroup($group)
     {
@@ -367,7 +367,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isGroup($group)
     {
@@ -375,7 +375,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getPermissions()
     {
@@ -383,7 +383,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setPermissions($permission)
     {
@@ -401,7 +401,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function hasPermission($permission)
     {
@@ -413,7 +413,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getFilesystem()
     {
@@ -421,7 +421,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setFilesystem(FilesystemInterface $filesystem)
     {
@@ -429,7 +429,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isModified()
     {
@@ -437,7 +437,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function hasContent()
     {
@@ -445,7 +445,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isFile()
     {
@@ -453,7 +453,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isDirectory()
     {
@@ -461,7 +461,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function save($override = false)
     {
@@ -469,7 +469,7 @@ abstract class ItemAbstract implements ItemInterface, FilesystemAwareInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function delete()
     {

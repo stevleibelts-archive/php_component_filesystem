@@ -137,7 +137,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function removeDirectory(Directory $directory)
     {
@@ -145,7 +145,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getModificationTime()
     {
@@ -153,7 +153,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getAccessTime()
     {
@@ -161,7 +161,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getCreateTime()
     {
@@ -201,7 +201,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function save()
     {
@@ -209,7 +209,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function update()
     {
@@ -217,7 +217,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function load()
     {
@@ -225,7 +225,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isModified()
     {
@@ -281,7 +281,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isDirectory()
     {
@@ -289,7 +289,7 @@ class Directory extends ItemAbstract implements DirectoryItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isFile()
     {

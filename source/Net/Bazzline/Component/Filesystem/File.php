@@ -16,7 +16,7 @@ namespace Net\Bazzline\Component\Filesystem;
 class File extends ItemAbstract implements FileItemInterface
 {
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function setContent($content)
     {
@@ -144,7 +144,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isFile()
     {
@@ -152,7 +152,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function isDirectory()
     {
@@ -160,7 +160,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function save()
     {
@@ -179,7 +179,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function update()
     {
@@ -193,7 +193,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function load()
     {
@@ -215,7 +215,7 @@ class File extends ItemAbstract implements FileItemInterface
     }
 
     /**
-     * {$inheritDoc}
+     * {$inheritdoc}
      */
     public function getExtension()
     {

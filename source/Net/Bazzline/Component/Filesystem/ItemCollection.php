@@ -34,7 +34,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     private $iteratorIndex;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function count()
     {
@@ -42,7 +42,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function current()
     {
@@ -50,7 +50,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function next()
     {
@@ -58,7 +58,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function key()
     {
@@ -66,7 +66,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function valid()
     {
@@ -74,7 +74,7 @@ class ItemCollection implements Countable, Iterator, Traversable
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function rewind()
     {
