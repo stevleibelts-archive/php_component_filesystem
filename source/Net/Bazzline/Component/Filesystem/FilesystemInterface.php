@@ -15,6 +15,7 @@ use Traversable;
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-06-15
+ * @todo implement handling/methods for isHardlink, isSoftlink, isResource and so one
  */
 interface FilesystemInterface
 {
@@ -72,4 +73,24 @@ interface FilesystemInterface
      * @since 2013-04-25
      */
     public function makePathRelative($startPath, $endPath);
+
+    /**
+     * Validates if filesystem item represents a file.
+     *
+     * @param ItemInterface $item
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-17
+     */
+    public function isFile(ItemInterface $item);
+
+    /**
+     * Validates if filesystem item represents a directory.
+     *
+     * @param ItemInterface $item
+     * @return boolean
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-17
+     */
+    public function isDirectory(ItemInterface $item);
 }

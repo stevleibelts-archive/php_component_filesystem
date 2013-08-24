@@ -205,24 +205,6 @@ interface ItemInterface
     public function isModified();
 
     /**
-     * Validates if filesystem item represents a file.
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function isFile();
-
-    /**
-     * Validates if filesystem item represents a directory.
-     *
-     * @return boolean
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-05-17
-     */
-    public function isDirectory();
-
-    /**
      * Returns last modification time or null if item is new.
      *
      * @return null|int
