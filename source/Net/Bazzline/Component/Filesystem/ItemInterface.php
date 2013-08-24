@@ -187,6 +187,20 @@ interface ItemInterface
     public function setContent($content);
 
     /**
+     * @param string $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function appendContent($content);
+
+    /**
+     * @param string $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-05-09
+     */
+    public function prependContent($content);
+
+    /**
      * Validates if filesystem item exists on filesystem or not.
      *
      * @return boolean
