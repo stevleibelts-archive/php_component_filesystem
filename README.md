@@ -1,9 +1,16 @@
-Net Bazzline Component Filesystem
-=================================
+# Net Bazzline Component Filesystem
 
 Based on Symfony\Component\Filesystem\Filesystem
 
 Filesystem provides basic utility to manipulate the file system:
+
+## Idea
+
+Basic idea is to provide generic models for database objects that are able to deal with directory and file as one object.
+
+The file system provides method to identify if current file system object is a directory, a file, a soft link and so on.
+
+## Original Readme
 
 ```php
 <?php
