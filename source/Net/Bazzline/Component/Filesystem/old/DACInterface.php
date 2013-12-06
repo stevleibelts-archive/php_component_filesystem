@@ -8,7 +8,7 @@ namespace Net\Bazzline\Component\Filesystem;
 
 /**
  * Class DACInterface
- * Represents linux directory access controll
+ * Represents linux directory access control
  *
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>

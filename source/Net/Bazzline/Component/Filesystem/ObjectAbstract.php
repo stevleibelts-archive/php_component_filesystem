@@ -6,6 +6,6 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
-class Filesystem
+class ObjectAbstract
 {
 } 
