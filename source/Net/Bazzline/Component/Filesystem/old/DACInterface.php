@@ -14,7 +14,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-08-234
  */
-class DACInterface
+interface DACInterface
 {
     /**
      * Returns current owner of the item
