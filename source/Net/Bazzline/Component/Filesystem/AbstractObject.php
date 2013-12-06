@@ -27,7 +27,7 @@ abstract class AbstractObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function setPath($path)
+    public function __construct($path)
     {
         $this->path = (string) $path;
     }
@@ -55,4 +55,18 @@ abstract class AbstractObject
      * @since 2013-12-06
      */
     abstract function isModified();
+
+    /**
+     * @throws RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-06
+     */
+    abstract function delete();
+
+    /**
+     * @throws RuntimeException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-06
+     */
+    abstract function save();
 }

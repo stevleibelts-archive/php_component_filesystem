@@ -16,24 +16,24 @@ namespace Net\Bazzline\Component\Filesystem;
 class ObjectCollection
 {
     /**
-     * @var array|ObjectAbstract[]
+     * @var array|AbstractObject[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     private $collection = array();
 
     /**
-     * @param ObjectAbstract $object
+     * @param AbstractObject $object
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function add(ObjectAbstract $object)
+    public function add(AbstractObject $object)
     {
         $this->collection[] = $object;
     }
 
     /**
-     * @return array|ObjectAbstract[]
+     * @return array|AbstractObject[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
