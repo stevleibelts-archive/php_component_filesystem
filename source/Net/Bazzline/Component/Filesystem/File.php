@@ -59,8 +59,7 @@ class File extends AbstractObject
     public function __construct($path)
     {
         parent::__construct($path);
-        $basename = basename($path);
-        $dottedNamePartials = explode('.', $basename);
+        $dottedNamePartials = explode('.', $this->basePath);
         if (count($dottedNamePartials) > 1) {
             $this->extension = array_pop($dottedNamePartials);
         } else {
