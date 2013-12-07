@@ -59,7 +59,6 @@ class File extends AbstractObject
     public function __construct($path)
     {
         parent::__construct($path);
-        $this->basePath = dirname($this->path);
         $basename = basename($path);
         $dottedNamePartials = explode('.', $basename);
         if (count($dottedNamePartials) > 1) {
@@ -90,27 +89,6 @@ class File extends AbstractObject
     public function getExtension()
     {
         return $this->extension;
-    }
-
-
-    /**
-     * @return string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    public function getBasePath()
-    {
-        return $this->basePath;
-    }
-
-    /**
-     * @return string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

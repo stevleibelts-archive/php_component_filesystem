@@ -18,6 +18,20 @@ abstract class AbstractObject
     /**
      * @var string
      * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-07
+     */
+    protected $basePath;
+
+    /**
+     * @var string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-07
+     */
+    protected $name;
+
+    /**
+     * @var string
+     * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     protected $path;
@@ -29,7 +43,29 @@ abstract class AbstractObject
      */
     public function __construct($path)
     {
+        $this->basePath = dirname($path);
+        $this->name = basename($path);
         $this->path = (string) $path;
+    }
+
+    /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-06
+     */
+    public function getBasePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-06
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**

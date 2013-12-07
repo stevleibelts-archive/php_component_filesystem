@@ -8,8 +8,10 @@ namespace Net\Bazzline\Component\Filesystem;
 
 class Filesystem
 {
-    public function listDirectoryContents($path, $options)
+    public function getPathObjectCollection($path, $options)
     {
 
     }
+
+
 } 
