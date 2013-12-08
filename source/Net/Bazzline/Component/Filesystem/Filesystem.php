@@ -75,6 +75,16 @@ class Filesystem
 
     }
 
+    public function copyFile($source, $destination, $override = false)
+    {
+
+    }
+
+    public function copyDirectory($source, $destination, $override = false, $recursive = false)
+    {
+
+    }
+
     /**
      * @param AbstractObject $objectOne
      * @param AbstractObject $objectTwo
@@ -93,9 +103,12 @@ class Filesystem
             return true;
         } else {
             throw new InvalidArgumentException(
-                '$objectOne with instanceof "' . get_class($objectOne) . '"' .
-                'and $objectTwo with instance of "' . get_class($objectTwo) .
-                ' differ in their file type'
+                sprintf(
+                    '$objectOne with instanceof "%s" and $objectTwo with ' .
+                    'instance of "%s" differ in their file type',
+                    get_class($objectOne),
+                    get_class($objectTwo)
+                )
             );
         }
     }
@@ -131,7 +144,9 @@ class Filesystem
             return new Directory($path);
         } else {
             throw new InvalidArgumentException(
-                'provided path "' . $path . '" is neither a directory nor file'
+                sprintf(
+                    'provided path "%s" is neither a directory nor file', $path
+                )
             );
         }
     }
