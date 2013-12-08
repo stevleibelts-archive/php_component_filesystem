@@ -31,6 +31,31 @@ class Filesystem
     }
 
     /**
+     * @param AbstractObject $objectOne
+     * @param AbstractObject $objectTwo
+     * @return bool
+     * @throws InvalidArgumentException
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-08
+     */
+    private function assertSameObjectType(AbstractObject $objectOne, AbstractObject $objectTwo)
+    {
+        if ($objectOne instanceof File
+            && $objectTwo instanceof File) {
+            return true;
+        } else if ($objectOne instanceof Directory
+            && $objectTwo instanceof Directory) {
+            return true;
+        } else {
+            throw new InvalidArgumentException(
+                '$objectOne with instanceof "' . get_class($objectOne) . '"' .
+                'and $objectTwo with instance of "' . get_class($objectTwo) .
+                ' differ in their file type'
+            );
+        }
+    }
+
+    /**
      * @param string $path
      * @return AbstractObject|Directory|File
      * @throws InvalidArgumentException
