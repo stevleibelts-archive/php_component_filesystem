@@ -20,13 +20,14 @@ class Filesystem
      * @param string|AbstractObject $source
      * @param string|AbstractObject $target
      * @param bool $override
+     * @param bool $recursive
      * @return AbstractObject|Directory|File
      * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      * @todo implement stream_is_local?
      */
-    public function copy($source, $target, $override = false)
+    public function copy($source, $target, $override = false, $recursive = false)
     {
         $sourceObject = ($source instanceof AbstractObject)
             ? $source : $this->createObjectFromPath($source);
