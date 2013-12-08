@@ -18,7 +18,7 @@ class Filesystem
 {
     /**
      * @param string|AbstractObject $source
-     * @param string|AbstractObject $target
+     * @param string|AbstractObject $destination
      * @param bool $override
      * @param bool $recursive
      * @return AbstractObject|Directory|File
@@ -27,17 +27,17 @@ class Filesystem
      * @since 2013-12-08
      * @todo implement stream_is_local?
      */
-    public function copy($source, $target, $override = false, $recursive = false)
+    public function copy($source, $destination, $override = false, $recursive = false)
     {
         $sourceObject = ($source instanceof AbstractObject)
             ? $source : $this->createObjectFromPath($source);
-        $targetObject = ($target instanceof AbstractObject)
-            ? $target : $this->createSameObjectType($sourceObject, $target);
+        $destinationObject = ($destination instanceof AbstractObject)
+            ? $destination : $this->createSameObjectType($sourceObject, $destination);
 
         //to prevent if original and target are instance of AbstractObject
-        $this->assertSameObjectType($sourceObject, $targetObject);
+        $this->assertSameObjectType($sourceObject, $destinationObject);
 
-        if (!$targetObject->isNew()
+        if (!$destinationObject->isNew()
             && !$override) {
             throw new RuntimeException(
                 'can not copy to target since target exists'
@@ -47,27 +47,11 @@ class Filesystem
         $copyFile = ($sourceObject instanceof File);
 
         if ($copyFile) {
-            //stream_is_local
-            //todo copy file -> use copy_to_stream
-            //copied from symfony file system copy
-            $sourceFileHandler = fopen($sourceObject->getPath(), 'r');
-            $targetFileHandler = fopen($targetObject->getPath(), 'w+');
-            stream_copy_to_stream($sourceFileHandler, $targetFileHandler);
-            fclose($sourceFileHandler);
-            fclose($targetFileHandler);
-
-            if ($targetObject->isNew()) {
-                throw new RuntimeException(
-                    sprintf(
-                        'Failed to copy %s to %s', $sourceObject->getPath(), $targetObject->getPath()
-                    )
-                );
-            }
         } else {
             //todo copy directory
         }
 
-        return $targetObject;
+        return $destinationObject;
     }
 
     public function getPathObjectCollection($path, $options)
@@ -77,11 +61,35 @@ class Filesystem
 
     public function copyFile($source, $destination, $override = false)
     {
+        $sourceObject = ($source instanceof File)
+            ? $source : $this->createObjectFromPath($source);
+        $destinationObject = ($destination instanceof File)
+            ? $destination : $this->createSameObjectType($sourceObject, $destination);
 
+        //stream_is_local
+        //todo copy file -> use copy_to_stream
+        //copied from symfony file system copy
+        $sourceFileHandler = fopen($sourceObject->getPath(), 'r');
+        $targetFileHandler = fopen($destinationObject->getPath(), 'w+');
+        stream_copy_to_stream($sourceFileHandler, $targetFileHandler);
+        fclose($sourceFileHandler);
+        fclose($targetFileHandler);
+
+        if ($destinationObject->isNew()) {
+            throw new RuntimeException(
+                sprintf(
+                    'Failed to copy %s to %s', $sourceObject->getPath(), $destinationObject->getPath()
+                )
+            );
+        }
     }
 
     public function copyDirectory($source, $destination, $override = false, $recursive = false)
     {
+        $sourceObject = ($source instanceof Directory)
+            ? $source : $this->createObjectFromPath($source);
+        $destinationObject = ($destination instanceof Directory)
+            ? $destination : $this->createSameObjectType($sourceObject, $destination);
 
     }
 
