@@ -12,7 +12,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-06
- * @todo implemend binary data handling (file_get_contents, file_put_contents)
+ * @todo implement binary data handling (file_get_contents, file_put_contents)
  */
 class File extends AbstractObject
 {
