@@ -102,14 +102,14 @@ class Filesystem
 
         foreach ($iterator as $itemPath) {
             if (is_file($itemPath)) {
-                //@todo
-                $this->createFile();
+                //@todo add mod
+                $this->createFile($itemPath);
             } else if (is_dir($itemPath)) {
-                //@todo
-                $this->createDir();
+                //@todo add mod
+                $this->createDir($itemPath);
             } else if (is_link($itemPath)) {
-                //@todo
-                $this->createSymlink();
+                //@todo add mod
+                $this->createSymlink($itemPath);
             } else {
                 //@todo -> throw exception
                 throw new RuntimeException(
