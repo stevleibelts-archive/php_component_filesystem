@@ -6,6 +6,10 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use DirectoryIterator;
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+
 /**
  * Class Filesystem
  *
@@ -80,10 +84,49 @@ class Filesystem
         fclose($targetFileHandler);
     }
 
-    private function copyDirectory($source, $destination, $override = false, $recursive = false)
+    private function copyDirectory(Directory $source, Directory $destination, $override = false, $recursive = false)
     {
+        if ($destination->isNew()) {
+            //@todo implement $mode
+            //what about a decorator (again, i know ;-))
+            $mode = 0777;
+            mkdir($destination->getPath(), $mode, $recursive);
+        }
 
+        $iterator = ($recursive)
+            ? new RecursiveDirectoryIterator(
+                $destination->getPath(),
+                FilesystemIterator::SKIP_DOTS
+            )
+            : new DirectoryIterator($destination->getPath());
+
+        foreach ($iterator as $itemPath) {
+            if (is_file($itemPath)) {
+                //@todo
+                $this->createFile();
+            } else if (is_dir($itemPath)) {
+                //@todo
+                $this->createDir();
+            } else if (is_link($itemPath)) {
+                //@todo
+                $this->createSymlink();
+            } else {
+                //@todo -> throw exception
+                throw new RuntimeException(
+                    sprintf(
+                        'can not handle filesystem object type "%s"',
+                        $itemPath
+                    )
+                );
+            }
+        }
     }
+
+    private function createDir() {}
+
+    private function createSymlink() {}
+
+    private function createFile() {}
 
     /**
      * @param AbstractFilesystemObject $objectOne
