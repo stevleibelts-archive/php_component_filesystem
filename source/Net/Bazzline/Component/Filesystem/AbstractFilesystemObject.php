@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-06
  */
-abstract class AbstractObject
+abstract class AbstractFilesystemObject
 {
     /**
      * @var string

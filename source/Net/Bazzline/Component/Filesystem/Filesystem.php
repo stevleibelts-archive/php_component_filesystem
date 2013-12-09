@@ -17,11 +17,11 @@ namespace Net\Bazzline\Component\Filesystem;
 class Filesystem
 {
     /**
-     * @param string|AbstractObject $source
-     * @param string|AbstractObject $destination
+     * @param string|AbstractFilesystemObject $source
+     * @param string|AbstractFilesystemObject $destination
      * @param bool $override
      * @param bool $recursive
-     * @return AbstractObject|Directory|File
+     * @return AbstractFilesystemObject|Directory|File
      * @throws RuntimeException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
@@ -29,9 +29,9 @@ class Filesystem
      */
     public function copy($source, $destination, $override = false, $recursive = false)
     {
-        $sourceObject = ($source instanceof AbstractObject)
+        $sourceObject = ($source instanceof AbstractFilesystemObject)
             ? $source : $this->createObjectFromPath($source);
-        $destinationObject = ($destination instanceof AbstractObject)
+        $destinationObject = ($destination instanceof AbstractFilesystemObject)
             ? $destination : $this->createSameObjectType($sourceObject, $destination);
 
         //to prevent if original and target are instance of AbstractObject
@@ -49,7 +49,7 @@ class Filesystem
         if ($copyFile) {
             $this->copyFile($sourceObject, $destinationObject, $override);
         } else {
-            //todo copy directory
+            $this->copyDirectory($sourceObject, $destinationObject, $override, $recursive);
         }
 
         if ($destinationObject->isNew()) {
@@ -86,14 +86,14 @@ class Filesystem
     }
 
     /**
-     * @param AbstractObject $objectOne
-     * @param AbstractObject $objectTwo
+     * @param AbstractFilesystemObject $objectOne
+     * @param AbstractFilesystemObject $objectTwo
      * @return bool
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    private function assertSameObjectType(AbstractObject $objectOne, AbstractObject $objectTwo)
+    private function assertSameObjectType(AbstractFilesystemObject $objectOne, AbstractFilesystemObject $objectTwo)
     {
         if ($objectOne instanceof File
             && $objectTwo instanceof File) {
@@ -114,13 +114,13 @@ class Filesystem
     }
 
     /**
-     * @param AbstractObject $original
+     * @param AbstractFilesystemObject $original
      * @param string $targetPath
      * @return Directory|File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    private function createSameObjectType(AbstractObject $original, $targetPath)
+    private function createSameObjectType(AbstractFilesystemObject $original, $targetPath)
     {
         if ($original instanceof File) {
             return new File($targetPath);
@@ -131,7 +131,7 @@ class Filesystem
 
     /**
      * @param string $path
-     * @return AbstractObject|Directory|File
+     * @return AbstractFilesystemObject|Directory|File
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08

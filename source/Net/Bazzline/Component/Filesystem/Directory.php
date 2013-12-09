@@ -6,6 +6,6 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
-class Directory
+class Directory extends AbstractFilesystemObject
 {
 } 

@@ -14,7 +14,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @since 2013-12-06
  * @todo implement binary data handling (file_get_contents, file_put_contents)
  */
-class File extends AbstractObject
+class File extends AbstractFilesystemObject
 {
     /**
      * @var string
