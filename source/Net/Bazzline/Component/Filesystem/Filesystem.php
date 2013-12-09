@@ -51,9 +51,9 @@ class Filesystem
         $copyFile = ($sourceObject instanceof File);
 
         if ($copyFile) {
-            $this->copyFile($sourceObject, $destinationObject, $override);
+            $this->copyFile($sourceObject, $destinationObject);
         } else {
-            $this->copyDirectory($sourceObject, $destinationObject, $override, $recursive);
+            $this->copyDirectory($sourceObject, $destinationObject, $recursive);
         }
 
         if ($destinationObject->isNew()) {
@@ -72,7 +72,7 @@ class Filesystem
 
     }
 
-    private function copyFile(File $source, File $destination, $override = false)
+    private function copyFile(File $source, File $destination)
     {
         //stream_is_local
         //todo copy file -> use copy_to_stream
@@ -84,7 +84,7 @@ class Filesystem
         fclose($targetFileHandler);
     }
 
-    private function copyDirectory(Directory $source, Directory $destination, $override = false, $recursive = false)
+    private function copyDirectory(Directory $source, Directory $destination, $recursive = false)
     {
         if ($destination->isNew()) {
             //@todo implement $mode
@@ -93,6 +93,7 @@ class Filesystem
             mkdir($destination->getPath(), $mode, $recursive);
         }
 
+        //wrong, should be filesystem iterator everywhere
         $iterator = ($recursive)
             ? new RecursiveDirectoryIterator(
                 $destination->getPath(),
