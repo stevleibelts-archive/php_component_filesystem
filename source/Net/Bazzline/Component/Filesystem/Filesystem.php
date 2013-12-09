@@ -47,8 +47,17 @@ class Filesystem
         $copyFile = ($sourceObject instanceof File);
 
         if ($copyFile) {
+            $this->copyFile($sourceObject, $destinationObject, $override);
         } else {
             //todo copy directory
+        }
+
+        if ($destinationObject->isNew()) {
+            throw new RuntimeException(
+                sprintf(
+                    'Failed to copy %s to %s', $sourceObject->getPath(), $destinationObject->getPath()
+                )
+            );
         }
 
         return $destinationObject;
@@ -59,37 +68,20 @@ class Filesystem
 
     }
 
-    public function copyFile($source, $destination, $override = false)
+    private function copyFile(File $source, File $destination, $override = false)
     {
-        $sourceObject = ($source instanceof File)
-            ? $source : $this->createObjectFromPath($source);
-        $destinationObject = ($destination instanceof File)
-            ? $destination : $this->createSameObjectType($sourceObject, $destination);
-
         //stream_is_local
         //todo copy file -> use copy_to_stream
         //copied from symfony file system copy
-        $sourceFileHandler = fopen($sourceObject->getPath(), 'r');
-        $targetFileHandler = fopen($destinationObject->getPath(), 'w+');
+        $sourceFileHandler = fopen($source->getPath(), 'r');
+        $targetFileHandler = fopen($destination->getPath(), 'w+');
         stream_copy_to_stream($sourceFileHandler, $targetFileHandler);
         fclose($sourceFileHandler);
         fclose($targetFileHandler);
-
-        if ($destinationObject->isNew()) {
-            throw new RuntimeException(
-                sprintf(
-                    'Failed to copy %s to %s', $sourceObject->getPath(), $destinationObject->getPath()
-                )
-            );
-        }
     }
 
-    public function copyDirectory($source, $destination, $override = false, $recursive = false)
+    private function copyDirectory($source, $destination, $override = false, $recursive = false)
     {
-        $sourceObject = ($source instanceof Directory)
-            ? $source : $this->createObjectFromPath($source);
-        $destinationObject = ($destination instanceof Directory)
-            ? $destination : $this->createSameObjectType($sourceObject, $destination);
 
     }
 
