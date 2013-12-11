@@ -60,6 +60,7 @@ abstract class AbstractFilesystemObject
      */
     public function __construct($path, Filesystem $filesystem)
     {
+        //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
         $this->basePath = dirname($path);
         $this->filesystem = $filesystem;
         $this->name = basename($path);
