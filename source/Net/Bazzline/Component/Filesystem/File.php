@@ -86,6 +86,16 @@ class File extends AbstractFilesystemObject
     }
 
     /**
+     * @param null|string|mixed $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    public function appendContent($content)
+    {
+        $this->setContent($content . $this->getContent());
+    }
+
+    /**
      * @return null|string|mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
@@ -95,6 +105,16 @@ class File extends AbstractFilesystemObject
         return ($this->isNew())
             ? $this->content
             : file_get_contents($this->path);
+    }
+
+    /**
+     * @param null|string|mixed $content
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    public function prependContent($content)
+    {
+        $this->setContent($content . $this->getContent());
     }
 
     /**
