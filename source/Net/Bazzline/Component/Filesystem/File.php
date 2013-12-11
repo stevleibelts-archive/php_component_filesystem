@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use Symfony\Component\Filesystem\Exception\IOException;
+
 /**
  * Class File
  *
@@ -22,13 +24,6 @@ class File extends AbstractFilesystemObject
      * @since 2013-12-06
      */
     private $basePath;
-
-    /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    private $checkSum;
 
     /**
      * @var mixed
@@ -67,7 +62,6 @@ class File extends AbstractFilesystemObject
             $this->extension = '';
         }
         $this->name = implode('.', $dottedNamePartials);
-        $this->checkSum = $this->generateCheckSum($this->path);
     }
 
     /**
@@ -76,7 +70,7 @@ class File extends AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    protected function generateCheckSum($path)
+    public function generateCheckSum($path)
     {
         return sha1_file($path);
     }
@@ -92,21 +86,19 @@ class File extends AbstractFilesystemObject
     }
 
     /**
-     * @return mixed|string
+     * @return null|string|mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     public function getContent()
     {
-        $isNewOrModified = ($this->isNew() || $this->isModified());
-
-        return ($isNewOrModified)
+        return ($this->isNew())
             ? $this->content
             : file_get_contents($this->path);
     }
 
     /**
-     * @param mixed $content
+     * @param null|string|mixed $content
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
@@ -116,41 +108,7 @@ class File extends AbstractFilesystemObject
     }
 
     /**
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    function isNew()
-    {
-        return file_exists($this->path);
-    }
-
-    /**
-     * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    function isModified()
-    {
-        return ($this->checkSum !== $this->generateCheckSum($this->path));
-    }
-
-    /**
-     * @throws RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    function delete()
-    {
-        if (!unlink($this->path)) {
-            throw new RuntimeException(
-                'can not delete file in path "' . $this->path . '"'
-            );
-        }
-    }
-
-    /**
-     * @throws RuntimeException
+     * @throws IoException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */

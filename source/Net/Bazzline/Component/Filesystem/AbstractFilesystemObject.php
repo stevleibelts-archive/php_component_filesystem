@@ -6,6 +6,8 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use Symfony\Component\Filesystem\Exception\IOException;
+
 /**
  * Class AbstractObject
  *
@@ -30,6 +32,13 @@ abstract class AbstractFilesystemObject
     protected $filesystem;
 
     /**
+     * @var int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    protected $modificationTime;
+
+    /**
      * @var string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-07
@@ -49,12 +58,13 @@ abstract class AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function __construct($path, Filesystem $filesystem = null)
+    public function __construct($path, Filesystem $filesystem)
     {
         $this->basePath = dirname($path);
         $this->filesystem = $filesystem;
         $this->name = basename($path);
         $this->path = (string) $path;
+        $this->modificationTime = $this->getModificationTime();
     }
 
     /**
@@ -78,13 +88,17 @@ abstract class AbstractFilesystemObject
     }
 
     /**
-     * @return bool
+     * @return int
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-11
      */
-    public function hasFilesystem()
+    public function getModificationTime()
     {
-        return ($this->filesystem instanceof Filesystem);
+        if ($this->isNew()) {
+            return 0;
+        } else {
+            return filemtime($this->path);
+        }
     }
 
     /**
@@ -112,26 +126,32 @@ abstract class AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    abstract function isNew();
+    public function isModified()
+    {
+        if ($this->isNew()) {
+            return true;
+        } else {
+            return ($this->modificationTime !== $this->getModificationTime());
+        }
+    }
 
     /**
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    abstract function isModified();
+    function isNew()
+    {
+        return (!file_exists($this->path));
+    }
 
     /**
-     * @throws RuntimeException
+     * @throws IoException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    abstract function delete();
-
-    /**
-     * @throws RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    abstract function save();
+    function delete()
+    {
+        $this->filesystem->remove($this->path);
+    }
 }
