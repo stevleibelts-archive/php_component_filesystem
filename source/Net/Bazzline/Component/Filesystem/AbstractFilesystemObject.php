@@ -49,7 +49,7 @@ abstract class AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function __construct($path, Filesystem $filesystem)
+    public function __construct($path, Filesystem $filesystem = null)
     {
         $this->basePath = dirname($path);
         $this->filesystem = $filesystem;
