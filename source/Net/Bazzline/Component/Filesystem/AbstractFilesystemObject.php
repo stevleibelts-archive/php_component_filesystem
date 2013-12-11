@@ -78,6 +78,16 @@ abstract class AbstractFilesystemObject
     }
 
     /**
+     * @return bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    public function hasFilesystem()
+    {
+        return ($this->filesystem instanceof Filesystem);
+    }
+
+    /**
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
