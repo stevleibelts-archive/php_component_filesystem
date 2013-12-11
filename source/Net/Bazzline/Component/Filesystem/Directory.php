@@ -17,12 +17,13 @@ class Directory extends AbstractFilesystemObject
 {
     /**
      * @param string $path
+     * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-09
      */
-    public function __construct($path)
+    public function __construct($path, $filesystem)
     {
-        parent::__construct(rtrim($path, '/\\'));
+        parent::__construct(rtrim($path, '/\\'), $filesystem);
     }
 
     /**

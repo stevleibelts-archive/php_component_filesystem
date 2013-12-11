@@ -23,6 +23,13 @@ abstract class AbstractFilesystemObject
     protected $basePath;
 
     /**
+     * @var Filesystem
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    protected $filesystem;
+
+    /**
      * @var string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-07
@@ -38,12 +45,14 @@ abstract class AbstractFilesystemObject
 
     /**
      * @param string $path
+     * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function __construct($path)
+    public function __construct($path, Filesystem $filesystem)
     {
         $this->basePath = dirname($path);
+        $this->filesystem = $filesystem;
         $this->name = basename($path);
         $this->path = (string) $path;
     }
@@ -56,6 +65,16 @@ abstract class AbstractFilesystemObject
     public function getBasePath()
     {
         return $this->basePath;
+    }
+
+    /**
+     * @return Filesystem
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-11
+     */
+    public function getFilesystem()
+    {
+        return $this->filesystem;
     }
 
     /**

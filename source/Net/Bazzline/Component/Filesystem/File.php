@@ -35,7 +35,7 @@ class File extends AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    private $data;
+    private $content;
 
     /**
      * @var string
@@ -53,12 +53,13 @@ class File extends AbstractFilesystemObject
 
     /**
      * @param string $path
+     * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function __construct($path)
+    public function __construct($path, $filesystem)
     {
-        parent::__construct($path);
+        parent::__construct($path, $filesystem);
         $dottedNamePartials = explode('.', $this->basePath);
         if (count($dottedNamePartials) > 1) {
             $this->extension = array_pop($dottedNamePartials);
@@ -95,23 +96,23 @@ class File extends AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function getData()
+    public function getContent()
     {
         $isNewOrModified = ($this->isNew() || $this->isModified());
 
         return ($isNewOrModified)
-            ? $this->data
+            ? $this->content
             : file_get_contents($this->path);
     }
 
     /**
-     * @param mixed $data
+     * @param mixed $content
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function setData($data)
+    public function setContent($content)
     {
-        $this->data = $data;
+        $this->content = $content;
     }
 
     /**
@@ -155,7 +156,7 @@ class File extends AbstractFilesystemObject
      */
     function save()
     {
-        if (file_put_contents($this->path, $this->data) === false) {
+        if (file_put_contents($this->path, $this->content) === false) {
             throw new RuntimeException(
                 'can not save file in path "' . $this->path . '"'
             );
