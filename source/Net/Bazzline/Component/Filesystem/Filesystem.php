@@ -6,9 +6,7 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
-use DirectoryIterator;
-use FilesystemIterator;
-use RecursiveDirectoryIterator;
+use Symfony\Component\Filesystem\Filesystem as ParentClass;
 
 /**
  * Class Filesystem
@@ -16,119 +14,9 @@ use RecursiveDirectoryIterator;
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-06
- * @todo chmod and so on as decorators?
  */
-class Filesystem
+class Filesystem extends ParentClass
 {
-    /**
-     * @param string|AbstractFilesystemObject $source
-     * @param string|AbstractFilesystemObject $destination
-     * @param bool $override
-     * @param bool $recursive
-     * @return AbstractFilesystemObject|Directory|File
-     * @throws RuntimeException
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-08
-     * @todo implement stream_is_local?
-     */
-    public function copy($source, $destination, $override = false, $recursive = false)
-    {
-        $sourceObject = ($source instanceof AbstractFilesystemObject)
-            ? $source : $this->createObjectFromPath($source);
-        $destinationObject = ($destination instanceof AbstractFilesystemObject)
-            ? $destination : $this->createSameObjectType($sourceObject, $destination);
-
-        //to prevent if original and target are instance of AbstractObject
-        $this->assertSameObjectType($sourceObject, $destinationObject);
-
-        if (!$destinationObject->isNew()
-            && !$override) {
-            throw new RuntimeException(
-                'can not copy to target since target exists'
-            );
-        }
-
-        $copyFile = ($sourceObject instanceof File);
-
-        if ($copyFile) {
-            $this->copyFile($sourceObject, $destinationObject);
-        } else {
-            $this->copyDirectory($sourceObject, $destinationObject, $recursive);
-        }
-
-        if ($destinationObject->isNew()) {
-            throw new RuntimeException(
-                sprintf(
-                    'Failed to copy %s to %s', $sourceObject->getPath(), $destinationObject->getPath()
-                )
-            );
-        }
-
-        return $destinationObject;
-    }
-
-    public function getPathObjectCollection($path, $options)
-    {
-
-    }
-
-    private function copyFile(File $source, File $destination)
-    {
-        //stream_is_local
-        //todo copy file -> use copy_to_stream
-        //copied from symfony file system copy
-        $sourceFileHandler = fopen($source->getPath(), 'r');
-        $targetFileHandler = fopen($destination->getPath(), 'w+');
-        stream_copy_to_stream($sourceFileHandler, $targetFileHandler);
-        fclose($sourceFileHandler);
-        fclose($targetFileHandler);
-    }
-
-    private function copyDirectory(Directory $source, Directory $destination, $recursive = false)
-    {
-        if ($destination->isNew()) {
-            //@todo implement $mode
-            //what about a decorator (again, i know ;-))
-            $mode = 0777;
-            mkdir($destination->getPath(), $mode, $recursive);
-        }
-
-        //wrong, should be filesystem iterator everywhere
-        $iterator = ($recursive)
-            ? new RecursiveDirectoryIterator(
-                $destination->getPath(),
-                FilesystemIterator::SKIP_DOTS
-            )
-            : new DirectoryIterator($destination->getPath());
-
-        foreach ($iterator as $itemPath) {
-            if (is_file($itemPath)) {
-                //@todo add mod
-                $this->createFile($itemPath);
-            } else if (is_dir($itemPath)) {
-                //@todo add mod
-                $this->createDir($itemPath);
-            } else if (is_link($itemPath)) {
-                //@todo add mod
-                $this->createSymlink($itemPath);
-            } else {
-                //@todo -> throw exception
-                throw new RuntimeException(
-                    sprintf(
-                        'can not handle filesystem object type "%s"',
-                        $itemPath
-                    )
-                );
-            }
-        }
-    }
-
-    private function createDir() {}
-
-    private function createSymlink() {}
-
-    private function createFile() {}
-
     /**
      * @param AbstractFilesystemObject $objectOne
      * @param AbstractFilesystemObject $objectTwo
@@ -137,7 +25,7 @@ class Filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    private function assertSameObjectType(AbstractFilesystemObject $objectOne, AbstractFilesystemObject $objectTwo)
+    public function assertSameObjectType(AbstractFilesystemObject $objectOne, AbstractFilesystemObject $objectTwo)
     {
         if ($objectOne instanceof File
             && $objectTwo instanceof File) {
@@ -164,7 +52,7 @@ class Filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    private function createSameObjectType(AbstractFilesystemObject $original, $targetPath)
+    public function createSameObjectType(AbstractFilesystemObject $original, $targetPath)
     {
         if ($original instanceof File) {
             return new File($targetPath);
@@ -180,7 +68,7 @@ class Filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    private function createObjectFromPath($path)
+    public function createObjectFromPath($path)
     {
         if (is_file($path)) {
             return new File($path);
