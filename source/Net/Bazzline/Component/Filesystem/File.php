@@ -62,6 +62,7 @@ class File extends AbstractFilesystemObject
             $this->extension = '';
         }
         $this->name = implode('.', $dottedNamePartials);
+        //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
     }
 
     /**
@@ -128,16 +129,25 @@ class File extends AbstractFilesystemObject
     }
 
     /**
-     * @throws IoException
+     * @throws IOException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     function save()
     {
-        if (file_put_contents($this->path, $this->content) === false) {
-            throw new RuntimeException(
-                'can not save file in path "' . $this->path . '"'
-            );
+        if ($this->isNew() && is_null($this->content)) {
+            touch($this->path);
+            if ($this->isNew()) {
+                throw new IOException(
+                    'can not touch file in path "' , $this->path . '"'
+                );
+            }
+        } else {
+            if (file_put_contents($this->path, $this->content) === false) {
+                throw new IOException(
+                    'can not save file in path "' . $this->path . '"'
+                );
+            }
         }
     }
 }
