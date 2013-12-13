@@ -120,12 +120,15 @@ class File extends AbstractFilesystemObject
 
     /**
      * @param null|string|mixed $content
+     * @return $this
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     public function setContent($content)
     {
         $this->content = $content;
+
+        return $this;
     }
 
     /**
@@ -143,11 +146,8 @@ class File extends AbstractFilesystemObject
                 );
             }
         } else {
-            if (file_put_contents($this->path, $this->content) === false) {
-                throw new IOException(
-                    'can not save file in path "' . $this->path . '"'
-                );
-            }
+            //@todo mode
+            $this->filesystem->dumpFile($this->path, $this->content);
         }
     }
 }
