@@ -37,7 +37,7 @@ class File extends AbstractFilesystemObject
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */
-    private $contentLoaded;
+    private $contentManipulated;
 
     /**
      * @var string
@@ -69,7 +69,7 @@ class File extends AbstractFilesystemObject
             $this->extension = '';
         }
         $this->name = implode('.', $dottedNamePartials);
-        $this->contentLoaded = false;
+        $this->contentManipulated = false;
         //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
     }
 
@@ -111,11 +111,11 @@ class File extends AbstractFilesystemObject
      */
     public function getContent()
     {
-        if (!$this->contentLoaded) {
+        if (!$this->contentManipulated) {
             $this->content = ($this->isNew())
                 ? null
                 : file_get_contents($this->path);
-            $this->contentLoaded = true;
+            $this->contentManipulated = true;
         }
 
         return $this->content;
@@ -140,6 +140,7 @@ class File extends AbstractFilesystemObject
     public function setContent($content)
     {
         $this->content = $content;
+        $this->contentManipulated = true;
 
         return $this;
     }
@@ -159,8 +160,10 @@ class File extends AbstractFilesystemObject
                 );
             }
         } else {
-            //@todo mode
-            $this->filesystem->dumpFile($this->path, $this->content);
+            if ($this->contentManipulated) {
+                //@todo mode
+                $this->filesystem->dumpFile($this->path, $this->getContent());
+            }
         }
     }
 }
