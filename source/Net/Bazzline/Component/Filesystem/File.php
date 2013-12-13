@@ -33,6 +33,13 @@ class File extends AbstractFilesystemObject
     private $content;
 
     /**
+     * @var bool
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    private $contentLoaded;
+
+    /**
      * @var string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
@@ -62,6 +69,7 @@ class File extends AbstractFilesystemObject
             $this->extension = '';
         }
         $this->name = implode('.', $dottedNamePartials);
+        $this->contentLoaded = false;
         //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
     }
 
@@ -103,9 +111,14 @@ class File extends AbstractFilesystemObject
      */
     public function getContent()
     {
-        return ($this->isNew())
-            ? $this->content
-            : file_get_contents($this->path);
+        if (!$this->contentLoaded) {
+            $this->content = ($this->isNew())
+                ? null
+                : file_get_contents($this->path);
+            $this->contentLoaded = true;
+        }
+
+        return $this->content;
     }
 
     /**
