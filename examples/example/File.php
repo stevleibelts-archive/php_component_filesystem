@@ -19,7 +19,6 @@ foreach ($methods as $method) {
     $startsWithIs = (strpos($method, 'is') === 0);
     if ($startsWithGet
         || $startsWithIs) {
-        echo $method . PHP_EOL;
-        //echo $method . ': ' . $file->$method() . PHP_EOL;
+        echo $method . ': ' . $file->$method() . PHP_EOL;
     }
 }
