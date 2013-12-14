@@ -90,6 +90,7 @@ class FileTest extends ComponentTestCase
         $this->assertSame('', $file->getContent());
         $file->setContent($content);
         $this->assertSame($content, $file->getContent());
+        $this->assertSame('', file_get_contents(vfsStream::url('root/foo.bar')));
     }
 
     /**
