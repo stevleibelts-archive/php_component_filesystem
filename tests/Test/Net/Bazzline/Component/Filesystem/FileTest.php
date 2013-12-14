@@ -32,6 +32,10 @@ class FileTest extends ComponentTestCase
         $this->assertSame($expectedChecksum, $file->generateCheckSum());
     }
 
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
     public function testAppendContent()
     {
         $content = 'test content';
@@ -42,6 +46,19 @@ class FileTest extends ComponentTestCase
         $expectedContent = $appendedContent . $content;
 
         $this->assertSame($expectedContent, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function testGetContent()
+    {
+        $content = 'test content';
+        $this->createNewVfsStreamFile('foo.bar', $content);
+        $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
+
+        $this->assertSame($content, $file->getContent());
     }
 
     /**
