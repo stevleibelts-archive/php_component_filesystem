@@ -94,13 +94,43 @@ class FileTest extends ComponentTestCase
     }
 
     /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     * @see http://stubbles.org/categories/5-vfsStream - no test for touch
+     *  since this component should work also on php 5.3 so tests should
+     *  also work at this version
+     */
+    public function testSave()
+    {
+        $content = 'test content';
+        $this->createNewVfsStreamFile('foo.bar');
+        $filesystem = $this->getNewFilesystemMock();
+        $file = $this->getNewFile(
+            vfsStream::url('root/foo.bar'),
+            $filesystem
+        );
+        $file->setContent($content);
+        $filesystem->shouldReceive('dumpFile')
+            ->with(vfsStream::url('root/foo.bar'), $content)
+            ->once();
+        $file->save();
+
+        $this->assertSame($content, $file->getContent());
+    }
+
+    /**
      * @param $path
+     * @param null|\Net\Bazzline\Component\Filesystem\Filesystem $filesystem
      * @return File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */
-    private function getNewFile($path)
+    private function getNewFile($path, $filesystem = null)
     {
-        return new File($path, $this->getNewFilesystemMock());
+        if (is_null($filesystem)) {
+            $filesystem = $this->getNewFilesystemMock();
+        }
+
+        return new File($path, $filesystem);
     }
 } 

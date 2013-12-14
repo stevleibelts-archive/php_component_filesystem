@@ -7,6 +7,7 @@
 namespace Test\Net\Bazzline\Component\Filesystem;
 
 use Mockery;
+use Net\Bazzline\Component\Filesystem\Filesystem;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use org\bovigo\vfs\vfsStreamWrapper;
@@ -64,6 +65,16 @@ class ComponentTestCase extends PHPUnit_Framework_TestCase
         }
 
         return $file;
+    }
+
+    /**
+     * @return Filesystem
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    protected function getNewFilesystem()
+    {
+        return new Filesystem();
     }
 
     /**
