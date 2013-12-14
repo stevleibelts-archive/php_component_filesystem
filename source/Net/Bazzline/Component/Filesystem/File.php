@@ -19,13 +19,6 @@ use Symfony\Component\Filesystem\Exception\IOException;
 class File extends AbstractFilesystemObject
 {
     /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    private $basePath;
-
-    /**
      * @var mixed
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
@@ -47,13 +40,6 @@ class File extends AbstractFilesystemObject
     private $extension;
 
     /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    private $name;
-
-    /**
      * @param string $path
      * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
@@ -62,15 +48,10 @@ class File extends AbstractFilesystemObject
     public function __construct($path, $filesystem)
     {
         parent::__construct($path, $filesystem);
-        $dottedNamePartials = explode('.', $this->basePath);
-        if (count($dottedNamePartials) > 1) {
-            $this->extension = array_pop($dottedNamePartials);
-        } else {
-            $this->extension = '';
-        }
-        $this->name = implode('.', $dottedNamePartials);
+        $this->extension = (isset($this->pathInfo['extension']))
+            ? $this->pathInfo['extension']
+            : '';
         $this->contentManipulated = false;
-        //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
     }
 
     /**
