@@ -6,6 +6,9 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use FilesystemIterator;
+use GlobIterator;
+use SplFileInfo;
 use Symfony\Component\Filesystem\Filesystem as ParentClass;
 
 /**
@@ -71,9 +74,9 @@ class Filesystem extends ParentClass
     public function createObjectFromPath($path)
     {
         if (is_file($path)) {
-            return new File($path);
+            return new File($path, $this);
         } else if (is_dir($path)) {
-            return new Directory($path);
+            return new Directory($path, $this);
         } else {
             throw new InvalidArgumentException(
                 sprintf(
@@ -81,5 +84,43 @@ class Filesystem extends ParentClass
                 )
             );
         }
+    }
+
+    /**
+     * @param SplFileInfo $item
+     * @return AbstractFilesystemObject|Directory|File
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createObjectFromSplFileInfo(SplFileInfo $item)
+    {
+        return $this->createObjectFromPath($item->getPath());
+    }
+
+    /**
+     * @param string $path
+     * @param string $glob
+     * @return FilesystemIterator|GlobIterator
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createFilesystemIterator($path, $glob = '')
+    {
+        $path = $this->removeTrailingSlashFromPath($path);
+
+        return ($glob === '')
+            ? new FilesystemIterator($path)
+            : new GlobIterator($path . DIRECTORY_SEPARATOR . $glob);
+    }
+
+    /**
+     * @param $path
+     * @return string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    private function removeTrailingSlashFromPath($path)
+    {
+        return rtrim($path, '/\\');
     }
 }

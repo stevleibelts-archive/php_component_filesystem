@@ -6,6 +6,9 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use FilesystemIterator;
+use GlobIterator;
+use SplFileInfo;
 use Symfony\Component\Filesystem\Exception\IOException;
 
 /**
@@ -14,6 +17,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @package Net\Bazzline\Component\Filesystem
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-09
+ * @see http://www.php.net/manual/de/function.glob.php
  */
 class Directory extends AbstractFilesystemObject
 {
@@ -26,5 +30,27 @@ class Directory extends AbstractFilesystemObject
     public function __construct($path, $filesystem)
     {
         parent::__construct(rtrim($path, '/\\'), $filesystem);
+    }
+
+    /**
+     * @param string $glob
+     * @return FilesystemObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     * @todo implement filter "only directories" / "only files" and so on
+     */
+    public function getContent($glob = '')
+    {
+        $iterator = $this->filesystem->createFilesystemIterator($this->path, $glob);
+        $collection = new FilesystemObjectCollection();
+
+        foreach ($iterator as $splFileInfo) {
+            /**
+             * @var SplFileInfo $splFileInfo
+             */
+            $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPath()));
+        }
+
+        return $collection;
     }
 }
