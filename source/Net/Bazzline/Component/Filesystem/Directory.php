@@ -34,17 +34,16 @@ class Directory extends AbstractFilesystemObject
 
     /**
      * @param string $glob
-     * @param FilesystemObjectCollection $collection
+     * @param FilesystemObjectCollection|FileObjectCollection|DirectoryObjectCollection $collection
      * @return FilesystemObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
-     * @todo implement filter "only directories" / "only files" and so on
      */
     public function getContent($glob = '', FilesystemObjectCollection $collection = null)
     {
         $iterator = $this->filesystem->createFilesystemIterator($this->path, $glob);
         if (is_null($collection)) {
-            $collection = $this->filesystem->createFilesystemObjectCollection();
+            $collection = $this->filesystem->createEmptyFilesystemObjectCollection();
         }
 
         foreach ($iterator as $splFileInfo) {

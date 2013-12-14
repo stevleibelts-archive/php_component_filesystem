@@ -58,9 +58,9 @@ class Filesystem extends ParentClass
     public function createSameObjectType(AbstractFilesystemObject $original, $targetPath)
     {
         if ($original instanceof File) {
-            return new File($targetPath);
+            return $this->createFileObject($targetPath);
         } else {
-            return new Directory($targetPath);
+            return $this->createDirectoryObject($targetPath);
         }
     }
 
@@ -74,9 +74,9 @@ class Filesystem extends ParentClass
     public function createObjectFromPath($path)
     {
         if (is_file($path)) {
-            return new File($path, $this);
+            return $this->createFileObject($path);
         } else if (is_dir($path)) {
-            return new Directory($path, $this);
+            return $this->createDirectoryObject($path);
         } else {
             throw new InvalidArgumentException(
                 sprintf(
@@ -118,9 +118,51 @@ class Filesystem extends ParentClass
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */
-    public function createFilesystemObjectCollection()
+    public function createEmptyFilesystemObjectCollection()
     {
         return new FilesystemObjectCollection();
+    }
+
+    /**
+     * @return FileObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createEmptyFileObjectCollection()
+    {
+        return new FileObjectCollection();
+    }
+
+    /**
+     * @return DirectoryObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createEmptyDirectoryObjectCollection()
+    {
+        return new DirectoryObjectCollection();
+    }
+
+    /**
+     * @param $path
+     * @return Directory
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createDirectoryObject($path)
+    {
+        return new Directory($this->removeTrailingSlashFromPath($path), $this);
+    }
+
+    /**
+     * @param $path
+     * @return File
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createFileObject($path)
+    {
+        return new File($path, $this);
     }
 
     /**
