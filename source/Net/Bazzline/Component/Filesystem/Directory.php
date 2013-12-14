@@ -35,7 +35,7 @@ class Directory extends AbstractFilesystemObject
     /**
      * @param string $glob
      * @param FilesystemObjectCollection|FileObjectCollection|DirectoryObjectCollection $collection
-     * @return FilesystemObjectCollection
+     * @return FilesystemObjectCollection|AbstractFilesystemObject[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */
@@ -50,6 +50,7 @@ class Directory extends AbstractFilesystemObject
             /**
              * @var SplFileInfo $splFileInfo
              */
+echo $splFileInfo->getPathInfo() . PHP_EOL;
             $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPath()));
         }
 
