@@ -41,7 +41,7 @@ class Directory extends AbstractFilesystemObject
      */
     public function getContent($glob = '', FilesystemObjectCollection $collection = null)
     {
-        $iterator = $this->filesystem->createFilesystemIterator($this->path, $glob);
+        $iterator = $this->filesystem->createFilesystemIterator($this->getPathname(), $glob);
         if (is_null($collection)) {
             $collection = $this->filesystem->createEmptyFilesystemObjectCollection();
         }

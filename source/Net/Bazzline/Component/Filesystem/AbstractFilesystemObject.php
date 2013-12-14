@@ -19,13 +19,6 @@ use Symfony\Component\Filesystem\Exception\IOException;
 abstract class AbstractFilesystemObject extends SplFileInfo
 {
     /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-07
-     */
-    protected $basePath;
-
-    /**
      * @var Filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-11
@@ -38,20 +31,6 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      * @since 2013-12-11
      */
     protected $modificationTime;
-
-    /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-07
-     */
-    protected $name;
-
-    /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    protected $path;
 
     /**
      * @var array
@@ -70,22 +49,11 @@ abstract class AbstractFilesystemObject extends SplFileInfo
     public function __construct($path, Filesystem $filesystem)
     {
         $this->pathInfo = pathinfo($path);
-        $this->basePath = $this->pathInfo['dirname'];
-        $this->name = $this->pathInfo['basename'];
-        parent::__construct($this->basePath . DIRECTORY_SEPARATOR . $this->name);
-        $this->path = (string) $path;
+        $basePath = $this->pathInfo['dirname'];
+        $name = $this->pathInfo['basename'];
+        parent::__construct($basePath . DIRECTORY_SEPARATOR . $name);
         $this->filesystem = $filesystem;
-        $this->modificationTime = $this->getModificationTime();
-    }
-
-    /**
-     * @return string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    public function getBasePath()
-    {
-        return $this->basePath;
+        $this->modificationTime = $this->getMTime();
     }
 
     /**
@@ -99,37 +67,13 @@ abstract class AbstractFilesystemObject extends SplFileInfo
     }
 
     /**
-     * @return int
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-11
-     */
-    public function getModificationTime()
-    {
-        if ($this->isNew()) {
-            return 0;
-        } else {
-            return filemtime($this->path);
-        }
-    }
-
-    /**
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
     public function getName()
     {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    public function getPath()
-    {
-        return $this->path;
+        return $this->getFilename();
     }
 
     /**
@@ -142,7 +86,7 @@ abstract class AbstractFilesystemObject extends SplFileInfo
         if ($this->isNew()) {
             return true;
         } else {
-            return ($this->modificationTime !== $this->getModificationTime());
+            return ($this->modificationTime !== $this->getMTime());
         }
     }
 
@@ -153,7 +97,7 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      */
     function isNew()
     {
-        return (!file_exists($this->path));
+        return (!file_exists($this->getPathname()));
     }
 
     /**
@@ -163,6 +107,6 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      */
     function delete()
     {
-        $this->filesystem->remove($this->path);
+        $this->filesystem->remove($this->getPathname());
     }
 }

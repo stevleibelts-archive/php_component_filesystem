@@ -33,13 +33,6 @@ class File extends AbstractFilesystemObject
     private $contentManipulated;
 
     /**
-     * @var string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    private $extension;
-
-    /**
      * @param string $path
      * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
@@ -48,9 +41,6 @@ class File extends AbstractFilesystemObject
     public function __construct($path, $filesystem)
     {
         parent::__construct($path, $filesystem);
-        $this->extension = (isset($this->pathInfo['extension']))
-            ? $this->pathInfo['extension']
-            : '';
         $this->contentManipulated = false;
     }
 
@@ -63,16 +53,6 @@ class File extends AbstractFilesystemObject
     public function generateCheckSum($path)
     {
         return sha1_file($path);
-    }
-
-    /**
-     * @return string
-     * @author stev leibelt <artodeto@arcor.de>
-     * @since 2013-12-06
-     */
-    public function getExtension()
-    {
-        return $this->extension;
     }
 
     /**
@@ -95,7 +75,7 @@ class File extends AbstractFilesystemObject
         if (!$this->contentManipulated) {
             $this->content = ($this->isNew())
                 ? null
-                : file_get_contents($this->path);
+                : file_get_contents($this->getPathname());
             $this->contentManipulated = true;
         }
 
@@ -134,16 +114,16 @@ class File extends AbstractFilesystemObject
     function save()
     {
         if ($this->isNew() && is_null($this->content)) {
-            touch($this->path);
+            touch($this->getPathname());
             if ($this->isNew()) {
                 throw new IOException(
-                    'can not touch file in path "' , $this->path . '"'
+                    'can not touch file in path "' , $this->getPathname() . '"'
                 );
             }
         } else {
             if ($this->contentManipulated) {
                 //@todo mode
-                $this->filesystem->dumpFile($this->path, $this->getContent());
+                $this->filesystem->dumpFile($this->getPathname(), $this->getContent());
             }
         }
     }
