@@ -25,7 +25,7 @@ class FileTest extends ComponentTestCase
     public function testGenerateCheckSum()
     {
         $content = 'test content';
-        $fileMock = $this->createNewVfsStreamFile('foo.bar', $content);
+        $this->createNewVfsStreamFile('foo.bar', $content);
         $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
         $expectedChecksum = sha1($content);
 
