@@ -18,6 +18,10 @@ $content = $directory->getContent();
 echo 'content class: ' . get_class($content) . PHP_EOL;
 echo 'number of entries: ' . $content->count() . PHP_EOL;
 echo 'iterating over content' . PHP_EOL;
+
 foreach ($content as $item) {
-    echo var_export($item, true) . PHP_EOL;
+    /**
+     * @var \SplFileInfo $item
+     */
+    echo var_export($item->getRealPath(), true) . PHP_EOL;
 }

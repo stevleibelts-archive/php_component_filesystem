@@ -50,8 +50,7 @@ class Directory extends AbstractFilesystemObject
             /**
              * @var SplFileInfo $splFileInfo
              */
-echo $splFileInfo->getPathInfo() . PHP_EOL;
-            $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPath()));
+            $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPathname()));
         }
 
         return $collection;
