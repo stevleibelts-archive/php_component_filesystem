@@ -44,7 +44,6 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
-     * @todo remove unneeded methods
      */
     public function __construct($path, Filesystem $filesystem)
     {
