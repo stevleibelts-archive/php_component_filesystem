@@ -27,7 +27,7 @@
         "psr-0": {
             "Example\\": "examples/",
             "Net\\Bazzline\\Component\\Filesystem\\": "source/",
-            "Test\\Net\\Bazzline\\Component\\Filesystem\\": "test/"
+            "Test\\Net\\Bazzline\\Component\\Filesystem\\": "tests/"
         }
     }
 }
