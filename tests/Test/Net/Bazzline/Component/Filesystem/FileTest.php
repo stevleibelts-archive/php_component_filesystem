@@ -32,6 +32,18 @@ class FileTest extends ComponentTestCase
         $this->assertSame($expectedChecksum, $file->generateCheckSum());
     }
 
+    public function testAppendContent()
+    {
+        $content = 'test content';
+        $appendedContent = 'foobar ';
+        $this->createNewVfsStreamFile('foo.bar', $content);
+        $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
+        $file->appendContent($appendedContent);
+        $expectedContent = $appendedContent . $content;
+
+        $this->assertSame($expectedContent, $file->getContent());
+    }
+
     /**
      * @param $path
      * @return File
