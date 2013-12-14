@@ -61,7 +61,7 @@ class File extends AbstractFilesystemObject
      */
     public function appendContent($content)
     {
-        $this->setContent($content . $this->getContent());
+        $this->setContent($this->getContent() . $content);
     }
 
     /**

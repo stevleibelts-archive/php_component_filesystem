@@ -39,11 +39,11 @@ class FileTest extends ComponentTestCase
     public function testAppendContent()
     {
         $content = 'test content';
-        $appendedContent = 'foobar ';
+        $appendedContent = ' foobar';
         $this->createNewVfsStreamFile('foo.bar', $content);
         $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
         $file->appendContent($appendedContent);
-        $expectedContent = $appendedContent . $content;
+        $expectedContent = $content . $appendedContent;
 
         $this->assertSame($expectedContent, $file->getContent());
     }
@@ -59,6 +59,22 @@ class FileTest extends ComponentTestCase
         $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
 
         $this->assertSame($content, $file->getContent());
+    }
+
+    /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function testPrependContent()
+    {
+        $content = 'test content';
+        $prependContent = 'foobar ';
+        $this->createNewVfsStreamFile('foo.bar', $content);
+        $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
+        $file->prependContent($prependContent);
+        $expectedContent = $prependContent . $content;
+
+        $this->assertSame($expectedContent, $file->getContent());
     }
 
     /**
