@@ -21,7 +21,8 @@ echo 'iterating over content' . PHP_EOL;
 
 foreach ($content as $item) {
     /**
-     * @var \SplFileInfo $item
+     * @var \Net\Bazzline\Component\Filesystem\AbstractFilesystemObject $item
      */
-    echo var_export($item->getRealPath(), true) . PHP_EOL;
+    echo 'class: ' . get_class($item) . PHP_EOL;
+    echo 'path: ' . $item->getRealPath() . PHP_EOL;
 }
