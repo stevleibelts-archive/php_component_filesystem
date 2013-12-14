@@ -15,8 +15,8 @@ $class = get_class($file);
 $methods = get_class_methods($class);
 
 foreach ($methods as $method) {
-    $startsWithGet = (strpos('get', $method) === 0);
-    $startsWithIs = (strpos('is', $method) === 0);
+    $startsWithGet = (strpos($method, 'get') === 0);
+    $startsWithIs = (strpos($method, 'is') === 0);
     if ($startsWithGet
         || $startsWithIs) {
         echo $method . PHP_EOL;
