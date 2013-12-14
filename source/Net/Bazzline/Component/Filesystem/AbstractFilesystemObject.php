@@ -6,6 +6,7 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+use SplFileInfo;
 use Symfony\Component\Filesystem\Exception\IOException;
 
 /**
@@ -15,7 +16,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-06
  */
-abstract class AbstractFilesystemObject
+abstract class AbstractFilesystemObject extends SplFileInfo
 {
     /**
      * @var string
@@ -53,19 +54,27 @@ abstract class AbstractFilesystemObject
     protected $path;
 
     /**
+     * @var array
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    protected $pathInfo;
+
+    /**
      * @param string $path
      * @param Filesystem $filesystem
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
-     * @todo use SplFileInfo or SplFileObject
+     * @todo remove unneeded methods
      */
     public function __construct($path, Filesystem $filesystem)
     {
-        //@todo what about pathinfo? http://www.php.net/manual/de/function.pathinfo.php
-        $this->basePath = dirname($path);
-        $this->filesystem = $filesystem;
-        $this->name = basename($path);
+        $this->pathInfo = pathinfo($path);
+        $this->basePath = $this->pathInfo['dirname'];
+        $this->name = $this->pathInfo['basename'];
+        parent::__construct($this->basePath . DIRECTORY_SEPARATOR . $this->name);
         $this->path = (string) $path;
+        $this->filesystem = $filesystem;
         $this->modificationTime = $this->getModificationTime();
     }
 

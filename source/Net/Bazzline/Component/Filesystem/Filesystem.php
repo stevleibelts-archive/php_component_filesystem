@@ -114,6 +114,16 @@ class Filesystem extends ParentClass
     }
 
     /**
+     * @return FilesystemObjectCollection
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function createFilesystemObjectCollection()
+    {
+        return new FilesystemObjectCollection();
+    }
+
+    /**
      * @param $path
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
