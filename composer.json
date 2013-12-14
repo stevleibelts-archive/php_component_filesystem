@@ -21,7 +21,8 @@
     "require-dev": {
         "phpunit/phpunit": "3.7.*",
         "mikey179/vfsStream": "dev-master",
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+        "whatthejeff/nyancat-phpunit-resultprinter": "~1.2"
     },
     "autoload": {
         "psr-0": {

@@ -45,14 +45,13 @@ class File extends AbstractFilesystemObject
     }
 
     /**
-     * @param string $path
      * @return string
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    public function generateCheckSum($path)
+    public function generateCheckSum()
     {
-        return sha1_file($path);
+        return sha1_file($this->getPathname());
     }
 
     /**
