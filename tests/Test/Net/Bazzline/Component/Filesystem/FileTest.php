@@ -78,6 +78,21 @@ class FileTest extends ComponentTestCase
     }
 
     /**
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-14
+     */
+    public function testSetContent()
+    {
+        $content = 'test content';
+        $this->createNewVfsStreamFile('foo.bar');
+        $file = $this->getNewFile(vfsStream::url('root/foo.bar'));
+
+        $this->assertSame('', $file->getContent());
+        $file->setContent($content);
+        $this->assertSame($content, $file->getContent());
+    }
+
+    /**
      * @param $path
      * @return File
      * @author stev leibelt <artodeto@arcor.de>
