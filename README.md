@@ -6,3 +6,4 @@ Based on Symfony\Component\Filesystem\Filesystem
 
 [![Latest Stable Version](https://poser.pugx.org/stevleibelt/php_component_filesystem/v/stable.png)](https://packagist.org/packages/stevleibelt/php_component_filesystem) [![Latest Unstable Version](https://poser.pugx.org/stevleibelt/php_component_filesystem/v/unstable.png)](https://packagist.org/packages/stevleibelt/php_component_filesystem)
 
+@todo implement filter instead of multiple ObjectCollections
