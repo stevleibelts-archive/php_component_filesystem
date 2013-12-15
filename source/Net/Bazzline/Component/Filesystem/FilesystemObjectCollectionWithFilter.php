@@ -6,24 +6,41 @@
 
 namespace Net\Bazzline\Component\Filesystem;
 
+/**
+ * Class FilesystemObjectCollectionWithFilter
+ *
+ * @package Net\Bazzline\Component\Filesystem
+ * @author stev leibelt <artodeto@arcor.de>
+ * @since 2013-12-16
+ */
 class FilesystemObjectCollectionWithFilter extends FilesystemObjectCollection
 {
+    /**
+     * @var FilterInterface
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
     private $filter;
 
     /**
-     * @param $filter
+     * @param FilterInterface $filter
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-16
-     * @todo or move into ctor?
      */
-    public function setFilter($filter)
+    public function __construct(FilterInterface $filter)
     {
         $this->filter = $filter;
     }
 
+    /**
+     * @param object $object
+     * @param null $data
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
     public function attach($object, $data = null)
     {
-        if ($this->filter($object)) {
+        if ($this->filter->permit($object)) {
             parent::attach($object, $data);
         }
     }
