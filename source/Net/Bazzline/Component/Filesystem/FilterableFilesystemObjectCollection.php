@@ -13,7 +13,7 @@ namespace Net\Bazzline\Component\Filesystem;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-16
  */
-class FilesystemObjectCollectionWithFilter extends FilesystemObjectCollection
+class FilterableFilesystemObjectCollection extends FilesystemObjectCollection
 {
     /**
      * @var FilterInterface
