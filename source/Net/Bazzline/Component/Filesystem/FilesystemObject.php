@@ -16,7 +16,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-06
  */
-abstract class AbstractFilesystemObject extends SplFileInfo
+class FilesystemObject extends SplFileInfo
 {
     /**
      * @var Filesystem

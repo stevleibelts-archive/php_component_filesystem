@@ -16,7 +16,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @since 2013-12-06
  * @todo implement binary data handling (file_get_contents, file_put_contents)
  */
-class File extends AbstractFilesystemObject
+class File extends FilesystemObject
 {
     /**
      * @var mixed

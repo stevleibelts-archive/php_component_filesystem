@@ -19,7 +19,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * @since 2013-12-09
  * @see http://www.php.net/manual/de/function.glob.php
  */
-class Directory extends AbstractFilesystemObject
+class Directory extends FilesystemObject
 {
     /**
      * @param string $path
@@ -35,22 +35,24 @@ class Directory extends AbstractFilesystemObject
     /**
      * @param string $glob
      * @param FilesystemObjectCollection|FilterableFilesystemObjectCollection $collection
-     * @return FilesystemObjectCollection|AbstractFilesystemObject[]
+     * @return FilesystemObjectCollection|FilesystemObject[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */
     public function getContent($glob = '', FilesystemObjectCollection $collection = null)
     {
-        $iterator = $this->filesystem->createFilesystemIterator($this->getPathname(), $glob);
         if (is_null($collection)) {
             $collection = $this->filesystem->createEmptyFilesystemObjectCollection();
         }
 
-        foreach ($iterator as $splFileInfo) {
-            /**
-             * @var SplFileInfo $splFileInfo
-             */
-            $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPathname()));
+        if (!$this->isNew()) {
+            $iterator = $this->filesystem->createFilesystemIterator($this->getPathname(), $glob);
+            foreach ($iterator as $splFileInfo) {
+                /**
+                 * @var SplFileInfo $splFileInfo
+                 */
+                $collection->attach($this->filesystem->createObjectFromPath($splFileInfo->getPathname()));
+            }
         }
 
         return $collection;

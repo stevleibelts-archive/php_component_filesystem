@@ -21,7 +21,7 @@ echo 'iterating over content' . PHP_EOL;
 
 foreach ($content as $item) {
     /**
-     * @var \Net\Bazzline\Component\Filesystem\AbstractFilesystemObject $item
+     * @var \Net\Bazzline\Component\Filesystem\FilesystemObject $item
      */
     echo 'class: ' . get_class($item) . PHP_EOL;
     echo 'path: ' . $item->getRealPath() . PHP_EOL;

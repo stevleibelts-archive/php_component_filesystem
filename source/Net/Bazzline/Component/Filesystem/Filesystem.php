@@ -21,14 +21,14 @@ use Symfony\Component\Filesystem\Filesystem as ParentClass;
 class Filesystem extends ParentClass
 {
     /**
-     * @param AbstractFilesystemObject $objectOne
-     * @param AbstractFilesystemObject $objectTwo
+     * @param FilesystemObject $objectOne
+     * @param FilesystemObject $objectTwo
      * @return bool
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    public function assertSameObjectType(AbstractFilesystemObject $objectOne, AbstractFilesystemObject $objectTwo)
+    public function assertSameObjectType(FilesystemObject $objectOne, FilesystemObject $objectTwo)
     {
         if ($objectOne instanceof File
             && $objectTwo instanceof File) {
@@ -49,13 +49,13 @@ class Filesystem extends ParentClass
     }
 
     /**
-     * @param AbstractFilesystemObject $original
+     * @param FilesystemObject $original
      * @param string $targetPath
      * @return Directory|File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
      */
-    public function createSameObjectType(AbstractFilesystemObject $original, $targetPath)
+    public function createSameObjectType(FilesystemObject $original, $targetPath)
     {
         if ($original instanceof File) {
             return $this->createFileObject($targetPath);
@@ -66,7 +66,7 @@ class Filesystem extends ParentClass
 
     /**
      * @param string $path
-     * @return AbstractFilesystemObject|Directory|File
+     * @return FilesystemObject|Directory|File
      * @throws InvalidArgumentException
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-08
@@ -88,7 +88,7 @@ class Filesystem extends ParentClass
 
     /**
      * @param SplFileInfo $item
-     * @return AbstractFilesystemObject|Directory|File
+     * @return FilesystemObject|Directory|File
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14
      */

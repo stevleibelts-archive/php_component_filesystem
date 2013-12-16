@@ -16,10 +16,10 @@ namespace Net\Bazzline\Component\Filesystem;
 interface FilterInterface
 {
     /**
-     * @param AbstractFilesystemObject $object
+     * @param FilesystemObject $object
      * @return bool
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-16
      */
-    public function permit(AbstractFilesystemObject $object);
+    public function permit(FilesystemObject $object);
 } 
