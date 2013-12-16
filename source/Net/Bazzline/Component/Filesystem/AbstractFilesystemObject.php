@@ -94,7 +94,7 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    function isNew()
+    public function isNew()
     {
         return (!file_exists($this->getPathname()));
     }
@@ -104,8 +104,98 @@ abstract class AbstractFilesystemObject extends SplFileInfo
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-06
      */
-    function delete()
+    public function delete()
     {
         $this->filesystem->remove($this->getPathname());
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getATime()
+    {
+        return ($this->isNew()) ? null : parent::getATime();
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getCTime()
+    {
+        return ($this->isNew()) ? null : parent::getCTime();
+    }
+
+    /**
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
+    public function getMTime()
+    {
+        return ($this->isNew()) ? null : parent::getMTime();
+    }
+
+    /**
+     * @return int
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
+    public function getPerms()
+    {
+        return ($this->isNew()) ? null : parent::getPerms();
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getInode()
+    {
+        return ($this->isNew()) ? null : parent::getInode();
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getGroup()
+    {
+        return ($this->isNew()) ? null : parent::getGroup();
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getOwner()
+    {
+        return ($this->isNew()) ? null : parent::getOwner();
+    }
+
+    /**
+     * @return int|null
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getSize()
+    {
+        return ($this->isNew()) ? null : parent::getSize();
+    }
+
+    /**
+     * @return null|string
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-17
+     */
+    public function getType()
+    {
+        return ($this->isNew()) ? null : parent::getType();
     }
 }
