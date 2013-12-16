@@ -33,12 +33,12 @@ class FilterableFilesystemObjectCollection extends FilesystemObjectCollection
     }
 
     /**
-     * @param object $object
+     * @param AbstractFilesystemObject $object
      * @param null $data
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-16
      */
-    public function attach($object, $data = null)
+    public function attach(AbstractFilesystemObject $object, $data = null)
     {
         if ($this->filter->permit($object)) {
             parent::attach($object, $data);
