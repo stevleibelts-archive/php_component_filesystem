@@ -16,7 +16,7 @@ use org\bovigo\vfs\vfsStream;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-14
  */
-class FileTest extends ComponentTestCase
+class FileTest extends TestCase
 {
     /**
      * @author stev leibelt <artodeto@arcor.de>

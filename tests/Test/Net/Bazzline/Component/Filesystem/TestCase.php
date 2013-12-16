@@ -20,7 +20,7 @@ use PHPUnit_Framework_TestCase;
  * @author stev leibelt <artodeto@arcor.de>
  * @since 2013-12-14
  */
-class ComponentTestCase extends PHPUnit_Framework_TestCase
+class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
      * @var vfsStreamDirectory
