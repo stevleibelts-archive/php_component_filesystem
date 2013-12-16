@@ -34,7 +34,7 @@ class Directory extends AbstractFilesystemObject
 
     /**
      * @param string $glob
-     * @param FilesystemObjectCollection|FileObjectCollection|DirectoryObjectCollection $collection
+     * @param FilesystemObjectCollection|FilterableFilesystemObjectCollection $collection
      * @return FilesystemObjectCollection|AbstractFilesystemObject[]
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-14

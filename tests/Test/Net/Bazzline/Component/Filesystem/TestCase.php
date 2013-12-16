@@ -51,6 +51,40 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @param $path
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Filesystem\File
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
+    protected function createNewFileMock($path)
+    {
+        $file = Mockery::mock('Net\Bazzline\Component\Filesystem\File');
+        $file->shouldReceive('getPathname')
+            ->andReturn($path)
+            ->once()
+            ->byDefault();
+
+        return $file;
+    }
+
+    /**
+     * @param $path
+     * @return Mockery\MockInterface|\Net\Bazzline\Component\Filesystem\Directory
+     * @author stev leibelt <artodeto@arcor.de>
+     * @since 2013-12-16
+     */
+    protected function createNewDirectoryMock($path)
+    {
+        $directory = Mockery::mock('Net\Bazzline\Component\Filesystem\Directory');
+        $directory->shouldReceive('getPathname')
+            ->andReturn($path)
+            ->once()
+            ->byDefault();
+
+        return $directory;
+    }
+
+    /**
+     * @param $path
      * @param null $content
      * @return \org\bovigo\vfs\vfsStreamContent
      * @author stev leibelt <artodeto@arcor.de>
