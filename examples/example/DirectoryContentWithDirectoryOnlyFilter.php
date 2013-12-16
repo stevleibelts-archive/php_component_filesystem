@@ -7,15 +7,18 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Net\Bazzline\Component\Filesystem\Filesystem;
-use Net\Bazzline\Component\Filesystem\DirectoryObjectCollection;
+use Net\Bazzline\Component\Filesystem\FilterableFilesystemObjectCollection;
+use Net\Bazzline\Component\Filesystem\DirectoryOnlyFilter;
 
 $fileSystem = new FileSystem();
 $directory = $fileSystem->createDirectoryObject(__DIR__);
 
 $class = get_class($directory);
 $methods = get_class_methods($class);
+$collection = new FilterableFilesystemObjectCollection();
+$collection->setFilter(new DirectoryOnlyFilter());
 
-$content = $directory->getContent('', new DirectoryObjectCollection());
+$content = $directory->getContent('', $collection);
 echo 'content class: ' . get_class($content) . PHP_EOL;
 echo 'number of entries: ' . $content->count() . PHP_EOL;
 echo 'iterating over content' . PHP_EOL;

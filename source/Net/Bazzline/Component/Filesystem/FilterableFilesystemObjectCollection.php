@@ -27,7 +27,7 @@ class FilterableFilesystemObjectCollection extends FilesystemObjectCollection
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-16
      */
-    public function __construct(FilterInterface $filter)
+    public function setFilter(FilterInterface $filter)
     {
         $this->filter = $filter;
     }
