@@ -22,12 +22,24 @@ class FilesystemObjectTest extends TestCase
      * @author stev leibelt <artodeto@arcor.de>
      * @since 2013-12-16
      */
-    public function testGetFilesystem()
+    public function testConstructWithNewFilesystemObject()
     {
         $filesystem = $this->getNewFilesystemMock();
         $object = $this->getNewAbstractFilesystemObject(vfsStream::url('root/foo'), $filesystem);
 
         $this->assertSame($filesystem, $object->getFilesystem());
+        $this->assertEquals('foo', $object->getName());
+        $this->assertTrue($object->isModified());
+        $this->assertTrue($object->isNew());
+        $this->assertNull($object->getATime());
+        $this->assertNull($object->getCTime());
+        $this->assertNull($object->getMTime());
+        $this->assertNull($object->getPerms());
+        $this->assertNull($object->getInode());
+        $this->assertNull($object->getGroup());
+        $this->assertNull($object->getOwner());
+        $this->assertNull($object->getSize());
+        $this->assertNull($object->getType());
     }
 
     /**
