@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  */
 
@@ -13,28 +13,28 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * Class AbstractObject
  *
  * @package Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  */
 class FilesystemObject extends SplFileInfo
 {
     /**
      * @var Filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-11
      */
     protected $filesystem;
 
     /**
      * @var int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-11
      */
     protected $modificationTime;
 
     /**
      * @var array
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected $pathInfo;
@@ -42,7 +42,7 @@ class FilesystemObject extends SplFileInfo
     /**
      * @param string $path
      * @param Filesystem $filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function __construct($path, Filesystem $filesystem)
@@ -57,7 +57,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return Filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-11
      */
     public function getFilesystem()
@@ -67,7 +67,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function getName()
@@ -77,7 +77,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function isModified()
@@ -91,7 +91,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function isNew()
@@ -101,7 +101,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @throws IoException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function delete()
@@ -111,7 +111,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getATime()
@@ -121,7 +121,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getCTime()
@@ -131,7 +131,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     public function getMTime()
@@ -141,7 +141,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     public function getPerms()
@@ -151,7 +151,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getInode()
@@ -161,7 +161,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getGroup()
@@ -171,7 +171,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getOwner()
@@ -181,7 +181,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return int|null
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getSize()
@@ -191,7 +191,7 @@ class FilesystemObject extends SplFileInfo
 
     /**
      * @return null|string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-17
      */
     public function getType()

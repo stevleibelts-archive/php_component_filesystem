@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-16 
  */
 
@@ -12,13 +12,13 @@ use org\bovigo\vfs\vfsStream;
 /**
  * Class DirectoryTest
  * @package Test\Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-16
  */
 class DirectoryTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     public function testContent()
@@ -53,7 +53,7 @@ class DirectoryTest extends TestCase
      * @param $path
      * @param null|\Net\Bazzline\Component\Filesystem\Filesystem $filesystem
      * @return Directory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     private function getNewDirectory($path, $filesystem = null)

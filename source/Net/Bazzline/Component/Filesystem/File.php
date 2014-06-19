@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  */
 
@@ -12,7 +12,7 @@ use Symfony\Component\Filesystem\Exception\IOException;
  * Class File
  *
  * @package Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  * @todo implement binary data handling (file_get_contents, file_put_contents)
  */
@@ -20,14 +20,14 @@ class File extends FilesystemObject
 {
     /**
      * @var mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     private $content;
 
     /**
      * @var bool
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     private $contentManipulated;
@@ -35,7 +35,7 @@ class File extends FilesystemObject
     /**
      * @param string $path
      * @param Filesystem $filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function __construct($path, $filesystem)
@@ -46,7 +46,7 @@ class File extends FilesystemObject
 
     /**
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function generateCheckSum()
@@ -56,7 +56,7 @@ class File extends FilesystemObject
 
     /**
      * @param null|string|mixed $content
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-11
      */
     public function appendContent($content)
@@ -66,7 +66,7 @@ class File extends FilesystemObject
 
     /**
      * @return null|string|mixed
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function getContent()
@@ -83,7 +83,7 @@ class File extends FilesystemObject
 
     /**
      * @param null|string|mixed $content
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-11
      */
     public function prependContent($content)
@@ -94,7 +94,7 @@ class File extends FilesystemObject
     /**
      * @param null|string|mixed $content
      * @return $this
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     public function setContent($content)
@@ -107,7 +107,7 @@ class File extends FilesystemObject
 
     /**
      * @throws IOException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-06
      */
     function save()

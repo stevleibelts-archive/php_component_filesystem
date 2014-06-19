@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  */
 
@@ -15,7 +15,7 @@ use Symfony\Component\Filesystem\Filesystem as ParentClass;
  * Class Filesystem
  *
  * @package Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-06
  */
 class Filesystem extends ParentClass
@@ -25,7 +25,7 @@ class Filesystem extends ParentClass
      * @param FilesystemObject $objectTwo
      * @return bool
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-08
      */
     public function assertSameObjectType(FilesystemObject $objectOne, FilesystemObject $objectTwo)
@@ -52,7 +52,7 @@ class Filesystem extends ParentClass
      * @param FilesystemObject $original
      * @param string $targetPath
      * @return Directory|File
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-08
      */
     public function createSameObjectType(FilesystemObject $original, $targetPath)
@@ -68,7 +68,7 @@ class Filesystem extends ParentClass
      * @param string $path
      * @return FilesystemObject|Directory|File
      * @throws InvalidArgumentException
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-08
      */
     public function createObjectFromPath($path)
@@ -89,7 +89,7 @@ class Filesystem extends ParentClass
     /**
      * @param SplFileInfo $item
      * @return FilesystemObject|Directory|File
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createObjectFromSplFileInfo(SplFileInfo $item)
@@ -101,7 +101,7 @@ class Filesystem extends ParentClass
      * @param string $path
      * @param string $glob
      * @return FilesystemIterator|GlobIterator
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createFilesystemIterator($path, $glob = '')
@@ -115,7 +115,7 @@ class Filesystem extends ParentClass
 
     /**
      * @return FilesystemObjectCollection
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createEmptyFilesystemObjectCollection()
@@ -125,7 +125,7 @@ class Filesystem extends ParentClass
 
     /**
      * @return FileObjectCollection
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createEmptyFileObjectCollection()
@@ -135,7 +135,7 @@ class Filesystem extends ParentClass
 
     /**
      * @return DirectoryObjectCollection
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createEmptyDirectoryObjectCollection()
@@ -146,7 +146,7 @@ class Filesystem extends ParentClass
     /**
      * @param $path
      * @return Directory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createDirectoryObject($path)
@@ -157,7 +157,7 @@ class Filesystem extends ParentClass
     /**
      * @param $path
      * @return File
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function createFileObject($path)
@@ -168,7 +168,7 @@ class Filesystem extends ParentClass
     /**
      * @param $path
      * @return string
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     private function removeTrailingSlashFromPath($path)

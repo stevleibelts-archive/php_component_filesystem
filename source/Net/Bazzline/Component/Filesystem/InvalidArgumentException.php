@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-08
  */
 
@@ -12,7 +12,7 @@ use InvalidArgumentException as ParentClass;
  * Class InvalidArgumentException
  *
  * @package Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-08
  */
 class InvalidArgumentException extends ParentClass

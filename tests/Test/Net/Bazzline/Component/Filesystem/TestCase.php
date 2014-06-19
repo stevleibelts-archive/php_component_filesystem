@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-14
  */
 
@@ -17,20 +17,20 @@ use PHPUnit_Framework_TestCase;
  * Class UnitTestCase
  *
  * @package Test\Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-14
  */
 class TestCase extends PHPUnit_Framework_TestCase
 {
     /**
      * @var vfsStreamDirectory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected $root;
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected function setUp()
@@ -41,7 +41,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected function tearDown()
@@ -52,7 +52,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * @param $path
      * @return Mockery\MockInterface|\Net\Bazzline\Component\Filesystem\File
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     protected function createNewFileMock($path)
@@ -69,7 +69,7 @@ class TestCase extends PHPUnit_Framework_TestCase
     /**
      * @param $path
      * @return Mockery\MockInterface|\Net\Bazzline\Component\Filesystem\Directory
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-16
      */
     protected function createNewDirectoryMock($path)
@@ -87,7 +87,7 @@ class TestCase extends PHPUnit_Framework_TestCase
      * @param $path
      * @param null $content
      * @return \org\bovigo\vfs\vfsStreamContent
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected function createNewVfsStreamFile($path, $content = null)
@@ -103,7 +103,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     protected function getNewFilesystem()
@@ -113,7 +113,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     /**
      * @return Mockery\MockInterface|\Net\Bazzline\Component\Filesystem\Filesystem
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since
      */
     protected function getNewFilesystemMock()

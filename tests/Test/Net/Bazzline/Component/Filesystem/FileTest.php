@@ -1,6 +1,6 @@
 <?php
 /**
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-14
  */
 
@@ -13,13 +13,13 @@ use org\bovigo\vfs\vfsStream;
  * Class FileTest
  *
  * @package Test\Net\Bazzline\Component\Filesystem
- * @author stev leibelt <artodeto@arcor.de>
+ * @author stev leibelt <artodeto@bazzline.net>
  * @since 2013-12-14
  */
 class FileTest extends TestCase
 {
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function testGenerateCheckSum()
@@ -33,7 +33,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function testAppendContent()
@@ -49,7 +49,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function testGetContent()
@@ -62,7 +62,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function testPrependContent()
@@ -78,7 +78,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     public function testSetContent()
@@ -94,7 +94,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      * @see http://stubbles.org/categories/5-vfsStream - no test for touch
      *  since this component should work also on php 5.3 so tests should
@@ -122,7 +122,7 @@ class FileTest extends TestCase
      * @param $path
      * @param null|\Net\Bazzline\Component\Filesystem\Filesystem $filesystem
      * @return File
-     * @author stev leibelt <artodeto@arcor.de>
+     * @author stev leibelt <artodeto@bazzline.net>
      * @since 2013-12-14
      */
     private function getNewFile($path, $filesystem = null)
